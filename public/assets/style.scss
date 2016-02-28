@@ -330,6 +330,13 @@ header{
 	    				color: white;
 	    				opacity: 1;
 	    			}
+	    			&:hover{
+	    				color: white;
+	    				a{
+	    					color: white;
+	    					opacity: 1;
+	    				}
+	    			}
 	    		}
     			&:hover{
     				a{
@@ -347,6 +354,17 @@ section{
 	h1{
 		color: $secondary-color;
 		font-weight: 200;
+		span{
+			font-size: 20px;
+			a{
+				text-decoration: none;
+				color: $secondary-color;
+				&:hover{
+					text-decoration: none;
+					color: $secondary-color;
+				}
+			}
+		}
 	}
 	.container-responsive{
 		position: relative;
@@ -360,6 +378,19 @@ section{
 	    height: 100%;
 	    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.15);
 	    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+	    table{
+	    	th{
+	    		border-top: none;
+	    	}
+	    	td{
+	    		&.pago{
+    			    color: #3ED43E;
+	    		}
+	    		&.pendente{
+	    			color: #D81919;
+	    		}
+	    	}
+	    }
 	}
 	#map{
 		min-height: 400px;
@@ -495,6 +526,18 @@ section{
 		    }
 		}
 	}	
+}
+.btn-success{
+    background-color: #67D667;
+    border-color: #67D667;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+    padding: 3px 8px;
+    transition: all ease .2s;
+    &:hover{
+	    background-color: #67D667;
+	    border-color: #67D667;
+    	border-bottom: 2px solid rgba(0,0,0,0.0);
+    }
 }
 .ripple {
 	position: relative;

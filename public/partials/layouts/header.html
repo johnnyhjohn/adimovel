@@ -1,0 +1,46 @@
+        <header>
+            <div class="admin">
+                <p class="pull-right">
+                    Olá Usuario 
+                    <img src="image/no-image.png" alt="Avatar" class="avatar-admin">   
+                </p>
+                <div class="user-info">
+                    <div class="info-content">
+                        <div class="avatar">
+                            <img src="image/no-image.png" alt="Avatar" class="avatar">    
+                        </div>
+                        <div class="info">
+                            <h3>Usuario</h3>
+                            <p>email@gmail.com</p>
+                            <p class="editar-perfil-btn"><a href="{{ url('/editar-perfil') }}">Editar Perfil</a></p>
+                        </div>
+                    </div>
+                    <div class="info-footer">
+                        <a href="{{ url('/sair') }}">Sair</a>
+                    </div>    
+                </div>
+            </div>
+                <div class="container user-header">
+                    <h1 class="text-left"><a href="{{ url('/') }}">ADImovel</a></h1>
+                    <!-- <img class="avatar" src=" }}">
+                    <p class="header-name">}</p> -->
+                </div>
+                <nav class="nav navbar-default">
+                    <div class="navbar">
+                        <ul class="menu-ul">
+                            <li class="active"><a href="/"><i class="fa fa-dashboard fa-2x"></i>Dashboard</a></li>
+                            <li><a href="lista"><i class="fa fa-home fa-2x"></i>Imóveis</a></li>
+                            <li><a href=""><i class="fa fa-users fa-2x"></i>Pessoas</a></li>
+                            <li><a href=""><i class="fa fa-users fa-2x"></i>Usuários</a></li>
+                            <li><a href=""><i class="fa fa-file-text fa-2x"></i>Relatórios</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            <button type="button" class="navbar-toggle menu show ripple btn" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span id="icon-bar1" class="icon-bar"></span>
+                <span id="icon-bar2" class="icon-bar"></span>
+                <span id="icon-bar3" class="icon-bar"></span>
+            </button>
+            </div>
+        </header>

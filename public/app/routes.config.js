@@ -113,7 +113,8 @@
       	*/
       	function getRoutes(){
       		return [
-              montaRota('/', 'Imoveis/cadastro.html')
+              montaRota('/', 'Imoveis/cadastro.html'),
+              montaRota('/lista', 'Imoveis/lista.html')
       		]
       	}
     }

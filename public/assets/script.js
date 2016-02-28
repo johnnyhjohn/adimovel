@@ -36,17 +36,13 @@ $.fn.material_input = function(){
 
 		if(scroll >= 50){
 			$("nav").addClass('nav-fixed');
-			$(".nav-fixed").removeClass('no-transition');
+			
 			setTimeout(function(){
 				$(".nav-fixed").addClass('transition');
 			}, 800);
 		}else{
 			$(".nav-fixed").removeClass('transition');
-			$(".nav-fixed").addClass('no-transition');
 			$("nav").removeClass('nav-fixed');
-			setTimeout(function(){
-				$("nav").removeClass('no-transition');
-			}, 400);
 		}
 	})
 })();
@@ -88,34 +84,43 @@ $(document).ready(function(){
 		e.preventDefault();
 		$(this).css("box-shadow","0 2px 4px rgba(0, 0, 0, 0.2)");
 	});	
-	$(document).on('click', '.ripple', function (event) {
-      event.preventDefault();
-      
-      var $div = $('<div/>'),
-          btnOffset = $(this).offset(),
-      		xPos = event.pageX - btnOffset.left,
-      		yPos = event.pageY - btnOffset.top;
-      
-      $div.addClass('ripple-effect');
-      var $ripple = $(".ripple-effect");
-      
-      $ripple.css("height", $(this).height());
-      $ripple.css("width", $(this).height());
-      $div
-        .css({
-          top: yPos,
-          left: xPos - ($ripple.width()/2),
-          background: $(this).data("ripple-color")
-        }) 
-        .appendTo($(this));
+	
+	$(document).on("click",".menu-ul li", function(){
+		$(".menu-ul li").removeClass('active');
+		$(this).addClass('active');
+	})
 
-      window.setTimeout(function(){
-        $div.remove();
-      }, 2000);
-    });
+	$(document).on('click', '.ripple', rippleEffect);
+
 
 
 })
+
+function rippleEffect () {
+  event.preventDefault();
+  
+  var $div = $('<div/>'),
+      btnOffset = $(this).offset(),
+  		xPos = event.pageX - btnOffset.left,
+  		yPos = event.pageY - btnOffset.top;
+  
+  $div.addClass('ripple-effect');
+  var $ripple = $(".ripple-effect");
+  
+  $ripple.css("height", $(this).height());
+  $ripple.css("width", $(this).height());
+  $div
+    .css({
+      top: yPos,
+      left: xPos - ($ripple.width()/2),
+      background: $(this).data("ripple-color")
+    }) 
+    .appendTo($(this));
+
+  window.setTimeout(function(){
+    $div.remove();
+  }, 2000);
+}
 
 
 
