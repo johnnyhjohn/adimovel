@@ -66,8 +66,6 @@ $(document).ready(function(){
 		$(".user-info").toggleClass('show-info');
 	});
 
-
-
 })
 
 

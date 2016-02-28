@@ -113,6 +113,18 @@
 				<span></span>
 			</div>	
 		</div>
+		<div class="col-md-12" data-ng-controller="mapaCtrl">
+			<h2>Endereço do Imóvel</h2>
+            <div id="map" data-lat="-25.0993621" data-long="-50.1584514"></div>
+            <input id="pac-input" class="controls">
+			<div class="material-input select">
+				<label for="endereco" class="float-label">Endereço</label>
+				<input type="text" id="endereco" name="endereco" class="form-control local">
+				<span></span>
+			</div>	
+            <input type="hidden" name="lat" id="" class="lat">
+            <input type="hidden" name="lng" id="" class="lng">	 			
+		</div>
 	</form>
 	</div>
 </div>
