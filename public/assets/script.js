@@ -33,6 +33,21 @@ $.fn.material_input = function(){
 		var scroll = $(document).scrollTop();
 
 		scroll >= 50 ? $(".menu").css("top", "80%") : $(".menu").css("top", "140px");
+
+		if(scroll >= 50){
+			$("nav").addClass('nav-fixed');
+			$(".nav-fixed").removeClass('no-transition');
+			setTimeout(function(){
+				$(".nav-fixed").addClass('transition');
+			}, 800);
+		}else{
+			$(".nav-fixed").removeClass('transition');
+			$(".nav-fixed").addClass('no-transition');
+			$("nav").removeClass('nav-fixed');
+			setTimeout(function(){
+				$("nav").removeClass('no-transition');
+			}, 400);
+		}
 	})
 })();
 
