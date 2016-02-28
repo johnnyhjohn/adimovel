@@ -65,6 +65,40 @@ $(document).ready(function(){
 	$(document).on("click", ".avatar-admin", function(){
 		$(".user-info").toggleClass('show-info');
 	});
+	$(document).on('mousedown', '.ripple', function (e) {	
+		e.preventDefault();
+		$(this).css("box-shadow","0 2px 4px rgba(0, 0, 0, 0)");
+	});
+	$(document).on('mouseup', '.ripple', function (e) {
+		e.preventDefault();
+		$(this).css("box-shadow","0 2px 4px rgba(0, 0, 0, 0.2)");
+	});	
+	$(document).on('click', '.ripple', function (event) {
+      event.preventDefault();
+      
+      var $div = $('<div/>'),
+          btnOffset = $(this).offset(),
+      		xPos = event.pageX - btnOffset.left,
+      		yPos = event.pageY - btnOffset.top;
+      
+      $div.addClass('ripple-effect');
+      var $ripple = $(".ripple-effect");
+      
+      $ripple.css("height", $(this).height());
+      $ripple.css("width", $(this).height());
+      $div
+        .css({
+          top: yPos,
+          left: xPos - ($ripple.width()/2),
+          background: $(this).data("ripple-color")
+        }) 
+        .appendTo($(this));
+
+      window.setTimeout(function(){
+        $div.remove();
+      }, 2000);
+    });
+
 
 })
 

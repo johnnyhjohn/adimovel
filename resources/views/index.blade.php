@@ -49,7 +49,7 @@
                         </ul>
                     </div>
                 </nav>
-            <button type="button" class="navbar-toggle menu show" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <button type="button" class="navbar-toggle menu show ripple btn" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span>
                 <span id="icon-bar1" class="icon-bar"></span>
                 <span id="icon-bar2" class="icon-bar"></span>

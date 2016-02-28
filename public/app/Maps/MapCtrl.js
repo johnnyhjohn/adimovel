@@ -4,8 +4,11 @@
   angular.module('adimovelApp').controller('mapaCtrl', mapaCtrl);
 
   function mapaCtrl(){
+
+    mapaMetaBox();
+
     function mapaMetaBox() {
-      var lat  = Number($("#map").data('lat'))
+        var lat  = Number($("#map").data('lat'))
         ,    lng = Number($("#map").data('long'));
 
         var mapOptions = {
@@ -57,7 +60,18 @@
             }));
             marker.setVisible(true);
 
-            $(".local").val(place.name);
+            $(".endereco").val(place.address_components[0].long_name)
+              .siblings('label').addClass('label-active')
+              .siblings('span').addClass('input-focus');
+
+            $(".bairro").val(place.address_components[1].long_name)
+              .siblings('label').addClass('label-active')
+              .siblings('span').addClass('input-focus');
+
+            $(".cidade").val(place.address_components[2].long_name)
+              .siblings('label').addClass('label-active')
+              .siblings('span').addClass('input-focus');
+
             $(".lat").val(place.geometry.location.lat)
             $(".lng").val(place.geometry.location.lng)
 
@@ -67,7 +81,6 @@
           });
         
       }    
-      google.maps.event.addDomListener(window, 'load', mapaMetaBox);   
     }     
   
 
