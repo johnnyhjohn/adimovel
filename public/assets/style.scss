@@ -222,6 +222,7 @@ header{
 		h1{
 			padding-top: 30px;
 			margin-left: 10%;
+			transition: all ease .2s;
 			a{
 				color: white;
 				text-decoration: none;
@@ -229,11 +230,15 @@ header{
 					text-decoration: none;
 				}
 			}
+
+			&.compressed{
+				margin-left: 5%;
+			}
 		}
 	}
 	nav{
 	    position: absolute;
-	    height: 100%;
+	    height: calc(100% - 50px);
 	    width: 13%;
 	    display: block;
 	    background-color: white;
@@ -270,6 +275,7 @@ header{
 	    &.nav-fixed{
 	    	top: 0;
 	    	position: fixed;
+	    	height: 100%;
 	    	-webkit-transition: all ease .0s;
 		    -moz-transition: all ease .0s;
 		    transition: all ease .0s;
@@ -366,9 +372,6 @@ section{
 					color: $secondary-color;
 				}
 			}
-		}
-		&.compressed{
-			margin-left: 5%;
 		}
 	}
 	.container-responsive{
