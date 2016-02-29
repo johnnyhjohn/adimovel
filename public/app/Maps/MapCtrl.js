@@ -5,7 +5,14 @@
 
   function mapaCtrl(){
 
-    mapaMetaBox();
+    try {
+      mapaMetaBox();
+    } catch(e) {
+      $("#map").append('<p>Verifique sua conexão com a internet</p>');
+      $("#pac-input").css("display","none");
+      console.log(e);
+    }
+    
 
     function mapaMetaBox() {
         var lat  = Number($("#map").data('lat'))
