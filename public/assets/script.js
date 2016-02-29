@@ -52,6 +52,7 @@ $.fn.material_input = function(){
 		$("nav").toggleClass("compressed");
 		$(".menu").toggleClass("menu-open");
 		$("#overlay").toggleClass("overlay-show");
+		$("#titulo").toggleClass("compressed");
 		$("#panel-master").toggleClass('col-md-11 col-md-offset-1').toggleClass('col-md-12');
 	});	
 })();
