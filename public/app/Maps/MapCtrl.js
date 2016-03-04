@@ -6,11 +6,11 @@
   function mapaCtrl(){
 
     try {
-      mapaMetaBox();
+        mapaMetaBox();
     } catch(e) {
-      $("#map").append('<p>Verifique sua conexão com a internet</p>');
-      $("#pac-input").css("display","none");
-      console.log(e);
+        $("#map").append('<p>Verifique sua conexão com a internet</p>');
+        $("#pac-input").css("display","none");
+        console.log(e);
     }
     
 
@@ -24,30 +24,28 @@
             scrollwheel: false
         };
 
-          var map = new google.maps.Map(document.getElementById('map'),
-            mapOptions);
+        var map = new google.maps.Map(document.getElementById('map'),mapOptions);
 
-          var input = (
-              document.getElementById('pac-input'));
+        var input = (document.getElementById('pac-input'));
 
-          var autocomplete = new google.maps.places.Autocomplete(input);
-          autocomplete.bindTo('bounds', map);
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        autocomplete.bindTo('bounds', map);
 
-          map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-          var marker = new google.maps.Marker({
+        var marker = new google.maps.Marker({
             position : {lat: lat, lng: lng},
             map: map,
             icon: '../image/pin.png'
-          });
+        });
 
-          var infowindow = new google.maps.InfoWindow();
+        var infowindow = new google.maps.InfoWindow();
 
-          google.maps.event.addListener(marker, 'click', function() {
+        google.maps.event.addListener(marker, 'click', function() {
             infowindow.open(map, marker);
-          });
+        });
 
-          google.maps.event.addListener(autocomplete, 'place_changed', function() {
+        google.maps.event.addListener(autocomplete, 'place_changed', function() {
             infowindow.close();
             var place = autocomplete.getPlace();
             if (!place.geometry) {
@@ -68,16 +66,16 @@
             marker.setVisible(true);
 
             $(".endereco").val(place.address_components[0].long_name)
-              .siblings('label').addClass('label-active')
-              .siblings('span').addClass('input-focus');
+                .siblings('label').addClass('label-active')
+                .siblings('span').addClass('input-focus');
 
             $(".bairro").val(place.address_components[1].long_name)
-              .siblings('label').addClass('label-active')
-              .siblings('span').addClass('input-focus');
+                .siblings('label').addClass('label-active')
+                .siblings('span').addClass('input-focus');
 
             $(".cidade").val(place.address_components[2].long_name)
-              .siblings('label').addClass('label-active')
-              .siblings('span').addClass('input-focus');
+                .siblings('label').addClass('label-active')
+                .siblings('span').addClass('input-focus');
 
             $(".lat").val(place.geometry.location.lat)
             $(".lng").val(place.geometry.location.lng)

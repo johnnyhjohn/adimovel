@@ -378,12 +378,33 @@ section{
 		position: relative;
 		max-width: 100%;
 	}
+	.dashboard-column{
+		padding: 10px;
+		.title-icon{
+		    margin-bottom: 20px;
+			padding-left: 5px;
+			h1{
+				display: inline-block;
+			}
+			.ico{
+				display: inline-block;
+			    padding: 5px;
+			    vertical-align: bottom;
+			    i{
+			    	color: $primary-color;
+			    }
+			}
+		}
+	}
 	.panel{
 		padding: 10px;
+		border: 0;
 	    background-color: #fff;
 	    display: block;
 	    width: 99%;
+	    border-radius: 0;
 	    margin: auto;
+	    margin-bottom: 20px;
 	    height: 100%;
 	    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,0.15);
 	    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
@@ -400,6 +421,31 @@ section{
 	    		}
 	    	}
 	    }
+	    &.panel-icon{
+			padding: 0;
+			.icon{
+			    width: 30%;
+			    background: $primary-color;
+			    color: white;
+			    text-align: center;
+			    padding: 20px;
+			    display: inline-block;
+			    font-size: 36px;
+			    &.icon1{
+			    	background-color: #DA2C5C;
+			    }		
+			    &.icon2{
+			    	background-color: #9C34D2;
+			    }				
+			}
+			.info{
+				width: 65%;
+			    display: inline-block;
+			    text-align: center;
+			    font-size: 18px;
+			    font-weight: 200;
+			}
+		}
 	}
 	#map{
 		min-height: 400px;

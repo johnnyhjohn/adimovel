@@ -113,8 +113,16 @@
       	*/
       	function getRoutes(){
       		return [
-              montaRota('/', 'Imoveis/cadastro.html'),
-              montaRota('/lista', 'Imoveis/lista.html')
+              montaRota('/', 'dashboard/dashboard.html'),
+              montaRota('/imoveis/cadastro', 'Imoveis/cadastro.html'),
+              montaRota('/imoveis', 'Imoveis/lista.html'),
+              montaRota('/imoveis/:slug', 'Imoveis/editar.html'),
+              montaRota('/pessoas/cadastro', 'Pessoa/cadastro.html'),
+              montaRota('/pessoas', 'Pessoa/lista.html'),
+              montaRota('/pessoas/:slug', 'Pessoa/editar.html'),
+              montaRota('/usuarios/cadastro', 'Usuario/cadastro.html'),
+              montaRota('/usuarios', 'Usuario/lista.html'),
+              montaRota('/usuarios/:slug', 'Usuario/editar.html'),
       		]
       	}
     }

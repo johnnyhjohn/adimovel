@@ -14,14 +14,14 @@
         <ng-include src="'partials/layouts/header.html'"></ng-include>
         <section>
             <div class="container">
-                <div id="panel-master" class="col-md-11 col-md-offset-1">
+                <div id="panel-master" class="col-md-11 col-md-offset-1 col-xs-offset-2 col-xs-10">
                     <div data-ng-view></div>
                 </div>
             </div>
         </section>
     </body>
     <footer>
-        {!! HTML::script('https://maps.googleapis.com/maps/api/js?key=AIzaSyBCAKUTbamk1pEER1vty-_nB2UHYKnO37Y&libraries=places') !!}
+        <script type="text/javascript" src="https://maps.googleapis.coxm/maps/api/js?key=AIzaSyBCAKUTbamk1pEER1vty-_nB2UHYKnO37Y&libraries=places" async></script>
         {!! HTML::script('bower_components/jquery/dist/jquery.min.js') !!}
         {!! HTML::script('bower_components/bootstrap/dist/js/bootstrap.min.js') !!}
         {!! HTML::script('bower_components/angular/angular.min.js') !!}
