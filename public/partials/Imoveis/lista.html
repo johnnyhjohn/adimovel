@@ -1,25 +1,29 @@
-<h1>Lista de Imóveis <span class="pull-right"><a href="imoveis/cadastro">Novo Imóvel  <button class="btn btn-success"><i class="fa fa-plus"></i></button></a></span></h1>
+<h1>Lista de Imóveis <span class="add pull-right"><a href="imoveis/cadastro">Novo <button class="btn btn-success"><i class="fa fa-plus"></i></button></a></span></h1>
 <div class="panel">
 	<div class="container container-responsive">
+
+<form class="busca">
+	<div class="material-input select">
+		<label for="nome" class="float-label"><i class="fa fa-search"></i> Busca</label>
+		<input id="nome" type="text" class="form-control">
+		<span></span>
+	</div>	
+</form>	
 		<table class="table">
 			<tr id="table-head">
 				<th id="nome" class="filtro">Codigo</th>
 				<th id="telefone" class="filtro">Nome do Imovel</th>
 				<th id="celular" class="filtro">Corretor</th>
-				<th id="projeto" class="filtro">Inquilino</th>
 				<th id="projeto" class="filtro">Tipo</th>
 				<th id="projeto" class="filtro">Finalidade</th>
-				<th id="projeto" class="filtro">Pagamento</th>
 				<th>Opções</th>
 			</tr>
 			<tr>
 				<td>01</td>
 				<td>Imóvel 1</td>
 				<td>Juarez</td>
-				<td>Juca Bala</td>
 				<td>Apartamento</td>
 				<td>Locação</td>
-				<td class="pendente">Pendente</td>
 				<td>
 					<a href="imoveis/1"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
 					<button class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
@@ -29,10 +33,8 @@
 				<td>02</td>
 				<td>Imóvel 2</td>
 				<td>Juarez Martonha</td>
-				<td>Joao Feijão</td>
 				<td>Casa</td>
 				<td>Venda</td>
-				<td class="pago">Pago</td>
 				<td>
 					<a href="imoveis/1"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
 					<button class="btn btn-danger"><i class="fa fa-trash-o"></i></button>

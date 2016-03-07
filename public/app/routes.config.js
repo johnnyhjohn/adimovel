@@ -123,6 +123,9 @@
               montaRota('/usuarios/cadastro', 'Usuario/cadastro.html'),
               montaRota('/usuarios', 'Usuario/lista.html'),
               montaRota('/usuarios/:slug', 'Usuario/editar.html'),
+              montaRota('/administrar/imoveis', 'Administrar/imoveis-lista.html'),
+              montaRota('/administrar/imoveis/:slug', 'Administrar/imoveis.html'),
+              montaRota('/relatorios', 'Relatorios/inicio.html'),
       		]
       	}
     }

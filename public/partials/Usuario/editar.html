@@ -1,11 +1,11 @@
-<h1>Editar Usuário 1</h1>
+<h1>Editar Usuario 1</h1>
 <div class="panel">
 	<div class="container container-responsive">
 	<form method="post">
 		<div class="col-md-4">
 			<div class="material-input select">
 				<label for="nome" class="float-label">Nome</label>
-				<input id="nome" type="text" class="form-control" value="Pessoa 1">
+				<input id="nome" type="text" class="form-control" value="Usuário 1">
 				<span></span>
 			</div>	
 		</div>		
@@ -18,13 +18,20 @@
 		</div>		
 		<div class="col-md-4">
 			<div class="material-input select">
+				<label for="status_negociacao" class="float-label">Senha</label>
+				<input id="status_negociacao" type="password" class="form-control" value="password">
+				<span></span>
+			</div>
+		</div>	
+		<div class="col-md-4">
+			<div class="material-input select">
 				<label for="corretor" class="float-label">Tipo</label>
 				<select id="corretor" class="form-control">
-					<option value="teste">Corretor</option>
+					<option value="corretor">Corretor</option>
 				</select>
 				<span></span>
 			</div>	
-		</div>				
+		</div>			
 		<div class="col-md-4">
 			<div class="material-input select">
 				<label for="vitrine" class="float-label">Telefone</label>
@@ -32,42 +39,17 @@
 				<span></span>
 			</div>	
 		</div>		
-		<div class="col-md-12" data-ng-controller="mapaCtrl">
-            <div id="map" data-lat="-25.0993621" data-long="-50.1584514"></div>
-            <input id="pac-input" class="controls">
-            <div class="col-md-3">
-				<div class="material-input select">
-					<label for="endereco" class="float-label">Endereço</label>
-					<input type="text" id="endereco" name="endereco" class="form-control endereco" value="Rua Cesário Alvin">
-					<span></span>
-				</div>	
-            </div>
-            <div class="col-md-3">
-				<div class="material-input select">
-					<label for="bairro" class="float-label">Bairro</label>
-					<input type="text" id="bairro" name="bairro" class="form-control bairro" value="Olarias">
-					<span></span>
-				</div>	
-            </div>
-            <div class="col-md-3">
-				<div class="material-input select">
-					<label for="cep" class="float-label">CEP</label>
-					<input type="text" id="cep" name="cep" class="form-control cep" value="84035-040">
-					<span></span>
-				</div>	
-            </div>
-            <div class="col-md-3">
-				<div class="material-input select">
-					<label for="cidade" class="float-label">Cidade</label>
-					<input type="text" id="cidade" name="cidade" class="form-control cidade" value="Ponta Grossa">
-					<span></span>
-				</div>	
-            </div>
-            <input type="hidden" name="lat" id="" class="lat">
-            <input type="hidden" name="lng" id="" class="lng">	 			
-		</div>
+		<div class="col-md-4">
+			<div class="material-input select">
+				<label for="ativo" class="float-label">Ativo</label>
+				<select id="ativo" class="form-control">
+					<option value="ativo">Ativo</option>
+				</select>
+				<span></span>
+			</div>	
+		</div>		
 		<div class="col-md-12">
-			<button id="btn-imovel" class="btn ripple pull-right">Cadastro</button>
+			<button id="btn-imovel" class="btn ripple pull-right">Atualizar</button>
 		</div>
 	</form>
 	</div>

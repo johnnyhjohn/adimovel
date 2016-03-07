@@ -85,8 +85,8 @@ $(document).ready(function(){
 	$(document).on('focus', '.material-input',addMaterialFocus);
 	
 
-	$(document).on('mousedown', '.ripple', mouseDownRipple);
-	$(document).on('mouseup', '.ripple', mouseUpRipple);	
+	$(document).on('mousedown', '.btn', mouseDownRipple);
+	$(document).on('mouseup', '.btn', mouseUpRipple);	
 
 	/*
 	*	CLICK EVENTS
@@ -97,12 +97,21 @@ $(document).ready(function(){
 	$(document).on('focus', '.date', textToDate);
 	$(document).on('blur', '.date', dateToText);
 	$(document).on('click', 'a', scrollToTop);
+	$(document).on('click', '.btn-custos', toggleCustos);
 	$(document).on('click', '.deleta-imovel', function(event) {
 		event.preventDefault();
 	});
+	$(document).on('click', '#myTabs a', function (e) {
+	  e.preventDefault()
+	  $(this).tab('show')
+	})
 
 	addMaterialInput();
 })
+
+function toggleCustos(){
+	$(".custos").toggleClass('active');
+}
 
 function textToDate(){
 	$(this).attr("type","date");
@@ -155,7 +164,19 @@ function addMaterialInput(){
 
 function rippleEffect () {
   	event.preventDefault();
-  
+	if($(this).hasClass('btn-pago')){
+		$(this).removeClass('btn-pago').addClass('btn-atrasado');
+		$(this).html("Atrasado");
+		$(this).data('situacao','atrasado');
+	}else if($(this).hasClass('btn-atrasado')){
+		$(this).removeClass('btn-atrasado').addClass('btn-pendente');
+		$(this).html("Pendente");
+		$(this).data('situacao','pendente');
+	}else if($(this).hasClass('btn-pendente')){
+		$(this).removeClass('btn-pendente').addClass('btn-pago');
+		$(this).html("Pago");
+		$(this).data('situacao','pago');
+	}  
   	var $div = $('<div/>'),
       	btnOffset = $(this).offset(),
   		xPos = event.pageX - btnOffset.left,
