@@ -11,17 +11,17 @@
 		    datasets: [
 		        {
 		            label: "Imóveis Vendidos",
-		            fillColor: "rgba(220,220,220,0.5)",
-		            strokeColor: "rgba(220,220,220,0.8)",
-		            highlightFill: "rgba(220,220,220,0.75)",
+		            fillColor: "#09f",
+		            strokeColor: "#09f",
+		            highlightFill: "#09f",
 		            highlightStroke: "rgba(220,220,220,1)",
 		            data: [65, 59, 80]
 		        },
 		        {
 		            label: "My Second dataset",
-		            fillColor: "rgba(151,187,205,0.5)",
-		            strokeColor: "rgba(151,187,205,0.8)",
-		            highlightFill: "rgba(151,187,205,0.75)",
+		            fillColor: "#FF4081",
+		            strokeColor: "#FF4081",
+		            highlightFill: "#FF4081",
 		            highlightStroke: "rgba(151,187,205,1)",
 		            data: [28, 48, 40]
 		        }
@@ -63,6 +63,13 @@
 
 		}
 		var myBarChart = new Chart(ctx).Bar(data, options);
+		setInterval(function(){
+			myBarChart.datasets[0].bars[0].value = Math.floor((Math.random() * 70) + 20);
+			myBarChart.datasets[0].bars[1].value = Math.floor((Math.random() * 70) + 20);
+			myBarChart.datasets[0].bars[2].value = Math.floor((Math.random() * 70) + 20);
+			// Would update the first dataset's value of 'March' to be 50
+			myBarChart.update();
+		}, 2000);
 	};
 
 })();

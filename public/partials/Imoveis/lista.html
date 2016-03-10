@@ -1,4 +1,5 @@
-<h1>Lista de Imóveis <span class="add pull-right"><a href="imoveis/cadastro">Novo <button class="btn btn-success"><i class="fa fa-plus"></i></button></a></span></h1>
+<h1>Lista de Imóveis</h1>
+<a class='btn-adiciona' href="admin/imoveis/cadastro"><button class="btn btn-success">Adicionar</button></a>
 <div class="panel">
 	<div class="container container-responsive">
 
@@ -25,8 +26,8 @@
 				<td>Apartamento</td>
 				<td>Locação</td>
 				<td>
-					<a href="imoveis/1"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
-					<button class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+					<a href="admin/imoveis/1"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
+					<button class="btn btn-danger btn-deleta" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o"></i></button>
 				</td>
 			</tr>
 			<tr>
@@ -36,10 +37,105 @@
 				<td>Casa</td>
 				<td>Venda</td>
 				<td>
-					<a href="imoveis/1"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
-					<button class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+					<a href="admin/imoveis/1"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
+					<button class="btn btn-danger btn-deleta" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o"></i></button>
+				</td>
+			</tr>
+			<tr>
+				<td>03</td>
+				<td>Imóvel 2</td>
+				<td>Juarez Martonha</td>
+				<td>Casa</td>
+				<td>Venda</td>
+				<td>
+					<a href="admin/imoveis/1"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
+					<button class="btn btn-danger btn-deleta" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o"></i></button>
+				</td>
+			</tr>
+			<tr>
+				<td>04</td>
+				<td>Imóvel 2</td>
+				<td>Juarez Martonha</td>
+				<td>Casa</td>
+				<td>Venda</td>
+				<td>
+					<a href="admin/imoveis/1"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
+					<button class="btn btn-danger btn-deleta" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o"></i></button>
+				</td>
+			</tr>
+			<tr>
+				<td>05</td>
+				<td>Imóvel 2</td>
+				<td>Juarez Martonha</td>
+				<td>Casa</td>
+				<td>Venda</td>
+				<td>
+					<a href="admin/imoveis/1"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
+					<button class="btn btn-danger btn-deleta" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o"></i></button>
+				</td>
+			</tr>
+			<tr>
+				<td>06</td>
+				<td>Imóvel 2</td>
+				<td>Juarez Martonha</td>
+				<td>Casa</td>
+				<td>Venda</td>
+				<td>
+					<a href="admin/imoveis/1"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
+					<button class="btn btn-danger btn-deleta" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o"></i></button>
+				</td>
+			</tr>
+			<tr>
+				<td>07</td>
+				<td>Imóvel 2</td>
+				<td>Juarez Martonha</td>
+				<td>Casa</td>
+				<td>Venda</td>
+				<td>
+					<a href="admin/imoveis/1"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
+					<button class="btn btn-danger btn-deleta" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o"></i></button>
+				</td>
+			</tr>
+			<tr>
+				<td>08</td>
+				<td>Imóvel 2</td>
+				<td>Juarez Martonha</td>
+				<td>Casa</td>
+				<td>Venda</td>
+				<td>
+					<a href="admin/imoveis/1"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
+					<button class="btn btn-danger btn-deleta" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o"></i></button>
+				</td>
+			</tr>
+			<tr>
+				<td>09</td>
+				<td>Imóvel 2</td>
+				<td>Juarez Martonha</td>
+				<td>Casa</td>
+				<td>Venda</td>
+				<td>
+					<a href="admin/imoveis/1"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
+					<button class="btn btn-danger btn-deleta" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o"></i></button>
+				</td>
+			</tr>
+			<tr>
+				<td>10</td>
+				<td>Imóvel 2</td>
+				<td>Juarez Martonha</td>
+				<td>Casa</td>
+				<td>Venda</td>
+				<td>
+					<a href="admin/imoveis/1"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
+					<button class="btn btn-danger btn-deleta" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o"></i></button>
 				</td>
 			</tr>
 		</table>
+		<div class="pagination">
+			<ul>
+				<li class="active"><a href="">1</a></li>
+				<li><a href="">2</a></li>
+			</ul>
+		</div>
 	</div>
 </div>
+<ng-include src="'partials/imoveis/excluir.html'"></ng-include>

@@ -1,12 +1,11 @@
-<h1>Movimentação Imóvel 1 <span class="pull-right btn-aluguel btn-pago ripple" data-situacao="pago">Pago</span></h1>
+<h1>Movimentação Imóvel 1 <span id="btn-venda" class="pull-right btn-aluguel btn-pago ripple" data-situacao="pago">Pago</span></h1>
 
 <div class="panel">
 	<div class="container container-responsive">
 		<h2>Inquilino: Juarez <span class="pull-right">Imóvel: Imóvel 1</span></h2>
-		<h2>Mês: Janeiro <span class="pull-right">Ano: 2016</span></h2>
 		<table class="table">
 			<tr>
-				<td><strong>Aluguel</strong></td>
+				<td><strong>Valor do Imóvel</strong></td>
 				<td></td>
 				<td></td>
 				<td>R$600,00</td>
@@ -48,30 +47,20 @@
 				<td class="pago">Pago</td>
 			</tr>
 		</table>
-		<p>Adicionar Custos <button class="btn btn-success btn-custos"><i class="fa fa-plus"></i></button></p>
-		<div class="custos">
-			<div class="col-md-12">
-				<div class="col-md-9">
-					<form>
-						<div class="material-input">
-							<label class="float-label">Categoria de Custo</label>
-							<select class="select form-control">
-								<option>Aguá</option>
-								<option>Juros</option>
-							</select>
-							<span></span>
-						</div>
-					</form>
+		<p>Adicionar Desconto <button class="btn btn-success btn-desconto"><i class="fa fa-plus"></i></button></p>
+		<div class="desconto">
+			<form>
+				<div class="col-md-12">
+					<div class="material-input">
+						<label class="float-label">Desconto</label>
+						<input id="desconto" type="text" class="form-control"> 
+						<span></span>
+					</div>
 				</div>
-				<div class="col-md-3">
-					 <button id="btn-add-custo" class="btn btn-success"><i class="fa fa-plus"></i></button>	
-				</div>
-				<form id="custo-form"></form>
-			</div>	
+			</form>
 		</div>
 		<h4>Total: <span class="pull-right"><strong>R$:600,00</strong></span></h4>
 		<hr>
 		<button id="btn-imovel" class="btn btn-submit ripple pull-right">Atualizar</button>
-		<button id="btn-recibo" class="btn btn-submit ripple pull-right">Gerar Recibo</button>
 	</div>
 </div>

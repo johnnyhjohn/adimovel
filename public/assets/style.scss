@@ -360,6 +360,9 @@ header{
 }
 
 section{
+	.login{
+		margin-top: 15vh;
+	}
 	h1{
 		color: $secondary-color;
 		font-weight: 200;
@@ -561,6 +564,7 @@ section{
 		.form-control{
 			border:1px solid transparent;
 			box-shadow: none;
+			background: transparent;
 			border-bottom: 2px solid #eee;
 			border-radius:0px;		
 			outline: none;
@@ -617,12 +621,49 @@ section{
 		    	outline: none;
 		    	color: white;
 		    }
+		    &.btn-danger{
+		    	background: $red;
+		    }
 		}
 		&.busca{
 		    margin-bottom: 20px;
 		}
 	}	
 }
+.btn{
+	&.active{
+	    -webkit-box-shadow: none;
+	    box-shadow: none;
+	}
+}
+.btn-compra{
+	text-transform: uppercase;
+	margin-bottom: 20px;
+	margin-top: 10px;
+	color: $primary-color;
+	&.active{
+		background: $primary-color;
+		color: white;
+	}
+}
+.btn-aluguel{
+	text-transform: uppercase;
+	margin: 10px 10px 20px 10px;
+	color: $button-color;
+	&.active{
+		background: $button-color;
+		color: white;
+	}
+}
+
+.desconto{
+	display: none;
+	margin-bottom: 20px;
+	&.active{
+		display: block;
+	}
+}
+
 .btn-submit{
     margin-top: 30px;
     margin-bottom: 20px;
@@ -641,23 +682,66 @@ section{
     	color: white;
     }
 }
+.btn-adiciona{
+    display: block;
+    margin-bottom: 25px;
+    position: relative;
+    left: 15px;
+}
 .btn-success{
+    padding: 7px 10px;
+    border: none;
+    text-transform: uppercase;
+    position: relative;
+    right: 10px;
+    top: 10px;
     background-color: #67D667;
-    border-color: #67D667;
-    border-bottom: 2px solid rgba(0,0,0,0.1);
-    padding: 3px 8px;
     transition: all ease .2s;
     &:hover{
 	    background-color: #67D667;
-	    border-color: #67D667;
-    	border-bottom: 2px solid rgba(0,0,0,0.0);
     }
+}
+.custos{
+	display: none;
+	&.active{
+		display: block;
+	}
+	.col-md-12{
+	    border-bottom: 1px solid #eee;
+    	padding-bottom: 20px;
+    	margin-bottom: 20px;
+	}
+}
+#btn-add-custo{
+	margin-top: 40px;
+}
+#btn-recibo{
+	margin-right: 15px;
 }
 .ripple {
 	position: relative;
   	overflow: hidden; 
 }
-
+.pagination{
+	float: right;
+	ul{
+		li{
+		    float: left;
+		    list-style: none;
+		    margin-left: 15px;
+		    padding: 7px 13px;
+		    a{
+		    	color: $primary-color;
+		    }
+		    &.active{
+		    	background: $primary-color;
+		    	a{
+		    		color: white;
+		    	}
+		    }
+		}
+	}
+}
 .ripple-effect {
   position: absolute;
   border-radius: 50%;

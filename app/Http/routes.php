@@ -12,11 +12,19 @@
 */
 
 
+Route::any('/admin/login', function(){
+    return view("login");
+})->where("path", ".+");
 
-Route::any('{path?}', function()
-{
+
+Route::any('/admin/{path?}', function(){
     return view("index");
 })->where("path", ".+");
+
+Route::any('{path?}', function(){
+    return view("site");
+})->where("path", ".+");
+
 
 /*
 |--------------------------------------------------------------------------
