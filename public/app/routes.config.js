@@ -134,6 +134,7 @@
               montaRota('/admin/administrar/imoveis/aluguel/:slug', 'Administrar/imoveis.html'),
               montaRota('/admin/administrar/imoveis/compra/:slug', 'Administrar/compra.html'),
               montaRota('/admin/relatorios', 'Relatorios/inicio.html'),
+              montaRota('/admin/configuracao', 'Configuracoes/index.html'),
       		]
       	}
     }

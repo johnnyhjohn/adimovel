@@ -37,7 +37,6 @@
         </section>
     </body>
     <footer>
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
         {!! HTML::script('bower_components/jquery/dist/jquery.min.js') !!}
         {!! HTML::script('bower_components/bootstrap/dist/js/bootstrap.min.js') !!}
         {!! HTML::script('bower_components/angular/angular.min.js') !!}

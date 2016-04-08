@@ -1,0 +1,111 @@
+.btn{
+	&.active{
+	    -webkit-box-shadow: none;
+	    box-shadow: none;
+	}
+}
+.btn-compra{
+	text-transform: uppercase;
+	margin-bottom: 20px;
+	margin-top: 10px;
+	color: $primary-color;
+	&.active{
+		background: $primary-color;
+		color: white;
+	}
+}
+.btn-aluguel{
+	text-transform: uppercase;
+	margin: 10px 10px 20px 10px;
+	color: $button-color;
+	&.active{
+		background: $button-color;
+		color: white;
+	}
+}
+
+.desconto{
+	display: none;
+	margin-bottom: 20px;
+	&.active{
+		display: block;
+	}
+}
+
+.btn-submit{
+    margin-top: 30px;
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: 0px 2px 2px rgba(0,0,0,0.4);
+    color: white;
+    text-transform: uppercase;
+    background: $primary-color;
+    transition: all ease .2s;
+    &:hover{
+    	color: white;
+	    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    }			
+    &:focus{
+    	outline: none;
+    	color: white;
+    }
+}
+.btn-adiciona{
+    display: block;
+    margin-bottom: 25px;
+    position: relative;
+    left: 15px;
+}
+.btn-success{
+    padding: 7px 10px;
+    border: none;
+    text-transform: uppercase;
+    position: relative;
+    right: 10px;
+    top: 10px;
+    background-color: #67D667;
+    transition: all ease .2s;
+    &:hover{
+	    background-color: #67D667;
+    }
+}
+.custos{
+	display: none;
+	&.active{
+		display: block;
+	}
+	.col-md-12{
+	    border-bottom: 1px solid #eee;
+    	padding-bottom: 20px;
+    	margin-bottom: 20px;
+	}
+}
+#btn-add-custo{
+	margin-top: 40px;
+}
+#btn-recibo{
+	margin-right: 15px;
+}
+.ripple {
+	position: relative;
+  	overflow: hidden; 
+}
+.ripple-effect {
+  position: absolute;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  background: white;
+  animation: ripple-animation 2s; 
+}
+
+@keyframes ripple-animation {
+  	from {
+    	transform: scale(1);
+    	opacity: 0.4; 
+	}
+  	to {
+    	transform: scale(100);
+    	opacity: 0; 
+    } 
+}

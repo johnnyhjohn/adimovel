@@ -1,0 +1,311 @@
+
+header{
+	background-color: $primary-color;
+	height: 170px;
+	margin-bottom: 50px;
+	box-shadow: 0 3px 4px rgba(0,0,0,0.2);
+	.admin{
+		background-color: $secondary-color;
+		height: 50px;
+		width: 100%;
+		.avatar-admin{
+		    border-radius: 100%;
+		    width: 40px;
+		    top: -5px;
+		    left: 10px;
+		    position: relative;
+		    margin-right: 20px;
+		}
+		p{
+			padding: 10px;
+			color: white;
+		}
+		a{
+			color: white;
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+		.user-info {
+		    background-color: #fff;
+		    position: absolute;
+		    right: 20px;
+		    top: 60px;
+		    z-index: 10000;
+		    box-shadow: 0 0px 2px 1px rgba(0, 0, 0, 0.17);
+		    visibility: hidden;
+		    opacity: 0;
+		    min-width: 300px;
+		    -webkit-transition: all ease .3s;
+		    -moz-transition: all ease .3s;
+		    transition: all ease .3s;
+		    &:before{
+		    	content: '';
+		    	display: block;
+		    	border-right: 10px solid transparent;
+		    	border-left: 10px solid transparent;
+		    	border-bottom: 10px solid white;
+		    	position:absolute;
+			    top: -10px;
+			    right: 10px;
+		    }
+		    .info-content{
+		    	padding:15px;
+		    	height: 130px;
+		    }
+		    .info-footer{
+		    	padding:5px;
+		    	background-color:#f1f1f1;
+		    	border-top: 1px solid #E2E2E2;
+		    	a{
+		    	    position: relative;
+    				left: 85%;
+    				color:rgba(0,0,0,0.47);
+		    	}
+		    }
+		    .avatar{
+		    	float: left;
+		    	width: 100px;
+		    }
+		    .info {
+		    	h3{
+		    		float: right;
+		    		color: #333;
+		    		font-size: 1.7em;
+		    		margin: 0;
+		    	}
+		    	p{
+		    		color: #6B6B6B;
+		    		float: right;
+		    		padding: 0px;
+		    		font-size: 1em;
+		    	}
+		    	.editar-perfil-btn{
+			    	color: #444;
+				    display: block;
+				    clear: both;
+				    margin-top: -25px;
+				    a{
+				    	color: #fff;
+				    	background-color:$primary-color;
+				    	padding:10px;
+
+				    }
+			    }
+		    }
+		}
+		.show-info{
+			opacity: 1;
+			visibility: visible;
+		    -webkit-transition: all ease .3s;
+		    -moz-transition: all ease .3s;
+		    transition: all ease .3s;			
+		}
+	}
+ 	.menu{
+		width: 50px;
+		height: 50px;
+		border-radius:100%;
+		background-color: $button-color;
+		border: 0px solid transparent;
+		position: fixed;
+		left: 90%;
+		z-index: 100;
+		top: 140px;
+		z-index: 1000;
+		outline: none;
+		box-shadow: 0 2px 3px rgba(0,0,0,0.27);
+		-webkit-transition: all .4s cubic-bezier(.37,.15,.32,.94);
+		-moz-transition: all .4s cubic-bezier(.37,.15,.32,.94);
+		-o-transition: all .4s cubic-bezier(.37,.15,.32,.94);
+		transition: all .4s cubic-bezier(.37,.15,.32,.94);
+		span{
+			background-color: white;
+			width: 20px;
+			height: 2px;
+			display: block;
+			margin: auto;
+		}
+		#icon-bar1{
+			top: 0px;
+    		position: relative;
+		}
+		#icon-bar2{
+			opacity: 1;
+		}
+		#icon-bar3{
+			position: relative;
+			top: 0px;
+			transition: transform ease .2s;
+		}
+		&.menu-open{
+			-webkit-transform: rotate(180deg);
+			-moz-transform: rotate(180deg);
+			transform: rotate(180deg);
+			-webkit-transition: all .4s cubic-bezier(.37,.15,.32,.94);
+			-moz-transition: all .4s cubic-bezier(.37,.15,.32,.94);
+			-o-transition: all .4s cubic-bezier(.37,.15,.32,.94);
+			transition: all .4s cubic-bezier(.37,.15,.32,.94);
+			#icon-bar1{
+				top: 7px;
+	    		position: relative;
+			}
+			#icon-bar2{
+				opacity: 0;
+			}
+			#icon-bar3{
+				-webkit-transform: rotate(90deg);
+				-moz-transform: rotate(90deg);
+				transform: rotate(90deg);
+				position: relative;
+				top: -5px;
+				transition: transform ease .2s;
+			}
+		}
+	}
+	.user-header{
+		margin-top: 10px;
+		.avatar{
+			border-radius: 100%;
+		}
+		.header-name{
+			display: inline-block;
+			color: white;
+			font-size: 1.4em;
+			margin: 10px;
+		}
+		h1{
+			padding-top: 30px;
+			margin-left: 10%;
+			transition: all ease .2s;
+			a{
+				color: white;
+				text-decoration: none;
+				&:hover{
+					text-decoration: none;
+				}
+			}
+			&.compressed{
+				margin-left: 5%;
+			}
+		}
+	}
+	nav{
+	    position: absolute;
+	    height: calc(100% - 50px);
+	    width: 13%;
+	    display: block;
+	    background-color: white;
+	    z-index: 100;
+	    top: 50px;
+	    box-shadow: 2px 0 2px rgba(0,0,0,0.16);
+	    left: 0px;
+	    -webkit-transition: all ease .2s;
+	    -moz-transition: all ease .2s;
+	    transition: all ease .2s;
+	    &.navbar-default{
+		    border: none;
+	    }
+	    &.compressed{
+	    	width: 80px;
+	    	-webkit-transition: all ease-out .2s;
+	    	-moz-transition: all ease-out .2s;
+	    	transition: all ease-out .2s;
+    		.menu-ul{
+    			li{
+		   			opacity: 1;
+		   			text-align: center;
+		   			transition: all ease-out .2s;
+		   			a{
+		   				i{
+		   					margin: 0;
+		   					font-size: 28px;
+		   				}
+		   				font-size: 12px;
+		   			}
+		    	}
+	    	}
+	    }
+	    &.nav-fixed{
+	    	top: 0;
+	    	position: fixed;
+	    	height: 100%;
+	    	-webkit-transition: all ease .0s;
+		    -moz-transition: all ease .0s;
+		    transition: all ease .0s;
+	    }
+	    &.transition{
+	    	-webkit-transition: all ease .2s;
+		    -moz-transition: all ease .2s;
+		    transition: all ease .2s;
+	    }
+	    &.no-transition{
+	    	-webkit-transition: all ease .0s;
+		    -moz-transition: all ease .0s;
+		    transition: all ease .0s;
+	    }
+	    .navbar{
+	    	border: none;
+	    }
+	    .menu-ul{
+	    	margin-top: 0px;
+	    	padding: 0;
+	    	li{
+	    		line-height: 30px;
+	    		padding: 10px;
+    		    border-bottom: 1px solid $light_gray;
+	    		text-align:left;
+	    		transition: all ease-in .2s;
+	    		.perfil-item{
+	    			color: #424242;
+	    			display: block;
+					font-size: 16px;
+					text-align: left;
+					transition: all ease .2s;
+	    			i{
+	    				margin-left: 5%;
+	    				margin-right: 10%;
+	    				width: 20px;
+	    				transition: all ease .2s;
+	    			}
+	    			&:hover{
+					  color: #ec407a;
+					  text-decoration: none;
+					}
+	    		}
+	    		a{
+	    			opacity: .54;
+	    			color: #000;
+    				width: 100%;
+    				display: block;
+    				transition: all ease-in .2s;
+	    		}
+	    		i{
+	    			margin-right: 20px;
+	    			transition: all ease .2s;
+	    		}
+	    		&.active{
+	    			background-color: $primary-color;
+	    			a{
+	    				color: white;
+	    				opacity: 1;
+	    			}
+	    			&:hover{
+	    				color: white;
+	    				a{
+	    					color: white;
+	    					opacity: 1;
+	    				}
+	    			}
+	    		}
+    			&:hover{
+    				a{
+	    				opacity: .74;
+	    				text-decoration: none;
+	    				color: $secondary-color;
+    				}
+    			}
+	    	}
+	    }
+	}
+}
