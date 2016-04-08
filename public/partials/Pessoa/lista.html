@@ -3,13 +3,23 @@
 <div class="panel" data-ng-controller="PessoaCtrl as vm">
 	<div class="container container-responsive">
 		<div class="col-md-12">
-		<form class="busca pull-left">
-			<div class="material-input select">
-				<label for="nome" class="float-label"><i class="fa fa-search"></i> Busca</label>
-				<input id="nome" type="text" class="form-control">
+		<form class="busca">
+			<div class="material-input text-center select">
+				<div class="col-md-4">
+					<label for="nome" class="float-label"><i class="fa fa-search"></i> Busca</label>
+					<input id="nome" type="text" class="form-control">
+				</div>
+				<div class="col-md-4">
+					<select name="" id="" class="form-control float-label">
+						<option value="">Filtro</option>
+					</select>
+				</div>
+				<div class="col-md-4">
+				<button class="btn btn-success">Pesquisar</button>
+				</div>
 				<span></span>
 			</div>	
-		</form>
+		</form>	
  		</div>
 		<hr>
 		<table class="table">
