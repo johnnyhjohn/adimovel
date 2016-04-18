@@ -18,8 +18,8 @@ class PessoaController extends Controller
     public function create(Request $request)
     {	
     	try{
-
             $pessoa = new Pessoa();
+
             $pessoa->nome 	= $request->input('nome');
             $pessoa->cpf 	= $request->input('cpf');
             $pessoa->rg 	= $request->input('rg');
@@ -28,9 +28,13 @@ class PessoaController extends Controller
             $pessoa->cep 	= $request->input('cep');
             $pessoa->telefone = $request->input('telefone');
             $pessoa->endereco = $request->input('endereco');
+
             if(PessoaEnum::isValid($request->input('tipo'))){
             	$pessoa->tipo_pessoa = $request->input('tipo');
+        	}else{
+        		$pessoa->tipo_pessoa = PessoaEnum::INQUILINO;
         	}
+
            	$pessoa->cidade = 1;
             $pessoa->status = true;
 
@@ -47,20 +51,20 @@ class PessoaController extends Controller
     	}
     }
 
-    public function validaCadastro(){
-
+    public function validaCadastro()
+    {
 		return [
-	            'data_nascimento' => 'date_format:YYYY/mm/dd',
-	            'cpf' 	  		  => 'required|numeric',
-	            'email'	  		  => 'required|email',
-	            'telefone'		  => 'numeric',
-	            'cep'		  	  => 'numeric',
-	            'rg'		  	  => 'numeric'
-	        ];
+            'data_nascimento' => 'date_format:YYYY/mm/dd',
+            'cpf' 	  		  => 'required|numeric',
+            'email'	  		  => 'required|email',
+            'telefone'		  => 'numeric',
+            'cep'		  	  => 'numeric',
+            'rg'		  	  => 'numeric'
+        ];
     }
 
-    public function show($id = null){
-      
+    public function show($id = null)
+    {  
 
         $pessoas = Pessoa::orderBy('nome', 'asc')->get();
 
