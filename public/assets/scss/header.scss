@@ -4,6 +4,8 @@ header{
 	height: 170px;
 	margin-bottom: 50px;
 	box-shadow: 0 3px 4px rgba(0,0,0,0.2);
+	position: relative;
+	z-index: 2;
 	.admin{
 		background-color: $secondary-color;
 		height: 50px;
@@ -192,7 +194,7 @@ header{
 	}
 	nav{
 	    position: absolute;
-	    height: calc(100% - 50px);
+	    height: calc(100vh);
 	    width: 13%;
 	    display: block;
 	    background-color: white;
@@ -200,9 +202,9 @@ header{
 	    top: 50px;
 	    box-shadow: 2px 0 2px rgba(0,0,0,0.16);
 	    left: 0px;
-	    -webkit-transition: all ease .2s;
-	    -moz-transition: all ease .2s;
-	    transition: all ease .2s;
+	    // -webkit-transition: all ease .2s;
+	    // -moz-transition: all ease .2s;
+	    // transition: all ease .2s;
 	    &.navbar-default{
 		    border: none;
 	    }
@@ -229,7 +231,7 @@ header{
 	    &.nav-fixed{
 	    	top: 0;
 	    	position: fixed;
-	    	height: 100%;
+	    	height: 100vh;
 	    	-webkit-transition: all ease .0s;
 		    -moz-transition: all ease .0s;
 		    transition: all ease .0s;

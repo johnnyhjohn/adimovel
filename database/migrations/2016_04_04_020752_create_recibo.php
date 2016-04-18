@@ -12,7 +12,7 @@ class CreateRecibo extends Migration
      */
     public function up()
     {
-        Schema::create('recibo', function(Blueprint $table){
+        Schema::create('recibos', function(Blueprint $table){
             $table->increments('id');
             $table->integer('mes');
             $table->integer('ano');
@@ -20,13 +20,13 @@ class CreateRecibo extends Migration
             $table->double('valor', 20,2);
             $table->date('dia_emissao');
             $table->integer('movimentacao')->unsigned();
-            $table->foreign('movimentacao')->references('id')->on('movimentacao');
+            $table->foreign('movimentacao')->references('id')->on('movimentacaos');
             $table->integer('proprietario')->unsigned();
-            $table->foreign('proprietario')->references('id')->on('pessoa');
+            $table->foreign('proprietario')->references('id')->on('pessoas');
             $table->integer('inquilino')->unsigned();
-            $table->foreign('inquilino')->references('id')->on('pessoa');
+            $table->foreign('inquilino')->references('id')->on('pessoas');
             $table->integer('usuario')->unsigned();
-            $table->foreign('usuario')->references('id')->on('usuario');
+            $table->foreign('usuario')->references('id')->on('usuarios');
             $table->timestamps();
         });
     }
@@ -38,6 +38,6 @@ class CreateRecibo extends Migration
      */
     public function down()
     {
-        Schema::drop('recibo');
+        Schema::drop('recibos');
     }
 }

@@ -12,7 +12,7 @@ class CreatePessoa extends Migration
      */
     public function up()
     {
-        Schema::create('pessoa', function(Blueprint $table){
+        Schema::create('pessoas', function(Blueprint $table){
             $table->increments('id');
             $table->string('nome');
             $table->char('tipo_pessoa', 3);
@@ -23,8 +23,8 @@ class CreatePessoa extends Migration
             $table->string('telefone');
             $table->string('cep', 8)->nullable();
             $table->string('endereco')->nullable();
-            $table->integer('id_cidade')->unsigned();
-            $table->foreign('id_cidade')->references('id')->on('cidades');
+            $table->integer('cidade')->unsigned();
+            $table->foreign('cidade')->references('id')->on('cidades');
             $table->boolean('status');
             $table->timestamps();
         });

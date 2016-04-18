@@ -14,7 +14,7 @@
         <ng-include src="'partials/layouts/header.html'"></ng-include>
         <section>
             <div class="container">
-                <div id="panel-master" class="col-md-11 col-md-offset-1 col-xs-offset-2 col-xs-10">
+                <div id="panel-master" class="col-md-11 col-md-offset-1 col-xs-offset-0 col-xs-10">
                     <div data-ng-view></div>
                 </div>
             </div>
@@ -26,11 +26,13 @@
         {!! HTML::script('bower_components/angular/angular.min.js') !!}
         {!! HTML::script('bower_components/angular-route/angular-route.min.js') !!}
         {!! HTML::script('bower_components/Chart.js/Chart.min.js') !!}
+        {!! HTML::script('assets/script.js') !!}
         {!! HTML::script('app/app.module.js') !!}
         {!! HTML::script('app/routes.config.js') !!}
-        {!! HTML::script('app/Maps/MapCtrl.js') !!}
-        {!! HTML::script('app/Grafico/ChartCtrl.js') !!}
-        {!! HTML::script('assets/script.js') !!}
+        {!! HTML::script('app/services/Service.js') !!}
+        {!! HTML::script('app/controllers/Pessoa/PessoaCtrl.js') !!}
+        {!! HTML::script('app/controllers/Maps/MapCtrl.js') !!}
+        {!! HTML::script('app/controllers/Grafico/ChartCtrl.js') !!}
         <div class="map"></div>
         <script type="text/javascript">
             $.ajaxSetup({

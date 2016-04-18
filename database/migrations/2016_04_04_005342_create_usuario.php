@@ -12,7 +12,7 @@ class CreateUsuario extends Migration
      */
     public function up()
     {
-        Schema::create('usuario', function(Blueprint $table){
+        Schema::create('usuarios', function(Blueprint $table){
             $table->increments('id');
             $table->string('nome');
             $table->char('tipo_funcionario', 3);
@@ -32,6 +32,6 @@ class CreateUsuario extends Migration
      */
     public function down()
     {
-        Schema::drop('usuario');
+        Schema::drop('usuarios');
     }
 }

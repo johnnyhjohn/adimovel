@@ -1,5 +1,30 @@
 'use strict';
 
+
+var alert = function(){
+
+	var alert = alert || {};
+	var vm = this;
+
+	this.success = function(msg){
+		$(document).scrollTop(0);
+		$(".alert").remove();
+		$("header").after("<div class='alert success'><p>"+ msg +"</p></div>");
+		vm.deleta();
+	}
+	this.danger = function(msg){
+		$(document).scrollTop(0);
+		$(".alert").remove();
+		$("header").after("<div class='alert error'><p>"+ msg +"</p></div>");
+		vm.deleta();
+	}
+	this.deleta = function(){
+		setTimeout(function(){
+			$(".alert").remove();
+		}, 5000);
+	}
+}
+
 $.fn.material_input = function(){
 
 	$("input, select, textarea").each(function(value, key){

@@ -12,7 +12,7 @@ class CreateTipoMovimentacao extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_movimentacao', function(Blueprint $table){
+        Schema::create('tipo_movimentacaos', function(Blueprint $table){
 
             $table->increments('id');
             $table->string('titulo');
@@ -29,6 +29,6 @@ class CreateTipoMovimentacao extends Migration
      */
     public function down()
     {
-        Schema::drop('tipo_movimentacao');
+        Schema::drop('tipo_movimentacaos');
     }
 }

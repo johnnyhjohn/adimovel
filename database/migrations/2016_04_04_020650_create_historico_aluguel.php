@@ -12,17 +12,17 @@ class CreateHistoricoAluguel extends Migration
      */
     public function up()
     {
-        Schema::create('historico_aluguel', function(Blueprint $table){
+        Schema::create('historico_aluguels', function(Blueprint $table){
             $table->increments('id');
             $table->double('valor',20,2);
             $table->date('data_inicio');
             $table->date('data_termino');
             $table->integer('tipo_imovel')->unsigned();
-            $table->foreign('tipo_imovel')->references('id')->on('tipo_imovel');
+            $table->foreign('tipo_imovel')->references('id')->on('tipo_imovels');
             $table->integer('proprietario')->unsigned();
-            $table->foreign('proprietario')->references('id')->on('pessoa');
+            $table->foreign('proprietario')->references('id')->on('pessoas');
             $table->integer('inquilino')->unsigned();
-            $table->foreign('inquilino')->references('id')->on('pessoa');
+            $table->foreign('inquilino')->references('id')->on('pessoas');
             $table->timestamps();
         });
     }
@@ -34,6 +34,6 @@ class CreateHistoricoAluguel extends Migration
      */
     public function down()
     {
-        Schema::drop('historico_aluguel');
+        Schema::drop('historico_aluguels');
     }
 }

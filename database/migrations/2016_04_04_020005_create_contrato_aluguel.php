@@ -12,7 +12,7 @@ class CreateContratoAluguel extends Migration
      */
     public function up()
     {
-        Schema::create('contrato_aluguel', function(Blueprint $table){
+        Schema::create('contrato_aluguels', function(Blueprint $table){
             $table->increments('id');
             $table->double('valor',20,2);
             $table->boolean('situacao');
@@ -22,11 +22,11 @@ class CreateContratoAluguel extends Migration
             $table->date('data_revogado');
             $table->boolean('status');
             $table->integer('imovel')->unsigned();
-            $table->foreign('imovel')->references('id')->on('imovel');
+            $table->foreign('imovel')->references('id')->on('imovels');
             $table->integer('inquilino')->unsigned();
-            $table->foreign('inquilino')->references('id')->on('pessoa');
+            $table->foreign('inquilino')->references('id')->on('pessoas');
             $table->integer('proprietario')->unsigned();
-            $table->foreign('proprietario')->references('id')->on('pessoa');
+            $table->foreign('proprietario')->references('id')->on('pessoas');
             $table->timestamps();
         });
     }
@@ -38,6 +38,6 @@ class CreateContratoAluguel extends Migration
      */
     public function down()
     {
-        Schema::drop('contrato_aluguel');
+        Schema::drop('contrato_aluguels');
     }
 }

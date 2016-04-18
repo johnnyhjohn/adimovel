@@ -15,8 +15,8 @@ class CreateCidade extends Migration
         Schema::create('cidades', function(Blueprint $table){
             $table->increments('id');
             $table->string('nome');
-            $table->integer('estado_id')->unsigned();
-            $table->foreign('estado_id')->references('id')->on('estados');
+            $table->integer('estado')->unsigned();
+            $table->foreign('estado')->references('id')->on('estados');
             $table->boolean('status');
             $table->timestamps();
         });

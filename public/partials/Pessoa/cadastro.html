@@ -1,5 +1,5 @@
 <h1>Cadastro de Pessoa</h1>
-<div class="panel">
+<div class="panel" data-ng-controller="PessoaCtrl as vm">
 	<div class="container container-responsive">
 	<form method="post">
 		<div class="col-md-4">
@@ -11,31 +11,46 @@
 		</div>		
 		<div class="col-md-4">
 			<div class="material-input select">
-				<label for="corretor" class="float-label">Tipo</label>
-				<select id="corretor" class="form-control">
-					<option></option>
+				<label for="tipo" class="float-label">Tipo</label>
+				<select id="tipo" class="form-control">
+					<option value="INQ">Inquilino</option>
+					<option value="PRO">Proprietário</option>
 				</select>
 				<span></span>
 			</div>	
 		</div>		
 		<div class="col-md-4">
 			<div class="material-input select">
-				<label for="finalidade" class="float-label"><i class="fa fa-calendar"></i> Data de nascimento</label>
-				<input id="finalidade" type="text" class="form-control date">
+				<label for="dta_nasc" class="float-label"><i class="fa fa-calendar"></i> Data de nascimento</label>
+				<input id="dta_nasc" type="text" class="form-control date">
 				<span></span>
 			</div>	
 		</div>		
 		<div class="col-md-4">
 			<div class="material-input select">
-				<label for="status_negociacao" class="float-label">Email</label>
-				<input id="status_negociacao" type="text" class="form-control">
+				<label for="email" class="float-label">Email</label>
+				<input id="email" type="text" class="form-control">
 				<span></span>
 			</div>	
 		</div>		
 		<div class="col-md-4">
 			<div class="material-input select">
-				<label for="vitrine" class="float-label">Telefone</label>
-				<input id="vitrine" type="text" class="form-control">
+				<label for="telefone" class="float-label">Telefone</label>
+				<input id="telefone" type="text" class="form-control">
+				<span></span>
+			</div>	
+		</div>		
+		<div class="col-md-4">
+			<div class="material-input select">
+				<label for="rg" class="float-label">RG</label>
+				<input id="rg" type="text" class="form-control">
+				<span></span>
+			</div>	
+		</div>		
+		<div class="col-md-4">
+			<div class="material-input select">
+				<label for="cpf" class="float-label">CPF</label>
+				<input id="cpf" type="text" class="form-control">
 				<span></span>
 			</div>	
 		</div>		
@@ -83,7 +98,7 @@
             <input type="hidden" name="lng" id="" class="lng">	 			
 		</div>
 		<div class="col-md-12">
-			<button id="btn-imovel" class="btn ripple pull-right">Cadastro</button>
+			<button data-ng-click="vm.setPessoa()" id="btn-imovel" class="btn ripple pull-right">Cadastro</button>
 		</div>
 	</form>
 	</div>

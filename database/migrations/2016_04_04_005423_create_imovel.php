@@ -12,7 +12,7 @@ class CreateImovel extends Migration
      */
     public function up()
     {
-        Schema::create('imovel', function(Blueprint $table){
+        Schema::create('imovels', function(Blueprint $table){
             $table->increments('id');
             $table->string('titulo_anuncio');
             $table->char('situacao', 3);
@@ -38,11 +38,11 @@ class CreateImovel extends Migration
             $table->integer('cidade')->unsigned();
             $table->foreign('cidade')->references('id')->on('cidades');
             $table->integer('tipo_imovel')->unsigned();
-            $table->foreign('tipo_imovel')->references('id')->on('tipo_imovel');
+            $table->foreign('tipo_imovel')->references('id')->on('tipo_imovels');
             $table->integer('proprietario')->unsigned();
-            $table->foreign('proprietario')->references('id')->on('pessoa');
+            $table->foreign('proprietario')->references('id')->on('pessoas');
             $table->integer('corretor')->unsigned();
-            $table->foreign('corretor')->references('id')->on('usuario');            
+            $table->foreign('corretor')->references('id')->on('usuarios');            
             $table->timestamps();
         });
     }
@@ -54,6 +54,6 @@ class CreateImovel extends Migration
      */
     public function down()
     {
-        Schema::drop('imovel');
+        Schema::drop('imovels');
     }
 }

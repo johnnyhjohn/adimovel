@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipoImovel extends Migration
+class CreateEstadosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,10 @@ class CreateTipoImovel extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_imovels', function(Blueprint $table){
-            $table->increments('id');
-            $table->string('titulo');
-            $table->boolean('status');
-            $table->timestamps();
-        });
+        // Schema::create('estados', function (Blueprint $table) {
+        //     $table->increments('id');
+        //     $table->timestamps();
+        // });
     }
 
     /**
@@ -27,6 +25,6 @@ class CreateTipoImovel extends Migration
      */
     public function down()
     {
-        Schema::drop('tipo_imovels');
+        // Schema::drop('estados');
     }
 }

@@ -21,10 +21,17 @@ Route::any('/admin/{path?}', function(){
     return view("index");
 })->where("path", ".+");
 
-Route::any('{path?}', function(){
-    return view("site");
-})->where("path", ".+");
+// Route::any('{path?}', function(){
+//     return view("site");
+// })->where("path", ".+");
 
+
+Route::group(['prefix' => 'data'], function(){
+	Route::group(['prefix' => 'pessoa'], function(){
+	    Route::post('', 'PessoaController@create');
+	    Route::get('', 'PessoaController@show');
+	});
+});
 
 /*
 |--------------------------------------------------------------------------
