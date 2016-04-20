@@ -23,6 +23,14 @@ var alert = function(){
 			$(".alert").remove();
 		}, 5000);
 	}
+	this.successDeleta = function(element, msg){
+		console.log(element);
+		element.append('<p class="p-td">' + msg + '</p>');
+		$('.modal').modal('hide');
+		setTimeout(function(){
+			element.remove();
+		}, 5000);
+	}
 }
 
 $.fn.material_input = function(){

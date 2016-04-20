@@ -29,7 +29,9 @@ Route::any('/admin/{path?}', function(){
 Route::group(['prefix' => 'data'], function(){
 	Route::group(['prefix' => 'pessoa'], function(){
 	    Route::post('', 'PessoaController@create');
-	    Route::get('', 'PessoaController@show');
+	    Route::get('{id?}', 'PessoaController@index');
+	    Route::put('{id}', 'PessoaController@update');
+	    Route::delete('{id}', 'PessoaController@destroy');
 	});
 });
 

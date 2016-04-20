@@ -1,42 +1,68 @@
 <h1>Editar Pessoa 1</h1>
-<div class="panel">
+<div class="panel" data-ng-controller="PessoaCtrl as vm">
 	<div class="container container-responsive">
 	<form method="post">
 		<div class="col-md-4">
 			<div class="material-input select">
-				<label for="nome" class="float-label">Nome</label>
-				<input id="nome" type="text" class="form-control" value="Pessoa 1">
-				<span></span>
+				<label for="nome" class="float-label label-active">Nome</label>
+				<input id="nome" type="text" class="form-control" value="{{ vm.pessoa.nome }}">
+				<span class='input-focus'></span>
 			</div>	
 		</div>		
 		<div class="col-md-4">
 			<div class="material-input select">
-				<label for="corretor" class="float-label">Tipo</label>
-				<select id="corretor" class="form-control">
-					<option value="teste">Inquilino</option>
+				<label for="corretor" class="float-label label-active">Tipo</label>
+				<select id="corretor" class="form-control" data-ng-if="vm.pessoa.tipo_pessoa == 'INQ'">
+					<option value="INQ">Inquilino</option>
+					<option value="PRO">Proprietario</option>
 				</select>
+				<select id="corretor" class="form-control" data-ng-if="vm.pessoa.tipo_pessoa == 'PRO'">
+					<option value="PRO">Proprietario</option>
+					<option value="INQ">Inquilino</option>
+				</select>
+				<span class='input-focus'></span>
+			</div>	
+		</div>		
+		<div class="col-md-4">
+			<div class="material-input select">
+				<label for="dta_nasc" class="float-label label-active"><i class="fa fa-calendar"></i> Data de nascimento</label>
+				<input id="dta_nasc" type="text" class="form-control date" value="{{ vm.pessoa.data_nascimento }}">
+				<span class='input-focus'></span>
+			</div>	
+		</div>		
+		<div class="col-md-4">
+			<div class="material-input select">
+				<div data-ng-if='vm.pessoa.email.length != 0'>
+					<label for="email" class="float-label label-active">Email</label>
+					<input id="email" type="text" class="form-control" value="{{ vm.pessoa.email }}">
+					<span class='input-focus'></span>
+				</div>
+				<div data-ng-if='vm.pessoa.email.length == 0'>
+					<label for="email" class="float-label">Email</label>
+					<input id="email" type="text" class="form-control" value="">
+					<span></span>
+				</div>
+			</div>	
+		</div>		
+		<div class="col-md-4">
+			<div class="material-input select">
+				<label for="rg" class="float-label">RG</label>
+				<input id="rg" type="text" class="form-control" value="{{ vm.pessoa.rg }}">
 				<span></span>
 			</div>	
 		</div>		
 		<div class="col-md-4">
 			<div class="material-input select">
-				<label for="finalidade" class="float-label"><i class="fa fa-calendar"></i> Data de nascimento</label>
-				<input id="finalidade" type="text" class="form-control date" value="03/02/2016">
+				<label for="cpf" class="float-label">CPF</label>
+				<input id="cpf" type="text" class="form-control" value="{{ vm.pessoa.cpf }}">
 				<span></span>
 			</div>	
 		</div>		
 		<div class="col-md-4">
 			<div class="material-input select">
-				<label for="status_negociacao" class="float-label">Email</label>
-				<input id="status_negociacao" type="text" class="form-control" value="incognitosxy@gmail.com">
-				<span></span>
-			</div>	
-		</div>		
-		<div class="col-md-4">
-			<div class="material-input select">
-				<label for="vitrine" class="float-label">Telefone</label>
-				<input id="vitrine" type="text" class="form-control" value="(42)9999-9999">
-				<span></span>
+				<label for="telefone" class="float-label label-active">Telefone</label>
+				<input id="telefone" type="text" class="form-control" value="{{ vm.pessoa.telefone }}">
+				<span class='input-focus'></span>
 			</div>	
 		</div>		
 		<div class="col-md-12" data-ng-controller="mapaCtrl">
@@ -44,37 +70,37 @@
             <input id="pac-input" class="controls">
             <div class="col-md-3">
 				<div class="material-input select">
-					<label for="endereco" class="float-label">Endereço</label>
-					<input type="text" id="endereco" name="endereco" class="form-control endereco" value="Rua Cesário Alvin">
-					<span></span>
+					<label for="endereco" class="float-label label-active">Endereço</label>
+					<input type="text" id="endereco" name="endereco" class="form-control endereco" value="{{ vm.pessoa.endereco }}">
+					<span class='input-focus'></span>
 				</div>	
             </div>
             <div class="col-md-3">
 				<div class="material-input select">
-					<label for="bairro" class="float-label">Bairro</label>
-					<input type="text" id="bairro" name="bairro" class="form-control bairro" value="Olarias">
-					<span></span>
+					<label for="bairro" class="float-label label-active">Bairro</label>
+					<input type="text" id="bairro" name="bairro" class="form-control bairro" value="{{ vm.pessoa.bairro }}">
+					<span class='input-focus'></span>
 				</div>	
             </div>
             <div class="col-md-3">
 				<div class="material-input select">
-					<label for="cep" class="float-label">CEP</label>
-					<input type="text" id="cep" name="cep" class="form-control cep" value="84035-040">
-					<span></span>
+					<label for="cep" class="float-label label-active">CEP</label>
+					<input type="text" id="cep" name="cep" class="form-control cep" value="{{ vm.pessoa.cep }}">
+					<span class='input-focus'></span>
 				</div>	
             </div>
             <div class="col-md-3">
 				<div class="material-input select">
-					<label for="cidade" class="float-label">Cidade</label>
-					<input type="text" id="cidade" name="cidade" class="form-control cidade" value="Ponta Grossa">
-					<span></span>
+					<label for="cidade" class="float-label label-active">Cidade</label>
+					<input type="text" id="cidade" name="cidade" class="form-control cidade" value="{{ vm.pessoa.cidade.nome }}">
+					<span class='input-focus'></span>
 				</div>	
             </div>
             <input type="hidden" name="lat" id="" class="lat">
             <input type="hidden" name="lng" id="" class="lng">	 			
 		</div>
 		<div class="col-md-12">
-			<button id="btn-imovel" class="btn ripple pull-right">Cadastro</button>
+			<button data-ng-click='vm.update()' id="btn-imovel" class="btn ripple pull-right">Atualizar</button>
 		</div>
 	</form>
 	</div>

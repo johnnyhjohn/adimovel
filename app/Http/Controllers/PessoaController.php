@@ -28,6 +28,7 @@ class PessoaController extends Controller
             $pessoa->cep 	= $request->input('cep');
             $pessoa->telefone = $request->input('telefone');
             $pessoa->endereco = $request->input('endereco');
+            // $pessoa->bairro   = $request->input('bairro');
 
             if(PessoaEnum::isValid($request->input('tipo'))){
             	$pessoa->tipo_pessoa = $request->input('tipo');
@@ -40,7 +41,7 @@ class PessoaController extends Controller
 
             $validator = \Validator::make($request->all(), $this->validaCadastro());
 	        if ($validator->fails()) {
-				return JSONUtils::returnDanger('Problema de validação verifique os campos e tente novamente.', "Erro");   
+				return JSONUtils::returnDanger('Problema de validação verifique os campos e tente novamente.', $validator->errors()->all());   
 	        }
 
         	$pessoa->save();
@@ -63,19 +64,82 @@ class PessoaController extends Controller
         ];
     }
 
-    public function show($id = null)
+    public function update(Request $request, $id)
+    {
+    	try{
+    		$pessoa = Pessoa::find($id);
+
+    		$pessoa->nome 	= $request->input('nome');
+            $pessoa->cpf 	= $request->input('cpf');
+            $pessoa->rg 	= $request->input('rg');
+            $pessoa->email 	= $request->input('email');
+            $pessoa->data_nascimento = $request->input('dta_nasc');
+            $pessoa->cep 	= $request->input('cep');
+            $pessoa->telefone = $request->input('telefone');
+            $pessoa->endereco = $request->input('endereco');
+            // $pessoa->bairro   = $request->input('bairro');
+
+            if (PessoaEnum::isValid($request->input('tipo'))) {
+            	$pessoa->tipo_pessoa = $request->input('tipo');
+        	} else {
+        		$pessoa->tipo_pessoa = PessoaEnum::INQUILINO;
+        	}
+
+           	$pessoa->cidade = 1;
+            $pessoa->status = true;
+
+            $validator = \Validator::make($request->all(), $this->validaCadastro());
+	        if ($validator->fails()) {
+				return JSONUtils::returnDanger('Problema de validação verifique os campos e tente novamente.', $validator->errors()->all());   
+	        }
+
+            $pessoa->save();
+            return JSONUtils::returnSuccess($pessoa->nome .' alterada com sucesso.', $pessoa);
+    	}catch(Exception $e){
+    		return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
+    	}
+    }
+
+    public function index($id = null)
     {  
+    	try{
+	    	if ($id == null) {
+		        $pessoas = Pessoa::orderBy('nome', 'asc')->get();
 
-        $pessoas = Pessoa::orderBy('nome', 'asc')->get();
+		        $return = array();
 
-        $return = array();
+		        foreach ($pessoas as $key => $value) {
+		            $pVO = new PessoaVO(Pessoa::find($value->id));
+		            $return[] = $pVO;
+		        }
 
-        foreach ($pessoas as $key => $value) {
-            $pVO = new PessoaVO(Pessoa::find($value->id));
-            $return[] = $pVO;
-        }
+		        return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $return);
+		    } else {
+		    	return $this->show($id);
+		    }
+		} catch(Exception $e){
+			return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
+		}    
+    }
 
-        return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $return);
+    public function show($id)
+    {
+      	try{
+        	return JSONUtils::returnSuccess(Messages::MSG_QUERY_SUCCESS,
+          	new PessoaVO(Pessoa::find($id)));
+      	}catch(Exception $e){
+        	return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
+      	}
+    }
 
+    public function destroy($id){
+    	try{
+    		$pessoa = Pessoa::find($id);
+    		$pessoa->delete();
+
+    		return JSONUtils::returnSuccess('Item deletado com sucesso.', $pessoa);
+    	}catch(Exception $e){
+    		return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
+    	}
     }
 }

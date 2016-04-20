@@ -171,6 +171,18 @@ section{
 	    			color: #D81919;
 	    		}
 	    	}
+	    	.p-td{
+    		    position: absolute;
+			    left: 0;
+			    width: 100%;
+			    text-align: center;
+			    color: white;
+			    background: $green;
+			    height: 100%;
+			    z-index: 1;
+			    max-height: 62px;
+			    padding: 20px;
+	    	}
 	    }
 	    &.panel-icon{
 			padding: 0;
