@@ -31,6 +31,7 @@
         {!! HTML::script('app/routes.config.js') !!}
         {!! HTML::script('app/services/Service.js') !!}
         {!! HTML::script('app/controllers/Pessoa/PessoaCtrl.js') !!}
+        {!! HTML::script('app/controllers/Usuario/UsuarioCtrl.js') !!}
         {!! HTML::script('app/controllers/Maps/MapCtrl.js') !!}
         {!! HTML::script('app/controllers/Grafico/ChartCtrl.js') !!}
         <div class="map"></div>

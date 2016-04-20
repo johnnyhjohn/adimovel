@@ -33,6 +33,10 @@ Route::group(['prefix' => 'data'], function(){
 	    Route::put('{id}', 'PessoaController@update');
 	    Route::delete('{id}', 'PessoaController@destroy');
 	});
+	Route::group(['prefix' => 'usuario'], function(){
+	    Route::post('', 'UsuarioController@create');
+	    Route::get('', 'UsuarioController@show');
+	});
 });
 
 /*

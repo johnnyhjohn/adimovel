@@ -15,13 +15,13 @@ class UsuarioVO
   public $admin;
   public $status;
 
-    public function __construct(Pessoa $obj = null){
+    public function __construct(Usuario $obj = null){
         if($obj != null){
             $this->convertFromEntity($obj);
         }
     }
 
-    public function convertFromEntity(Pessoa $obj)
+    public function convertFromEntity(Usuario $obj)
     {
         $this->id       = $obj->id;
         $this->nome     = $obj->nome;
@@ -34,11 +34,11 @@ class UsuarioVO
     }
 
     public function convertToEntity(){
-        $obj            = new Pessoa();
+        $obj            = new Usuario();
         $obj->id        = $this->id;
         $obj->nome      = $this->nome;
         $obj->senha     = $this->senha;
-        $obj->cpf       = $this->cpf
+        $obj->cpf       = $this->cpf;
         $obj->email     = $this->email;
         $obj->telefone  = $this->telefone;
         $obj->tipo_funcionario = $this->tipo_funcionario;

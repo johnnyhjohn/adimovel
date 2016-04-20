@@ -1,6 +1,6 @@
 <h1>Lista de Usuários</h1>
 <a class='btn-adiciona' href="admin/usuarios/cadastro"><button class="btn btn-success">Adicionar</button></a>
-<div class="panel">
+<div class="panel" data-ng-controller="UsuarioCtrl as vm">
 	<div class="container container-responsive">
 		<div class="col-md-12 col-md-offset-0 col-xs-10 col-xs-offset-2">
 		<form class="busca">
@@ -31,12 +31,13 @@
 				<th id="nome" class="filtro">Status</th>
 				<th>Opções</th>
 			</tr>
-			<tr>
-				<td>01</td>
-				<td>Johnny</td>
-				<td>incognitosxy@gmail.com</td>
-				<td>Corretor</td>
-				<td class="pago">Ativo</td>
+			<tr data-ng-repeat="usuario in vm.usuarios">
+
+				<td>{{ usuario.id }}</td>
+				<td>{{ usuario.nome }}</td>
+				<td>{{ usuario.email }}</td>
+				<td>{{ usuario.tipo_funcionario }}</td>
+				<td class="pago">{{ usuario.status }}</td>
 				<td>
 					<a href="admin/usuarios/1"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
 					<button class="btn btn-danger btn-deleta" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o"></i></button>

@@ -1,5 +1,5 @@
 <h1>Cadastro de Usuario</h1>
-<div class="panel">
+<div class="panel" data-ng-controller="UsuarioCtrl as vm">
 	<div class="container container-responsive">
 	<form method="post">
 		<div class="col-md-4">
@@ -56,7 +56,7 @@
 			</div>	
 		</div>		
 		<div class="col-md-12">
-			<button id="btn-imovel" class="btn ripple pull-right">Cadastro</button>
+			<button id="btn-imovel" data-ng-click="vm.setUsuario()" class="btn ripple pull-right">Cadastro</button>
 		</div>
 	</form>
 	</div>
