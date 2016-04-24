@@ -21,9 +21,8 @@
     */    
     routeConfig.$inject = ['$routeProvider','$locationProvider', 'URL'];
 
-    function routeConfig($routeProvider,$locationProvider, URL) {
-
-    	/**
+    function routeConfig($routeProvider, $locationProvider, URL) {
+        /**
     	*
     	* Usamos o $locationProvider.html5Mode(true) juntamente com a tag <base href=''>
     	* Na head do documento, para transformar as url em "URL Amigaveis"
@@ -56,14 +55,15 @@
       	configuraRota(getRoutes());
 
       	/*
-      	*	   @description
+      	*	 @description
       	* 	 Método que roda um loop no array de rotas e monta a estrutura automaticamente
       	*  	 De acordo com os valores dos objetos dentro do array
       	*
       	* 	 @param {Array} route
-      	*	   @return {Route} configuraRota
+      	*	 @return {Route} configuraRota
       	*/
       	function configuraRota(route){
+          
       		route.forEach(function(value, key){
       			$routeProvider.when(value.url, value.config);
       		});
@@ -73,7 +73,7 @@
       	/**
       	*  @description
       	*  Método que monta o objeto de configuração da rota,
-      	*	 Montando a url, e as config caso os parametros de template
+      	*  Montando a url, e as config caso os parametros de template
       	*  E controller não estejam nulos
       	*
       	*  @param  {String} url        - Caminho da rota
@@ -113,28 +113,28 @@
       	*/
       	function getRoutes(){
       		return [
-              montaRota('/', 'Site/index.html'),
-              montaRota('/sobre', 'Site/sobre.html'),
-              montaRota('/locacao', 'Site/locacoes.html'),
-              montaRota('/locacao/:slug', 'Site/imovel.html'),
-              montaRota('/vendas', 'Site/vendas.html'),
-              montaRota('/vendas/:slug', 'Site/imovel.html'),
+              montaRota('/',        'Site/index.html'),
+              montaRota('/sobre',   'Site/sobre.html'),
+              montaRota('/vendas',  'Site/vendas.html'),
               montaRota('/contato', 'Site/contato.html'),
+              montaRota('/locacao', 'Site/locacoes.html'),
+              montaRota('/vendas/:slug', 'Site/imovel.html'),
+              montaRota('/locacao/:slug','Site/imovel.html'),
               montaRota('/admin', 'dashboard/dashboard.html'),
-              montaRota('/admin/imoveis/cadastro', 'Imoveis/cadastro.html'),
               montaRota('/admin/imoveis', 'Imoveis/lista.html'),
-              montaRota('/admin/imoveis/:slug', 'Imoveis/editar.html'),
-              montaRota('/admin/pessoas/cadastro', 'Pessoa/cadastro.html'),
+              montaRota('/admin/imoveis/editar/:slug', 'Imoveis/editar.html'),
+              montaRota('/admin/imoveis/cadastro', 'Imoveis/cadastro.html'),
               montaRota('/admin/pessoas', 'Pessoa/lista.html'),
-              montaRota('/admin/pessoas/:slug', 'Pessoa/editar.html'),
-              montaRota('/admin/usuarios/cadastro', 'Usuario/cadastro.html'),
+              montaRota('/admin/pessoas/editar/:slug', 'Pessoa/editar.html'),
+              montaRota('/admin/pessoas/cadastro', 'Pessoa/cadastro.html'),
               montaRota('/admin/usuarios', 'Usuario/lista.html'),
-              montaRota('/admin/usuarios/:slug', 'Usuario/editar.html'),
+              montaRota('/admin/usuarios/editar/:slug', 'Usuario/editar.html'),
+              montaRota('/admin/usuarios/cadastro', 'Usuario/cadastro.html'),
               montaRota('/admin/administrar/imoveis', 'Administrar/imoveis-lista.html'),
-              montaRota('/admin/administrar/imoveis/aluguel/:slug', 'Administrar/imoveis.html'),
               montaRota('/admin/administrar/imoveis/compra/:slug', 'Administrar/compra.html'),
-              montaRota('/admin/relatorios', 'Relatorios/inicio.html'),
-              montaRota('/admin/configuracao', 'Configuracoes/index.html'),
+              montaRota('/admin/administrar/imoveis/aluguel/:slug', 'Administrar/imoveis.html'),
+              montaRota('/admin/relatorios',    'Relatorios/inicio.html'),
+              montaRota('/admin/configuracao',  'Configuracoes/index.html'),
       		]
       	}
     }

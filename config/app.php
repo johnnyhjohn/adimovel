@@ -156,6 +156,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
+        'Tymon\JWTAuth\Providers\JWTAuthServiceProvider',
 
     ],
 
@@ -205,6 +206,7 @@ return [
         'HTML'      => 'Collective\Html\HtmlFacade',
         'Form'      => 'Collective\Html\FormFacade',
         'Socialize' => 'Laravel\Socialite\Facades\Socialite',
+        'JWTAuth'   => 'Tymon\JWTAuth\Facades\JWTAuth'
 
     ],
 

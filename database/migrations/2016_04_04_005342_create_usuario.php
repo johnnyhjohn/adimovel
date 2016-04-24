@@ -16,8 +16,9 @@ class CreateUsuario extends Migration
             $table->increments('id');
             $table->string('nome');
             $table->char('tipo_funcionario', 3);
+            $table->string('cpf')->unique();
             $table->string('email')->unique();
-            $table->string('senha');
+            $table->string('password');
             $table->boolean('admin');
             $table->boolean('status');
             $table->rememberToken();

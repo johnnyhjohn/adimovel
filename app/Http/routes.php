@@ -11,45 +11,46 @@
 |
 */
 
+Route::get('admin/login', 'Auth\AuthController@getLogin');
 
-Route::any('/admin/login', function(){
-    return view("login");
-})->where("path", ".+");
-
-
-Route::any('/admin/{path?}', function(){
-    return view("index");
-})->where("path", ".+");
-
-// Route::any('{path?}', function(){
-//     return view("site");
-// })->where("path", ".+");
-
-
-Route::group(['prefix' => 'data'], function(){
-	Route::group(['prefix' => 'pessoa'], function(){
+Route::group(['prefix' => 'data'], function()
+{
+	Route::group(['prefix' => 'pessoa'], function()
+	{
 	    Route::post('', 'PessoaController@create');
 	    Route::get('{id?}', 'PessoaController@index');
 	    Route::put('{id}', 'PessoaController@update');
 	    Route::delete('{id}', 'PessoaController@destroy');
 	});
-	Route::group(['prefix' => 'usuario'], function(){
+
+	Route::group(['prefix' => 'usuario'], function()
+	{
 	    Route::post('', 'UsuarioController@create');
 	    Route::get('', 'UsuarioController@show');
 	});
+
+	Route::group(['middleware' => ['api','cors'],'prefix' => 'login'], function () {
+	    Route::get('', 'AutenticacaoController@login');
+	});
+
+    Route::resource('authenticate', 'AutenticacaoController', ['only' => ['index']]);
+    Route::post('authenticate', 'AutenticacaoController@authenticate');
+    Route::post('authenticate/user', 'AutenticacaoController@getAuthenticatedUser');
 });
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-*/
 
-Route::group(['middleware' => ['web']], function () {
-    //
+Route::group(['prefix' => 'admin'], function () 
+{
+	Route::any('{path?}', function()
+	{
+	    return view("index");
+
+	})->where("path", ".+");
+
 });
+
+Route::any('{path?}', function()
+{
+    return view("site");
+
+})->where("path", ".+");

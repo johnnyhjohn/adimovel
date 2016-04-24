@@ -22,12 +22,11 @@
         {!! HTML::script('bower_components/jquery/dist/jquery.min.js') !!}
         {!! HTML::script('bower_components/bootstrap/dist/js/bootstrap.min.js') !!}
         {!! HTML::script('bower_components/angular/angular.min.js') !!}
+        {!! HTML::script('bower_components//satellizer/satellizer.js') !!}
         {!! HTML::script('bower_components/angular-route/angular-route.min.js') !!}
         {!! HTML::script('bower_components/Chart.js/Chart.min.js') !!}
         {!! HTML::script('app/app.module.js') !!}
         {!! HTML::script('app/routes.config.js') !!}
-        {!! HTML::script('app/Maps/MapCtrl.js') !!}
-        {!! HTML::script('app/Grafico/ChartCtrl.js') !!}
         {!! HTML::script('assets/script.js') !!}
         <script type="text/javascript">
             $.ajaxSetup({

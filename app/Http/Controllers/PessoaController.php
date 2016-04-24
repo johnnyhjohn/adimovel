@@ -77,7 +77,7 @@ class PessoaController extends Controller
             $pessoa->cep 	= $request->input('cep');
             $pessoa->telefone = $request->input('telefone');
             $pessoa->endereco = $request->input('endereco');
-            // $pessoa->bairro   = $request->input('bairro');
+            $pessoa->bairro   = $request->input('bairro');
 
             if (PessoaEnum::isValid($request->input('tipo'))) {
             	$pessoa->tipo_pessoa = $request->input('tipo');

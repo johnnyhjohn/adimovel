@@ -110,12 +110,9 @@
 
         }
 
-        google.maps.event.addListener(autocomplete, 'place_changed', finishAutoComplete);
-        //return completeMapLoading();        
+        google.maps.event.addListener(autocomplete, 'place_changed', finishAutoComplete);      
     } 
 
-    function completeMapLoading(){
-    }   
 }     
 
 

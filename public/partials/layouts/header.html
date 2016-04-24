@@ -1,7 +1,7 @@
         <header>
             <div class="admin">
                 <p class="pull-right">
-                    Olá Usuario 
+                    Olá {{ currentUser.nome }} 
                     <img src="image/no-image.png" alt="Avatar" class="avatar-admin">   
                 </p>
                 <div class="user-info">
@@ -10,13 +10,13 @@
                             <img src="image/no-image.png" alt="Avatar" class="avatar">    
                         </div>
                         <div class="info">
-                            <h3>Usuario</h3>
-                            <p>email@gmail.com</p>
+                            <h3>{{ currentUser.nome }}</h3>
+                            <p>{{ currentUser.email }}</p>
                             <p class="editar-perfil-btn"><a href="{{ url('/editar-perfil') }}">Editar Perfil</a></p>
                         </div>
                     </div>
-                    <div class="info-footer">
-                        <a target="self" href="admin/login">Sair</a>
+                    <div class="info-footer" data-ng-controller='LoginCtrl as vm'>
+                        <a data-ng-click='vm.logout()'>Sair</a>
                     </div>    
                 </div>
             </div>

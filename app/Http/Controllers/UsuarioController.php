@@ -21,10 +21,10 @@ class UsuarioController extends Controller
             $usuario = new Usuario();
 
             $usuario->nome 	= $request->input('nome');
-            //$usuario->cpf 	= $request->input('cpf');
-            $usuario->email 	= $request->input('email');
+            $usuario->cpf 	= $request->input('cpf');
+            $usuario->email = $request->input('email');
             //$usuario->telefone = $request->input('telefone');
-            $usuario->senha = $request->input('senha');
+            $usuario->password = \Hash::make($request->input('senha'));
 
             if(UsuarioEnum::isValid($request->input('tipo'))){
             	$usuario->tipo_funcionario = $request->input('tipo');
@@ -51,10 +51,10 @@ class UsuarioController extends Controller
     public function validaCadastro()
     {
 		return [
-			'nome'			  => 'required',
+			'nome'			=> 'required',
             //'cpf' 	  		  => 'required|numeric',
-            'email'	  		  => 'required|email',
-            //'telefone'		  => 'numeric'
+            'email'	  		=> 'required|email',
+            'senha'		  	=> 'required'
             
         ];
     }

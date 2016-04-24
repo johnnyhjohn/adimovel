@@ -9,6 +9,13 @@
         {!! HTML::style('bower_components/font-awesome/css/font-awesome.css') !!}
         {!! HTML::style('assets/style.css') !!}
     </head>
+<div class="showbox">
+  <div class="loader">
+    <svg class="circular" viewBox="25 25 50 50">
+      <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+    </svg>
+  </div>
+</div>
     <body data-ng-app="adimovelApp">
         <div id="overlay"></div>
         <ng-include src="'partials/layouts/header.html'"></ng-include>
@@ -25,6 +32,7 @@
         {!! HTML::script('bower_components/bootstrap/dist/js/bootstrap.min.js') !!}
         {!! HTML::script('bower_components/angular/angular.min.js') !!}
         {!! HTML::script('bower_components/angular-route/angular-route.min.js') !!}
+        {!! HTML::script('bower_components//satellizer/satellizer.js') !!}
         {!! HTML::script('bower_components/Chart.js/Chart.min.js') !!}
         {!! HTML::script('assets/script.js') !!}
         {!! HTML::script('app/app.module.js') !!}
@@ -32,6 +40,7 @@
         {!! HTML::script('app/services/Service.js') !!}
         {!! HTML::script('app/controllers/Pessoa/PessoaCtrl.js') !!}
         {!! HTML::script('app/controllers/Usuario/UsuarioCtrl.js') !!}
+        {!! HTML::script('app/controllers/Usuario/LoginCtrl.js') !!}
         {!! HTML::script('app/controllers/Maps/MapCtrl.js') !!}
         {!! HTML::script('app/controllers/Grafico/ChartCtrl.js') !!}
         <div class="map"></div>

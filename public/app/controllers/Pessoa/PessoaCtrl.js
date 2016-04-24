@@ -105,7 +105,6 @@
 
 		function getPessoa(){
 			if($routeParams.slug !== undefined){
-				console.log($routeParams.slug);
 				Request.get("pessoa/" + $routeParams.slug)
 					.then(function(res){
 						vm.pessoa = res[0].objeto;

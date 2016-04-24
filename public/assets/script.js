@@ -124,7 +124,7 @@ $(document).ready(function(){
 	$(document).on("click", ".menu-ul li", activeLi);
 	$(document).on('click', '.ripple', rippleEffect);
 	$(document).on('focus', '.date', textToDate);
-	$(document).on('blur', '.date', dateToText);
+	$(document).on('blur', 	'.date', dateToText);
 	$(document).on('click', 'a', scrollToTop);
 	$(document).on('click', '.btn-custos', toggleCustos);
 	$(document).on('click', '.deleta-imovel', function(event) {
@@ -203,12 +203,12 @@ function toggleActiveAlugelCompra(){
 			$('.btn-aluguel').removeClass('active');
 			$(this).addClass('active');
 			montaListaVenda();
-			break;
+		break;
 		default:
 			$('.btn-compra').removeClass('active')
 			$(this).addClass('active');
 			montaListaLocacao();
-			break;
+		break;
 	}
 }
 
@@ -352,25 +352,25 @@ function addMaterialInput(){
 
 function rippleEffect () {
   	event.preventDefault();
-	if($(this).hasClass('btn-pago') && $(this).attr("id") != "btn-venda"){
+	if ($(this).hasClass('btn-pago') && $(this).attr("id") != "btn-venda") {
 		$(this).removeClass('btn-pago').addClass('btn-atrasado');
 		$(this).html("Atrasado");
 		$(this).data('situacao','atrasado');
-	}else if($(this).hasClass('btn-atrasado') && $(this).attr("id") != "btn-venda"){
-		$(this).removeClass('btn-atrasado').addClass('btn-pendente');
+	} else if ($(this).hasClass('btn-atrasado') && $(this).attr("id") != "btn-venda") {
+	 	$(this).removeClass('btn-atrasado').addClass('btn-pendente');
 		$(this).html("Pendente");
 		$(this).data('situacao','pendente');
-	}else if($(this).hasClass('btn-pendente') && $(this).attr("id") != "btn-venda"){
+	} else if ($(this).hasClass('btn-pendente') && $(this).attr("id") != "btn-venda") {
 		$(this).removeClass('btn-pendente').addClass('btn-pago');
 		$(this).html("Pago");
 		$(this).data('situacao','pago');
 	}  
 
-	if($(this).hasClass('btn-pago') && $(this).attr("id") == "btn-venda"){
+	if ($(this).hasClass('btn-pago') && $(this).attr("id") == "btn-venda") {
 		$(this).removeClass('btn-pago').addClass('btn-pendente');
 		$(this).html("Pendente");
 		$(this).data('situacao','atrasado');
-	}else if($(this).hasClass('btn-pendente') && $(this).attr("id") == "btn-venda"){
+	} else if($(this).hasClass('btn-pendente') && $(this).attr("id") == "btn-venda") {
 		$(this).removeClass('btn-pendente').addClass('btn-pago');
 		$(this).html("Pago");
 		$(this).data('situacao','pago');

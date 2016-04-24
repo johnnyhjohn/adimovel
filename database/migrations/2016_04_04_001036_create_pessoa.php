@@ -23,6 +23,7 @@ class CreatePessoa extends Migration
             $table->string('telefone');
             $table->string('cep', 8)->nullable();
             $table->string('endereco')->nullable();
+            $table->string('bairro')->nullable();
             $table->integer('cidade')->unsigned();
             $table->foreign('cidade')->references('id')->on('cidades');
             $table->boolean('status');
