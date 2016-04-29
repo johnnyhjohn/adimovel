@@ -16,17 +16,20 @@
 	Auth.injector = ['$rootScope', '$location', '$window'];
 
 	function Auth($rootScope, $location, $window){
-		
+
+		// Setamos a variavel `user` com o conteudo do localStorage
 		var user = JSON.parse(localStorage.getItem('user'));
 		var vm = this;
 
+
 		if(window.location.pathname.substr(0,6) == '/admin'){
+			if(user && $window.location.pathname == "/admin/login"){
+				$("body").css('display','none');
+				event.preventDefault();
+			 	$window.location.href = '/admin';
+			}
 			// $routeChangeStart é disparado quando acontece qualquer mudança de rota
 			$rootScope.$on('$routeChangeStart', function(event) {
-
-				// Setamos a variavel `user` com o conteudo do localStorage
-				var user = JSON.parse(localStorage.getItem('user'));
-
 				/**
 				* 	Se existir dados no localStorage `user` então ele é um usuario
 				* 	autenticado, e pode proceguir normalmente.
@@ -47,14 +50,24 @@
 					if($rootScope.autenticado !== true || $rootScope === undefined) {
 					 	event.preventDefault();
 					 	$window.location.href = '/admin/login';
-					}		
+					}
 					else{
 						$(".showbox").css('display','none');
+					}	
+
+					if($window.location.pathname != "/admin/usuarios/editar/"+$rootScope.currentUser.id
+						&& $window.location.pathname.substr(0,15) == '/admin/usuarios' 
+						&& $rootScope.currentUser.admin != true){
+						event.preventDefault();
+					 	$window.location.href = '/admin';
 					}
+					else{
+						$(".showbox").css('display','none');
+					}	
 				}
 				if($rootScope.autenticado !== true || $rootScope === undefined) {
 
-					// Se o usuarop não for autenticado, redirecionamos ele
+					// Se o usuaro não for autenticado, redirecionamos ele
 					// para a tela de login
 				 	event.preventDefault();
 				 	$window.location.href = '/admin/login';

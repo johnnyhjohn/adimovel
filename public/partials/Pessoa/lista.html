@@ -6,17 +6,19 @@
 		<form class="busca">
 			<div class="material-input select">
 				<div class="col-md-4">
-					<label for="nome" class="float-label"><i class="fa fa-search"></i> Busca</label>
-					<input id="nome" type="text" class="form-control">
+					<label for="busca" class="float-label"><i class="fa fa-search"></i> Busca</label>
+					<input data-ng-keypress="vm.busca()" id="busca" type="text" class="form-control">
 					<span></span>
 				</div>
 				<div class="col-md-4">
-					<select name="" id="" class="form-control float-label">
-						<option value="">Filtro</option>
+					<select 
+						data-ng-change='vm.busca()' 
+						data-ng-model='vm.coluna'
+						data-ng-options='template.value as template.name for template in vm.colunas track by template.value' 
+						name="" 
+						id="coluna" 
+						class="form-control float-label">
 					</select>
-				</div>
-				<div class="col-md-4">
-				<button class="btn ripple">Pesquisar</button>
 				</div>
 				<span></span>
 			</div>	

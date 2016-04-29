@@ -9,7 +9,31 @@
 		
 		var vm = this;
 
+		vm.colunas = [
+			{
+				value 	: 'nome',
+				name 	: 'Nome'	
+			},
+			{
+				value 	: 'email',
+				name 	: 'Email'
+			},
+			{
+				value 	: 'status',
+				name 	: 'Status'
+			},
+			{
+				value 	: 'tipo_funcionario',
+				name 	: 'Tipo'
+			}
+		];
+
 		active();
+
+
+		setTimeout(function(){
+			$("#coluna").find('option:first').remove();
+		}, 500);
 
 		function active() {
 			var functions = [getUsuario()];
@@ -26,6 +50,7 @@
 			});
 		}
 
+<<<<<<< Updated upstream
 		function getUsuarios(){
 			Request.get("usuario").then(function(res){
 				angular.forEach(res[0].objeto, function(value, key) {
@@ -34,6 +59,22 @@
 				});
 				vm.pessoas = res[0].objeto;
 			});
+=======
+		vm.busca = function(){
+			var data = {
+				valor : $("#busca").val(),
+				coluna: $("#coluna").val()
+			}
+
+			Request.set('busca/usuario', data).then(function(res) {
+				angular.forEach(res[0].objeto, function(value, key) {
+					(value.tipo_funcionario == "COR") ? value.tipo_funcionario = "Corretor" : value.tipo_funcionario = "Administrador";
+					(value.status == true) ? value.status = "Ativo" : value.status = "Inativo";		
+				});
+				vm.usuarios = res[0].objeto;
+			});
+
+>>>>>>> Stashed changes
 		}
 
 		vm.setUsuario = function() {

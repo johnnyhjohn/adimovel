@@ -32,6 +32,18 @@ Route::group(['prefix' => 'data'], function()
 	    Route::delete('{id}', 'UsuarioController@destroy');
 	});
 
+	Route::group(['prefix' => 'busca'], function()
+	{
+		Route::group(['prefix' => 'pessoa'], function()
+		{
+		    Route::post('', 'PessoaController@busca');
+		});
+		Route::group(['prefix' => 'usuario'], function()
+		{
+		    Route::post('', 'UsuarioController@busca');
+		});
+	});
+
 	Route::group(['middleware' => ['api','cors'],'prefix' => 'login'], function () {
 	    Route::get('', 'AutenticacaoController@login');
 	});
@@ -40,7 +52,6 @@ Route::group(['prefix' => 'data'], function()
     Route::post('authenticate', 'AutenticacaoController@authenticate');
     Route::post('authenticate/user', 'AutenticacaoController@getAuthenticatedUser');
 });
-
 
 Route::group(['prefix' => 'admin'], function () 
 {

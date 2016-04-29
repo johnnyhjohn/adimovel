@@ -97,6 +97,7 @@ class UsuarioController extends Controller
 
     }
 
+<<<<<<< Updated upstream
     public function update(Request $request, $id)
     {
         try{
@@ -141,4 +142,20 @@ class UsuarioController extends Controller
         }
     }
 
+=======
+    public function busca(Request $request)
+    {
+    	try{
+	    	$input = $request->all();
+
+	    	$busca = Usuario::where($input['coluna'],'like', $input['valor'].'%')
+	    					->orderBy('nome', 'asc')
+	    					->get();
+
+	    	return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $busca);
+	    } catch(Exception $e){
+    		return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
+    	}	
+    }
+>>>>>>> Stashed changes
 }

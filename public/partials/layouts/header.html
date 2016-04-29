@@ -1,7 +1,11 @@
         <header>
             <div class="admin">
                 <p class="pull-right">
+<<<<<<< Updated upstream
                     Olá {{ currentUser.nm_usuario }} 
+=======
+                    Olá <a href="admin/perfil"> {{ currentUser.nome }} </a>
+>>>>>>> Stashed changes
                     <img src="image/no-image.png" alt="Avatar" class="avatar-admin">   
                 </p>
                 <div class="user-info">
@@ -10,7 +14,11 @@
                             <img src="image/no-image.png" alt="Avatar" class="avatar">    
                         </div>
                         <div class="info">
+<<<<<<< Updated upstream
                             <h3>{{ currentUser.nm_usuario }}</h3>
+=======
+                            <a href="admin/perfil"><h3>{{ currentUser.nome }}</h3></a>
+>>>>>>> Stashed changes
                             <p>{{ currentUser.email }}</p>
                             <p class="editar-perfil-btn"><a href="{{ url('/editar-perfil') }}">Editar Perfil</a></p>
                         </div>
@@ -21,7 +29,7 @@
                 </div>
             </div>
                 <div class="container user-header">
-                    <h1 id="titulo" class="text-left"><a href="{{ url('/') }}">ADI</a></h1>
+                    <h1 id="titulo" class="text-left"><a href="admin">ADI</a></h1>
                     <!-- <img class="avatar" src=" }}">
                     <p class="header-name">}</p> -->
                 </div>
@@ -32,7 +40,7 @@
                             <li><a href="admin/administrar/imoveis"><i class="fa fa-desktop fa-2x"></i>Administrar</a></li>
                             <li><a href="admin/imoveis"><i class="fa fa-building fa-2x"></i>Imóveis</a></li>
                             <li><a href="admin/pessoas"><i class="fa fa-users fa-2x"></i>Pessoas</a></li>
-                            <li><a href="admin/usuarios"><i class="fa fa-users fa-2x"></i>Usuários</a></li>
+                            <li data-ng-if='currentUser.admin == true'><a href="admin/usuarios"><i class="fa fa-users fa-2x"></i>Usuários</a></li>
                             <li><a href="admin/relatorios"><i class="fa fa-bar-chart fa-2x"></i>Relatórios</a></li>
                             <!-- <li><a href="admin/configuracao"><i class="fa fa-cog fa-2x"></i>Configurações</a></li> -->
                         </ul>

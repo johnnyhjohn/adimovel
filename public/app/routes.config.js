@@ -111,6 +111,7 @@
       	*
       	*	@return {Array} getRoutes
       	*/
+
       	function getRoutes(){
       		return [
               montaRota('/',        'Site/index.html'),
@@ -133,6 +134,7 @@
               
               montaRota('/admin/usuarios', 'Usuario/lista.html'),
               montaRota('/admin/usuarios/editar/:slug', 'Usuario/editar.html'),
+              montaRota('/admin/perfil', 'Usuario/perfil.html', 'UsuarioCtrl'),
               montaRota('/admin/usuarios/cadastro', 'Usuario/cadastro.html'),
               
               montaRota('/admin/administrar/imoveis', 'Administrar/imoveis-lista.html'),

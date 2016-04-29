@@ -9,7 +9,35 @@
 
 		var vm = this;
 
+		vm.colunas = [
+			{
+				value 	: 'nome',
+				name : 'Nome'	
+			},
+			{
+				value 	: 'email',
+				name : 'Email'
+			},
+			{
+				value 	: 'telefone',
+				name : 'Telefone'
+			},
+			{
+				value 	: 'endereco',
+				name : 'Endereço'
+			},
+			{
+				value 	: 'tipo_pessoa',
+				name : 'Tipo'
+			}
+		];
+
+
 		active();
+
+		setTimeout(function(){
+			$("#coluna").find('option:first').remove();
+		}, 500);
 
 		function active(){
 			var functions = [getPessoas(), getPessoa()];
@@ -93,12 +121,29 @@
 			})
 		}
 
+		vm.busca = function(){
+			var data = {
+				valor : $("#busca").val(),
+				coluna: $("#coluna").val()
+			}
+
+			Request.set('busca/pessoa', data).then(function(res) {
+				angular.forEach(res[0].objeto, function(value, key) {
+					(value.tipo_pessoa == "INQ") ? value.tipo_pessoa = "Inquilino" : value.tipo_pessoa = "Proprietário";
+
+				});
+				vm.pessoas = res[0].objeto;
+			});
+
+		}
+
 		function getPessoas(){
 			Request.get("pessoa").then(function(res){
 				angular.forEach(res[0].objeto, function(value, key) {
 					(value.tipo_pessoa == "INQ") ? value.tipo_pessoa = "Inquilino" : value.tipo_pessoa = "Proprietário";
 
 				});
+				console.log(res);
 				vm.pessoas = res[0].objeto;
 			});
 		}

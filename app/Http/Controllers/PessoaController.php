@@ -132,7 +132,8 @@ class PessoaController extends Controller
       	}
     }
 
-    public function destroy($id){
+    public function destroy($id)
+    {
     	try{
     		$pessoa = Pessoa::find($id);
     		$pessoa->delete();
@@ -141,5 +142,26 @@ class PessoaController extends Controller
     	}catch(Exception $e){
     		return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
     	}
+    }
+
+    public function busca(Request $request)
+    {
+    	try{
+	    	$input = $request->all();
+
+	    	$busca = Pessoa::where($input['coluna'],'ilike', '%'.$input['valor'].'%')
+	    					->orderBy('nome', 'asc')
+	    					->get();
+
+	        $return = array();
+
+	        foreach ($busca as $key => $value) {
+	            $pVO = new PessoaVO(Pessoa::find($value->id));
+	            $return[] = $pVO;
+	        }
+	    	return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $return);
+	    } catch(Exception $e){
+    		return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
+    	}	
     }
 }

@@ -48,6 +48,11 @@
                 	if (response) {
 	                	// Stringify os dados de retorno
 	               	 	// para preparar para o localStorage
+	               	 	console.log(response.user.admin);
+	               	 	if(response.user.admin == false){
+	               	 		delete response.user.admin;	
+	               	 	}
+	               	 	console.log(response.user.admin);
 		                var user = JSON.stringify(response.user);
 		                
 		                // Setamos os dados com Stringify no localStorage

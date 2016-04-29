@@ -1,0 +1,19 @@
+<div class="panel">
+	<div class="container container-responsive">
+		<div class="col-md-6">
+			<h1>{{ currentUser.nome }}</h1>
+	        <div class="avatar">
+	            <img src="image/no-image.png" alt="Avatar" class="avatar img-responsive">   
+	            <a href="">Alterar Imagem</a> 
+	        </div>
+        </div>
+        <div class="col-md-6">
+        	<p>Email: {{ currentUser.email }}</p>
+        	<p>Tipo : {{ currentUser.tipo_funcionario }}</p>
+        	<p>CPF: {{ currentUser.cpf }}</p>
+        	<h3>Ultimas anotações</h3>
+
+        	<a href="/admin/usuarios/editar/{{ currentUser.id }}">Editar perfil</a>
+        </div>
+	</div>
+</div>
