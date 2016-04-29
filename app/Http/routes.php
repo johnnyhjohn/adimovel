@@ -27,7 +27,7 @@ Route::group(['prefix' => 'data'], function()
 	{
 		//Route::get('{id?}', 'UsuarioController@index');
 	    Route::post('', 'UsuarioController@create');
-	    Route::get('', 'UsuarioController@show');
+	    Route::get('{id?}', 'UsuarioController@index');
 	    Route::put('{id}', 'UsuarioController@update');
 	    Route::delete('{id}', 'UsuarioController@destroy');
 	});

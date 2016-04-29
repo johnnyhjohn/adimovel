@@ -20,6 +20,7 @@ class UsuarioController extends Controller
     {  
         try{
             if ($id == null) {
+                
                 $usuario = Usuario::orderBy('nm_usuario', 'asc')->get();
 
                 $return = array();
@@ -36,6 +37,16 @@ class UsuarioController extends Controller
         } catch(Exception $e){
             return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
         }    
+    }
+
+    public function show($id)
+    {
+        try{
+            return JSONUtils::returnSuccess(Messages::MSG_QUERY_SUCCESS,
+            new UsuarioVO(Usuario::find($id)));
+        }catch(Exception $e){
+            return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
+        }
     }
 
     public function create(Request $request)
@@ -64,7 +75,7 @@ class UsuarioController extends Controller
 	        }
 
         	$usuario->save();
-			return JSONUtils::returnSuccess('usuario '. $usuario->nome .' cadastrada com sucesso.', $usuario);
+			return JSONUtils::returnSuccess('usuario '. $usuario->nm_usuario .' cadastrada com sucesso.', $usuario);
 
     	}catch(Exception $e){
     		return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
@@ -77,27 +88,11 @@ class UsuarioController extends Controller
 			'nome'			=> 'required',
             //'cpf' 	  		  => 'required|numeric',
             'email'	  		=> 'required|email',
-            'senha'		  	=> 'required'
+            //'senha'		  	=> 'required'
             
         ];
     }
 
-    public function show($id = null)
-	{
-        $usuarios = Usuario::orderBy('nm_usuario', 'asc')->get();
-
-        $return = array();
-
-        foreach ($usuarios as $key => $value) {
-            $uVO = new UsuarioVO(Usuario::find($value->id));
-            $return[] = $uVO;
-        }
-
-        return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $return);
-
-    }
-
-<<<<<<< Updated upstream
     public function update(Request $request, $id)
     {
         try{
@@ -107,7 +102,7 @@ class UsuarioController extends Controller
             $usuario->nr_cpf   = $request->input('cpf');
             $usuario->email = $request->input('email');
             //$usuario->telefone = $request->input('telefone');
-            $usuario->password = \Hash::make($request->input('senha'));
+            //$usuario->password = \Hash::make($request->input('senha'));
 
             if(UsuarioEnum::isValid($request->input('tipo'))){
                 $usuario->tp_funcionario = $request->input('tipo');
@@ -125,7 +120,7 @@ class UsuarioController extends Controller
             }
 
             $usuario->save();
-            return JSONUtils::returnSuccess($usuario->nome .' alterada com sucesso.', $usuario);
+            return JSONUtils::returnSuccess($usuario->nm_usuario .' alterada com sucesso.', $usuario);
         }catch(Exception $e){
             return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
         }
@@ -142,14 +137,13 @@ class UsuarioController extends Controller
         }
     }
 
-=======
     public function busca(Request $request)
     {
     	try{
 	    	$input = $request->all();
 
 	    	$busca = Usuario::where($input['coluna'],'like', $input['valor'].'%')
-	    					->orderBy('nome', 'asc')
+	    					->orderBy('nm_usuario', 'asc')
 	    					->get();
 
 	    	return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $busca);
@@ -157,5 +151,4 @@ class UsuarioController extends Controller
     		return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
     	}	
     }
->>>>>>> Stashed changes
 }

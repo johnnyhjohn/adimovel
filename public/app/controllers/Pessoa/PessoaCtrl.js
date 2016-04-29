@@ -11,7 +11,7 @@
 
 		vm.colunas = [
 			{
-				value 	: 'nome',
+				value 	: 'nm_pessoa',
 				name : 'Nome'	
 			},
 			{
@@ -19,7 +19,7 @@
 				name : 'Email'
 			},
 			{
-				value 	: 'telefone',
+				value 	: 'nr_telefone',
 				name : 'Telefone'
 			},
 			{
@@ -27,7 +27,7 @@
 				name : 'Endereço'
 			},
 			{
-				value 	: 'tipo_pessoa',
+				value 	: 'tp_pessoa',
 				name : 'Tipo'
 			}
 		];
@@ -129,7 +129,7 @@
 
 			Request.set('busca/pessoa', data).then(function(res) {
 				angular.forEach(res[0].objeto, function(value, key) {
-					(value.tipo_pessoa == "INQ") ? value.tipo_pessoa = "Inquilino" : value.tipo_pessoa = "Proprietário";
+					(value.tp_pessoa == "INQ") ? value.tp_pessoa = "Inquilino" : value.tp_pessoa = "Proprietário";
 
 				});
 				vm.pessoas = res[0].objeto;
@@ -140,7 +140,7 @@
 		function getPessoas(){
 			Request.get("pessoa").then(function(res){
 				angular.forEach(res[0].objeto, function(value, key) {
-					(value.tipo_pessoa == "INQ") ? value.tipo_pessoa = "Inquilino" : value.tipo_pessoa = "Proprietário";
+					(value.tp_pessoa == "INQ") ? value.tp_pessoa = "Inquilino" : value.tp_pessoa = "Proprietário";
 
 				});
 				console.log(res);

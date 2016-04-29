@@ -8,18 +8,18 @@ use App\Pessoa;
 class PessoaVO
 {
   public $id;
-  public $nome;
-  public $tipo_pessoa;
-  public $data_nascimento;
-  public $cpf;
-  public $rg;
+  public $nm_pessoa;
+  public $tp_pessoa;
+  public $dt_nascimento;
+  public $nr_cpf;
+  public $nr_rg;
   public $email;
-  public $telefone;
-  public $cep;
+  public $nr_telefone;
+  public $nr_cep;
   public $bairro;
   public $endereco;
-  public $cidade;
-  public $status;
+  public $id_cidade;
+  public $ativo;
 
   public function __construct(Pessoa $obj = null)
   {
@@ -31,36 +31,36 @@ class PessoaVO
   public function convertFromEntity(Pessoa $obj)
   {
     $this->id       = $obj->id;
-    $this->nome     = $obj->nome;
-    $this->cpf      = $obj->cpf;
-    $this->rg       = $obj->rg;
+    $this->nm_pessoa     = $obj->nm_pessoa;
+    $this->nr_cpf      = $obj->nr_cpf;
+    $this->nr_rg       = $obj->nr_rg;
     $this->email    = $obj->email;
-    $this->telefone = $obj->telefone;
-    $this->cep      = $obj->cep;
+    $this->nr_telefone = $obj->nr_telefone;
+    $this->nr_cep      = $obj->nr_cep;
     $this->bairro      = $obj->bairro;
     $this->endereco = $obj->endereco;
-    $this->tipo_pessoa = $obj->tipo_pessoa;
-    $this->data_nascimento = $obj->data_nascimento;
-    $this->cidade = new CidadeVO(Cidades::find($obj->cidade));
-    $this->status = $obj->status;
+    $this->tp_pessoa = $obj->tp_pessoa;
+    $this->dt_nascimento = $obj->dt_nascimento;
+    $this->id_cidade = new CidadeVO(Cidades::find($obj->id_cidade));
+    $this->ativo = $obj->ativo;
   }
 
   public function convertToEntity()
   {
     $obj = new Pessoa();
     $obj->id      = $this->id;
-    $obj->nome    = $this->nome;
-    $obj->cpf     = $this->cpf;
-    $obj->rg      = $this->rg;
+    $obj->nm_pessoa    = $this->nm_pessoa;
+    $obj->nr_cpf     = $this->nr_cpf;
+    $obj->nr_rg      = $this->nr_rg;
     $obj->email   = $this->email;
-    $obj->telefone= $this->telefone;
-    $obj->cep     = $this->cep;
+    $obj->nr_telefone= $this->nr_telefone;
+    $obj->nr_cep     = $this->nr_cep;
     $obj->bairro  = $this->bairro;
     $obj->endereco= $this->endereco;
-    $obj->tipo_pessoa = $this->tipo_pessoa;
-    $obj->data_nascimento = $this->data_nascimento;
-    $obj->cidade = $this->cidade->convertToEntity()->id;
-    $obj->status = $this->status;
+    $obj->tp_pessoa = $this->tp_pessoa;
+    $obj->dt_nascimento = $this->dt_nascimento;
+    $obj->id_cidade = $this->id_cidade->convertToEntity()->id;
+    $obj->ativo = $this->ativo;
 
     return $obj;
   }

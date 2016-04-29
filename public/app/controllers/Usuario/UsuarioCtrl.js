@@ -11,7 +11,7 @@
 
 		vm.colunas = [
 			{
-				value 	: 'nome',
+				value 	: 'nm_usuario',
 				name 	: 'Nome'	
 			},
 			{
@@ -19,11 +19,11 @@
 				name 	: 'Email'
 			},
 			{
-				value 	: 'status',
+				value 	: 'ativo',
 				name 	: 'Status'
 			},
 			{
-				value 	: 'tipo_funcionario',
+				value 	: 'tp_funcionario',
 				name 	: 'Tipo'
 			}
 		];
@@ -36,30 +36,40 @@
 		}, 500);
 
 		function active() {
-			var functions = [getUsuario()];
+			var functions = [getUsuario(), getUsuarios()];
 		}
 
-		function getUsuario() {
+		function getUsuario2() {
 			Request.get('usuario').then(function(res) {
 				angular.forEach(res[0].objeto, function(value, key) {
 					(value.tp_funcionario == "COR") ? value.tp_funcionario = "Corretor" : value.tp_funcionario = "Administrador";
 					(value.ativo == true) ? value.ativo = "Ativo" : value.ativo = "Inativo";		
 				});
 
-				vm.usuarios = res[0].objeto;
+				vm.usuario = res[0].objeto;
+				console.log(vm.usuario);
 			});
 		}
 
-<<<<<<< Updated upstream
+		function getUsuario(){
+			if($routeParams.slug !== undefined){
+				Request.get("usuario/" + $routeParams.slug)
+					.then(function(res){
+						vm.usuario = res[0].objeto;
+				});
+			}
+		}
+
 		function getUsuarios(){
 			Request.get("usuario").then(function(res){
 				angular.forEach(res[0].objeto, function(value, key) {
 					//(value.tipo_pessoa == "INQ") ? value.tipo_pessoa = "Inquilino" : value.tipo_pessoa = "Proprietário";
 
 				});
-				vm.pessoas = res[0].objeto;
+				vm.usuarios = res[0].objeto;
 			});
-=======
+		}
+
 		vm.busca = function(){
 			var data = {
 				valor : $("#busca").val(),
@@ -68,24 +78,23 @@
 
 			Request.set('busca/usuario', data).then(function(res) {
 				angular.forEach(res[0].objeto, function(value, key) {
-					(value.tipo_funcionario == "COR") ? value.tipo_funcionario = "Corretor" : value.tipo_funcionario = "Administrador";
-					(value.status == true) ? value.status = "Ativo" : value.status = "Inativo";		
+					(value.tp_funcionario == "COR") ? value.tp_funcionario = "Corretor" : value.tp_funcionario = "Administrador";
+					(value.ativo == true) ? value.ativo = "Ativo" : value.ativo = "Inativo";		
 				});
 				vm.usuarios = res[0].objeto;
 			});
 
->>>>>>> Stashed changes
 		}
 
 		vm.setUsuario = function() {
 			
 			var data = {
-				nm_usuario:  		$("#nome").val(),
+				nome:  		$("#nome").val(),
 				email:   	$("#email").val(),
-				nr_cpf: 		$("#cpf").val(),
+				cpf: 		$("#cpf").val(),
 				senha: 		$("#senha").val(),
 				tipo: 		$("#tipo").val(),
-				nr_telefone: 	$("#telefone").val()
+				telefone: 	$("#telefone").val()
 			};
 
 			Request.set('usuario', data).then(function(res){
@@ -102,12 +111,12 @@
 
 		vm.update = function(){
 			var data = {
-				nm_usuario:  		$("#nome").val(),
+				nome:  		$("#nome").val(),
 				email:   	$("#email").val(),
-				nr_cpf: 		$("#cpf").val(),
+				cpf: 		$("#cpf").val(),
 				senha: 		$("#senha").val(),
 				tipo: 		$("#tipo").val(),
-				nr_telefone: 	$("#telefone").val()
+				telefone: 	$("#telefone").val()
 			};
 
 			Request.put("usuario/" + $routeParams.slug, data)

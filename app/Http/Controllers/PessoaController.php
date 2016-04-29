@@ -20,24 +20,24 @@ class PessoaController extends Controller
     	try{
             $pessoa = new Pessoa();
 
-            $pessoa->nome 	= $request->input('nome');
-            $pessoa->cpf 	= $request->input('cpf');
-            $pessoa->rg 	= $request->input('rg');
+            $pessoa->nm_pessoa 	= $request->input('nome');
+            $pessoa->nr_cpf 	= $request->input('cpf');
+            $pessoa->nr_rg 	= $request->input('rg');
             $pessoa->email 	= $request->input('email');
-            $pessoa->data_nascimento = $request->input('dta_nasc');
-            $pessoa->cep 	= $request->input('cep');
-            $pessoa->telefone = $request->input('telefone');
+            $pessoa->dt_nascimento = $request->input('dta_nasc');
+            $pessoa->nr_cep 	= $request->input('cep');
+            $pessoa->nr_telefone = $request->input('telefone');
             $pessoa->endereco = $request->input('endereco');
-            // $pessoa->bairro   = $request->input('bairro');
+            $pessoa->bairro   = $request->input('bairro');
 
             if(PessoaEnum::isValid($request->input('tipo'))){
-            	$pessoa->tipo_pessoa = $request->input('tipo');
+            	$pessoa->tp_pessoa = $request->input('tipo');
         	}else{
-        		$pessoa->tipo_pessoa = PessoaEnum::INQUILINO;
+        		$pessoa->tp_pessoa = PessoaEnum::INQUILINO;
         	}
 
-           	$pessoa->cidade = 1;
-            $pessoa->status = true;
+           	$pessoa->id_cidade = 1;
+            $pessoa->ativo = true;
 
             $validator = \Validator::make($request->all(), $this->validaCadastro());
 	        if ($validator->fails()) {
@@ -45,7 +45,7 @@ class PessoaController extends Controller
 	        }
 
         	$pessoa->save();
-			return JSONUtils::returnSuccess('Pessoa '. $pessoa->nome .' cadastrada com sucesso.', $pessoa);
+			return JSONUtils::returnSuccess('Pessoa '. $pessoa->nm_pessoa .' cadastrada com sucesso.', $pessoa);
 
     	}catch(Exception $e){
     		return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
@@ -69,24 +69,24 @@ class PessoaController extends Controller
     	try{
     		$pessoa = Pessoa::find($id);
 
-    		$pessoa->nome 	= $request->input('nome');
-            $pessoa->cpf 	= $request->input('cpf');
-            $pessoa->rg 	= $request->input('rg');
+    		$pessoa->nm_pessoa 	= $request->input('nome');
+            $pessoa->nr_cpf 	= $request->input('cpf');
+            $pessoa->nr_rg 	= $request->input('rg');
             $pessoa->email 	= $request->input('email');
-            $pessoa->data_nascimento = $request->input('dta_nasc');
-            $pessoa->cep 	= $request->input('cep');
-            $pessoa->telefone = $request->input('telefone');
+            $pessoa->dt_nascimento = $request->input('dta_nasc');
+            $pessoa->nr_cep 	= $request->input('cep');
+            $pessoa->nr_telefone = $request->input('telefone');
             $pessoa->endereco = $request->input('endereco');
             $pessoa->bairro   = $request->input('bairro');
 
             if (PessoaEnum::isValid($request->input('tipo'))) {
-            	$pessoa->tipo_pessoa = $request->input('tipo');
+            	$pessoa->tp_pessoa = $request->input('tipo');
         	} else {
-        		$pessoa->tipo_pessoa = PessoaEnum::INQUILINO;
+        		$pessoa->tp_pessoa = PessoaEnum::INQUILINO;
         	}
 
-           	$pessoa->cidade = 1;
-            $pessoa->status = true;
+           	$pessoa->id_cidade = 1;
+            $pessoa->ativo = true;
 
             $validator = \Validator::make($request->all(), $this->validaCadastro());
 	        if ($validator->fails()) {
@@ -94,7 +94,7 @@ class PessoaController extends Controller
 	        }
 
             $pessoa->save();
-            return JSONUtils::returnSuccess($pessoa->nome .' alterada com sucesso.', $pessoa);
+            return JSONUtils::returnSuccess($pessoa->nm_pessoa .' alterada com sucesso.', $pessoa);
     	}catch(Exception $e){
     		return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
     	}
@@ -104,7 +104,7 @@ class PessoaController extends Controller
     {  
     	try{
 	    	if ($id == null) {
-		        $pessoas = Pessoa::orderBy('nome', 'asc')->get();
+		        $pessoas = Pessoa::orderBy('nm_pessoa', 'asc')->get();
 
 		        $return = array();
 
@@ -150,7 +150,7 @@ class PessoaController extends Controller
 	    	$input = $request->all();
 
 	    	$busca = Pessoa::where($input['coluna'],'ilike', '%'.$input['valor'].'%')
-	    					->orderBy('nome', 'asc')
+	    					->orderBy('nm_pessoa', 'asc')
 	    					->get();
 
 	        $return = array();

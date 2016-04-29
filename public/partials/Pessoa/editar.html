@@ -1,23 +1,23 @@
 <div data-ng-controller="PessoaCtrl as vm">
-<h1>Editar {{ vm.pessoa.nome }}</h1>
+<h1>Editar {{ vm.pessoa.nm_pessoa }}</h1>
 <div class="panel">
 	<div class="container container-responsive">
 	<form method="post">
 		<div class="col-md-4">
 			<div class="material-input select">
 				<label for="nome" class="float-label label-active">Nome</label>
-				<input id="nome" type="text" class="form-control" value="{{ vm.pessoa.nome }}">
+				<input id="nome" type="text" class="form-control" value="{{ vm.pessoa.nm_pessoa }}">
 				<span class='input-focus'></span>
 			</div>	
 		</div>		
 		<div class="col-md-4">
 			<div class="material-input select">
 				<label for="corretor" class="float-label label-active">Tipo</label>
-				<select id="corretor" class="form-control" data-ng-if="vm.pessoa.tipo_pessoa == 'INQ'">
+				<select id="corretor" class="form-control" data-ng-if="vm.pessoa.tp_pessoa == 'INQ'">
 					<option value="INQ">Inquilino</option>
 					<option value="PRO">Proprietario</option>
 				</select>
-				<select id="corretor" class="form-control" data-ng-if="vm.pessoa.tipo_pessoa == 'PRO'">
+				<select id="corretor" class="form-control" data-ng-if="vm.pessoa.tp_pessoa == 'PRO'">
 					<option value="PRO">Proprietario</option>
 					<option value="INQ">Inquilino</option>
 				</select>
@@ -27,7 +27,7 @@
 		<div class="col-md-4">
 			<div class="material-input select">
 				<label for="dta_nasc" class="float-label label-active"><i class="fa fa-calendar"></i> Data de nascimento</label>
-				<input id="dta_nasc" type="text" class="form-control date" value="{{ vm.pessoa.data_nascimento }}">
+				<input id="dta_nasc" type="text" class="form-control date" value="{{ vm.pessoa.dt_nascimento }}">
 				<span class='input-focus'></span>
 			</div>	
 		</div>		
@@ -48,21 +48,21 @@
 		<div class="col-md-4">
 			<div class="material-input select">
 				<label for="rg" class="float-label">RG</label>
-				<input id="rg" type="text" class="form-control" value="{{ vm.pessoa.rg }}">
+				<input id="rg" type="text" class="form-control" value="{{ vm.pessoa.nr_rg }}">
 				<span></span>
 			</div>	
 		</div>		
 		<div class="col-md-4">
 			<div class="material-input select">
 				<label for="cpf" class="float-label">CPF</label>
-				<input id="cpf" type="text" class="form-control" value="{{ vm.pessoa.cpf }}">
+				<input id="cpf" type="text" class="form-control" value="{{ vm.pessoa.nr_cpf }}">
 				<span></span>
 			</div>	
 		</div>		
 		<div class="col-md-4">
 			<div class="material-input select">
 				<label for="telefone" class="float-label label-active">Telefone</label>
-				<input id="telefone" type="text" class="form-control" value="{{ vm.pessoa.telefone }}">
+				<input id="telefone" type="text" class="form-control" value="{{ vm.pessoa.nr_telefone }}">
 				<span class='input-focus'></span>
 			</div>	
 		</div>		
@@ -86,14 +86,14 @@
             <div class="col-md-3">
 				<div class="material-input select">
 					<label for="cep" class="float-label label-active">CEP</label>
-					<input type="text" id="cep" name="cep" class="form-control cep" value="{{ vm.pessoa.cep }}">
+					<input type="text" id="cep" name="cep" class="form-control cep" value="{{ vm.pessoa.nr_cep }}">
 					<span class='input-focus'></span>
 				</div>	
             </div>
             <div class="col-md-3">
 				<div class="material-input select">
 					<label for="cidade" class="float-label label-active">Cidade</label>
-					<input type="text" id="cidade" name="cidade" class="form-control cidade" value="{{ vm.pessoa.cidade.nome }}">
+					<input type="text" id="cidade" name="cidade" class="form-control cidade" value="{{ vm.pessoa.cidade.nm_cidade }}">
 					<span class='input-focus'></span>
 				</div>	
             </div>
