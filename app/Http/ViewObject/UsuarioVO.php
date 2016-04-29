@@ -6,14 +6,14 @@ use App\Usuario;
 class UsuarioVO
 {
   public $id;
-  public $nome;
-  public $tipo_funcionario;
+  public $nm_usuario;
+  public $tp_funcionario;
   public $email;
-  public $cpf;
-  public $telefone;
+  public $nr_cpf;
+  public $nr_telefone;
   public $senha;
   public $admin;
-  public $status;
+  public $ativo;
 
     public function __construct(Usuario $obj = null){
         if($obj != null){
@@ -24,25 +24,25 @@ class UsuarioVO
     public function convertFromEntity(Usuario $obj)
     {
         $this->id       = $obj->id;
-        $this->nome     = $obj->nome;
-        $this->cpf      = $obj->cpf;
+        $this->nm_usuario     = $obj->nm_usuario;
+        $this->nr_cpf      = $obj->nr_cpf;
         $this->senha    = $obj->senha;
         $this->email    = $obj->email;
-        $this->telefone = $obj->telefone;
-        $this->status   = $obj->status;
-        $this->tipo_funcionario = $obj->tipo_funcionario;
+        $this->nr_telefone = $obj->nr_telefone;
+        $this->ativo   = $obj->ativo;
+        $this->tp_funcionario = $obj->tp_funcionario;
     }
 
     public function convertToEntity(){
         $obj            = new Usuario();
         $obj->id        = $this->id;
-        $obj->nome      = $this->nome;
+        $obj->nm_usuario      = $this->nm_usuario;
         $obj->senha     = $this->senha;
-        $obj->cpf       = $this->cpf;
+        $obj->nr_cpf       = $this->nr_cpf;
         $obj->email     = $this->email;
-        $obj->telefone  = $this->telefone;
-        $obj->tipo_funcionario = $this->tipo_funcionario;
-        $obj->status    = $this->status;
+        $obj->nr_telefone  = $this->nr_telefone;
+        $obj->tp_funcionario = $this->tp_funcionario;
+        $obj->ativo    = $this->ativo;
 
         return $obj;
     }

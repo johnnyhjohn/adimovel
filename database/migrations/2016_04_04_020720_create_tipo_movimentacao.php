@@ -15,9 +15,9 @@ class CreateTipoMovimentacao extends Migration
         Schema::create('tipo_movimentacaos', function(Blueprint $table){
 
             $table->increments('id');
-            $table->string('titulo');
+            $table->string('nm_movimentacao');
             $table->boolean('credito');
-            $table->boolean('status');
+            $table->boolean('ativo');
             $table->timestamps();
         });
     }

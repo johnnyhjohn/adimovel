@@ -1,7 +1,7 @@
         <header>
             <div class="admin">
                 <p class="pull-right">
-                    Olá {{ currentUser.nome }} 
+                    Olá {{ currentUser.nm_usuario }} 
                     <img src="image/no-image.png" alt="Avatar" class="avatar-admin">   
                 </p>
                 <div class="user-info">
@@ -10,7 +10,7 @@
                             <img src="image/no-image.png" alt="Avatar" class="avatar">    
                         </div>
                         <div class="info">
-                            <h3>{{ currentUser.nome }}</h3>
+                            <h3>{{ currentUser.nm_usuario }}</h3>
                             <p>{{ currentUser.email }}</p>
                             <p class="editar-perfil-btn"><a href="{{ url('/editar-perfil') }}">Editar Perfil</a></p>
                         </div>

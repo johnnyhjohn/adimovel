@@ -14,19 +14,18 @@ class CreateRecibo extends Migration
     {
         Schema::create('recibos', function(Blueprint $table){
             $table->increments('id');
+            $table->integer('id_proprietario')->unsigned();
+            $table->foreign('id_proprietario')->references('id')->on('pessoas');
+            $table->integer('id_inquilino')->unsigned();
+            $table->foreign('id_inquilino')->references('id')->on('pessoas');
+            $table->integer('id_usuario')->unsigned();
+            $table->foreign('id_usuario')->references('id')->on('usuarios');
+            $table->double('valor', 20,2);
             $table->integer('mes');
             $table->integer('ano');
+            $table->date('dt_emissao');
             $table->string('descricao');
-            $table->double('valor', 20,2);
-            $table->date('dia_emissao');
-            $table->integer('movimentacao')->unsigned();
-            $table->foreign('movimentacao')->references('id')->on('movimentacaos');
-            $table->integer('proprietario')->unsigned();
-            $table->foreign('proprietario')->references('id')->on('pessoas');
-            $table->integer('inquilino')->unsigned();
-            $table->foreign('inquilino')->references('id')->on('pessoas');
-            $table->integer('usuario')->unsigned();
-            $table->foreign('usuario')->references('id')->on('usuarios');
+            $table->boolean('ativo');
             $table->timestamps();
         });
     }

@@ -14,19 +14,20 @@ class CreatePessoa extends Migration
     {
         Schema::create('pessoas', function(Blueprint $table){
             $table->increments('id');
-            $table->string('nome');
-            $table->char('tipo_pessoa', 3);
-            $table->date('data_nascimento');
-            $table->string('cpf', 15)->unique();
-            $table->string('rg', 15)->unique()->nullable();
+            $table->char('tp_pessoa', 3);
+            $table->string('nm_pessoa');
+            $table->date('dt_nascimento');
+            $table->string('nr_cpf', 15)->unique();
+            $table->string('nr_rg', 15)->unique()->nullable();
+            $table->string('nr_telefone');
             $table->string('email');
-            $table->string('telefone');
-            $table->string('cep', 8)->nullable();
+            $table->integer('id_cidade')->unsigned();
+            $table->foreign('id_cidade')->references('id')->on('cidades');
             $table->string('endereco')->nullable();
             $table->string('bairro')->nullable();
-            $table->integer('cidade')->unsigned();
-            $table->foreign('cidade')->references('id')->on('cidades');
-            $table->boolean('status');
+            $table->string('nr_endereco')->nullable();
+            $table->string('nr_cep', 8)->nullable();
+            $table->boolean('ativo')->default(true);
             $table->timestamps();
         });
     }

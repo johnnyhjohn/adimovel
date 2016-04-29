@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEstado extends Migration
+class FotoImovel extends Migration
 {
     /**
      * Run the migrations.
@@ -12,10 +12,11 @@ class CreateEstado extends Migration
      */
     public function up()
     {
-        Schema::create('estados', function(Blueprint $table){
+        Schema::create('foto_imovel', function(Blueprint $table){
             $table->increments('id');
-            $table->string('nm_estado');
-            $table->char('uf',2)->unique();
+            $table->integer('id_imovel')->unsigned();
+            $table->foreign('id_imovel')->references('id')->on('imovels');
+            $table->string('foto');
             $table->boolean('ativo');
             $table->timestamps();
         });
@@ -28,6 +29,6 @@ class CreateEstado extends Migration
      */
     public function down()
     {
-        Schema::drop('estados');
+        Schema::drop('foto_imovel');
     }
 }

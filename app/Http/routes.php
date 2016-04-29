@@ -25,8 +25,11 @@ Route::group(['prefix' => 'data'], function()
 
 	Route::group(['prefix' => 'usuario'], function()
 	{
+		//Route::get('{id?}', 'UsuarioController@index');
 	    Route::post('', 'UsuarioController@create');
 	    Route::get('', 'UsuarioController@show');
+	    Route::put('{id}', 'UsuarioController@update');
+	    Route::delete('{id}', 'UsuarioController@destroy');
 	});
 
 	Route::group(['middleware' => ['api','cors'],'prefix' => 'login'], function () {

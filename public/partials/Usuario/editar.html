@@ -1,32 +1,33 @@
-<h1>Editar Usuario 1</h1>
+<div data-ng-controller="UsuarioCtrl as vm">
+<h1>Editar {{ vm.usuario.nome }}</h1>
 <div class="panel">
 	<div class="container container-responsive">
 	<form method="post">
 		<div class="col-md-4">
 			<div class="material-input select">
 				<label for="nome" class="float-label">Nome</label>
-				<input id="nome" type="text" class="form-control" value="Usuário 1">
+				<input id="nome" type="text" class="form-control" value="{{ vm.usuario.nome }}">
 				<span></span>
 			</div>	
 		</div>		
 		<div class="col-md-4">
 			<div class="material-input select">
 				<label for="status_negociacao" class="float-label">Email</label>
-				<input id="status_negociacao" type="text" class="form-control" value="incognitosxy@gmail.com">
+				<input id="status_negociacao" type="text" class="form-control" value="{{ vm.usuario.email }}">
 				<span></span>
 			</div>	
 		</div>
 		<div class="col-md-4">
 			<div class="material-input select">
 				<label for="cpf" class="float-label">CPF</label>
-				<input id="cpf" type="text" class="form-control" value="000.000.000-00">
+				<input id="cpf" type="text" class="form-control" value="{{ vm.usuario.cpf }}">
 				<span></span>
 			</div>	
 		</div>		
 		<div class="col-md-4">
 			<div class="material-input select">
 				<label for="status_negociacao" class="float-label">Senha</label>
-				<input id="status_negociacao" type="password" class="form-control" value="password">
+				<input id="status_negociacao" type="password" class="form-control" value="{{ vm.usuario.password }}">
 				<span></span>
 			</div>
 		</div>	
@@ -42,7 +43,7 @@
 		<div class="col-md-4">
 			<div class="material-input select">
 				<label for="vitrine" class="float-label">Telefone</label>
-				<input id="vitrine" type="text" class="form-control" value="(42)9999-9999">
+				<input id="vitrine" type="text" class="form-control" value="{{ vm.usuario.telefone }}">
 				<span></span>
 			</div>	
 		</div>		
@@ -56,8 +57,9 @@
 			</div>	
 		</div>		
 		<div class="col-md-12">
-			<button id="btn-imovel" class="btn ripple pull-right">Atualizar</button>
+			<button id="btn-imovel" data-ng-click='vm.update()' class="btn ripple pull-right">Atualizar</button>
 		</div>
 	</form>
 	</div>
+</div>
 </div>

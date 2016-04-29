@@ -14,35 +14,36 @@ class CreateImovel extends Migration
     {
         Schema::create('imovels', function(Blueprint $table){
             $table->increments('id');
+            $table->integer('tp_imovel')->unsigned();
+            $table->foreign('tp_imovel')->references('id')->on('tp_imovels');
             $table->string('titulo_anuncio');
-            $table->char('situacao', 3);
+            $table->integer('id_proprietario')->unsigned();
+            $table->foreign('id_proprietario')->references('id')->on('pessoas');
+            $table->integer('id_corretor')->unsigned();
+            $table->foreign('id_corretor')->references('id')->on('usuarios');
             $table->string('codigo_interno');
             $table->string('endereco');
+            $table->integer('nm_endereco');
             $table->string('bairro');
-            $table->string('cep');
-            $table->integer('numero');
+            $table->integer('cidade')->unsigned();
+            $table->foreign('cidade')->references('id')->on('cidades');
+            $table->string('nm_cep');
             $table->string('area');
-            $table->integer('qtd_quartos');
-            $table->integer('qtd_banheiros');
-            $table->integer('qtd_garagem');
+            $table->integer('qt_quartos');
+            $table->integer('qt_banheiros');
+            $table->integer('qt_vagasgaragem');
             $table->string('referencia')->nullabel();
             $table->string('descricao')->nullabel();
-            $table->string('latitude')->nullabel();
-            $table->string('longitude')->nullabel();
-            $table->string('list_fotos')->nullabel();
             $table->double('valor',20,2);
             $table->boolean('vitrine');
             $table->boolean('financiamento');
-            $table->boolean('admin');
-            $table->boolean('status');
-            $table->integer('cidade')->unsigned();
-            $table->foreign('cidade')->references('id')->on('cidades');
-            $table->integer('tipo_imovel')->unsigned();
-            $table->foreign('tipo_imovel')->references('id')->on('tipo_imovels');
-            $table->integer('proprietario')->unsigned();
-            $table->foreign('proprietario')->references('id')->on('pessoas');
-            $table->integer('corretor')->unsigned();
-            $table->foreign('corretor')->references('id')->on('usuarios');            
+            $table->date('dt_cadastrado');
+            $table->string('latitude')->nullabel();
+            $table->string('longitude')->nullabel();
+            $table->char('situacao_imovel', 3);
+            $table->boolean('ativo')->default(true);
+            
+                        
             $table->timestamps();
         });
     }

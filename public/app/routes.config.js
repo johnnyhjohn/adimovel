@@ -120,20 +120,27 @@
               montaRota('/locacao', 'Site/locacoes.html'),
               montaRota('/vendas/:slug', 'Site/imovel.html'),
               montaRota('/locacao/:slug','Site/imovel.html'),
+              
               montaRota('/admin', 'dashboard/dashboard.html'),
+              
               montaRota('/admin/imoveis', 'Imoveis/lista.html'),
               montaRota('/admin/imoveis/editar/:slug', 'Imoveis/editar.html'),
               montaRota('/admin/imoveis/cadastro', 'Imoveis/cadastro.html'),
+              
               montaRota('/admin/pessoas', 'Pessoa/lista.html'),
               montaRota('/admin/pessoas/editar/:slug', 'Pessoa/editar.html'),
               montaRota('/admin/pessoas/cadastro', 'Pessoa/cadastro.html'),
+              
               montaRota('/admin/usuarios', 'Usuario/lista.html'),
               montaRota('/admin/usuarios/editar/:slug', 'Usuario/editar.html'),
               montaRota('/admin/usuarios/cadastro', 'Usuario/cadastro.html'),
+              
               montaRota('/admin/administrar/imoveis', 'Administrar/imoveis-lista.html'),
               montaRota('/admin/administrar/imoveis/compra/:slug', 'Administrar/compra.html'),
               montaRota('/admin/administrar/imoveis/aluguel/:slug', 'Administrar/imoveis.html'),
+              
               montaRota('/admin/relatorios',    'Relatorios/inicio.html'),
+              
               montaRota('/admin/configuracao',  'Configuracoes/index.html'),
       		]
       	}

@@ -14,19 +14,19 @@ class CreateContratoAluguel extends Migration
     {
         Schema::create('contrato_aluguels', function(Blueprint $table){
             $table->increments('id');
+            $table->integer('id_imovel')->unsigned();
+            $table->foreign('id_imovel')->references('id')->on('imovels');
+            $table->integer('id_proprietario')->unsigned();
+            $table->foreign('id_proprietario')->references('id')->on('pessoas');
+            $table->integer('id_inquilino')->unsigned();
+            $table->foreign('id_inquilino')->references('id')->on('pessoas');
+            $table->string('nr_contrato');
             $table->double('valor',20,2);
-            $table->boolean('situacao');
-            $table->string('num_contrato');
-            $table->date('data_inicio');
-            $table->date('data_vencimento');
-            $table->date('data_revogado');
-            $table->boolean('status');
-            $table->integer('imovel')->unsigned();
-            $table->foreign('imovel')->references('id')->on('imovels');
-            $table->integer('inquilino')->unsigned();
-            $table->foreign('inquilino')->references('id')->on('pessoas');
-            $table->integer('proprietario')->unsigned();
-            $table->foreign('proprietario')->references('id')->on('pessoas');
+            $table->date('dt_inicio');
+            $table->date('dt_vencimento');
+            $table->date('dt_revogado');
+            $table->boolean('situacao_pagamento');
+            $table->boolean('ativo');
             $table->timestamps();
         });
     }

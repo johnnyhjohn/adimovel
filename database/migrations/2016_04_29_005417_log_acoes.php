@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEstado extends Migration
+class LogAcoes extends Migration
 {
     /**
      * Run the migrations.
@@ -12,11 +12,11 @@ class CreateEstado extends Migration
      */
     public function up()
     {
-        Schema::create('estados', function(Blueprint $table){
+        Schema::create('log_acoes', function(Blueprint $table){
             $table->increments('id');
-            $table->string('nm_estado');
-            $table->char('uf',2)->unique();
-            $table->boolean('ativo');
+            $table->string('acao');
+            $table->date('dt_acao');
+            $table->string('arquivo_alterado');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateEstado extends Migration
      */
     public function down()
     {
-        Schema::drop('estados');
+        Schema::drop('log_acoes');    
     }
 }

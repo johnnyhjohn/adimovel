@@ -12,10 +12,10 @@ class CreateTipoImovel extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_imovels', function(Blueprint $table){
+        Schema::create('tp_imovels', function(Blueprint $table){
             $table->increments('id');
             $table->string('titulo');
-            $table->boolean('status');
+            $table->boolean('ativo');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ class CreateTipoImovel extends Migration
      */
     public function down()
     {
-        Schema::drop('tipo_imovels');
+        Schema::drop('tp_imovels');
     }
 }
