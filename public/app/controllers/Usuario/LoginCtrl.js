@@ -48,7 +48,7 @@
                 	if (response) {
 	                	// Stringify os dados de retorno
 	               	 	// para preparar para o localStorage
-	               	 	console.log(response.user.admin);
+	               	 	response.user.token = vm.token;
 	               	 	if(response.user.admin == false){
 	               	 		delete response.user.admin;	
 	               	 	}

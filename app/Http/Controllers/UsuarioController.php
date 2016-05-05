@@ -9,6 +9,8 @@ use App\Http\Controllers\Controller;
 use App\Http\ViewObject\UsuarioVO;
 use App\Http\Enum\UsuarioEnum;
 
+use App\Http\Controllers\AutenticacaoController;
+
 use App\JSONUtils;
 use App\Messages;
 use App\Usuario;
@@ -16,24 +18,29 @@ use App\Usuario;
 class UsuarioController extends Controller
 {
 
-    public function index($id = null)
+    public function index(Request $request, $id = null)
     {  
         try{
-            if ($id == null) {
-                
-                $usuario = Usuario::orderBy('nm_usuario', 'asc')->get();
+        	$token = $request->input('token');
+        	if(AutenticacaoController::verificaToken($token)){
+	            if ($id == null) {
+	                $usuario = Usuario::orderBy('nm_usuario', 'asc')->get();
 
-                $return = array();
+	                $return = array();
 
-                foreach ($usuario as $key => $value) {
-                    $uVO = new UsuarioVO(Usuario::find($value->id));
-                    $return[] = $uVO;
-                }
+	                foreach ($usuario as $key => $value) {
+	                    $uVO = new UsuarioVO(Usuario::find($value->id));
+	                    $return[] = $uVO;
+	                }
 
-                return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $return);
-            } else {
-                return $this->show($id);
-            }
+	                return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $return);
+	            } else {
+	                return $this->show($id);
+	            }
+	        }
+	        else{
+	        	return JSONUtils::returnDanger('Usuário não tem permissão para esta ação.', "Falta de Permissão");   
+	        }
         } catch(Exception $e){
             return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
         }    
@@ -52,31 +59,42 @@ class UsuarioController extends Controller
     public function create(Request $request)
 	{
 		try{
-            $usuario = new Usuario();
+			$token = $request->input('token');
+			if(AutenticacaoController::verificaToken($token)){
 
-            $usuario->nm_usuario 	= $request->input('nome');
-            $usuario->nr_cpf 	= $request->input('cpf');
-            $usuario->email = $request->input('email');
-            //$usuario->telefone = $request->input('telefone');
-            $usuario->password = \Hash::make($request->input('senha'));
+	            $usuario = new Usuario();
 
-            if(UsuarioEnum::isValid($request->input('tipo'))){
-            	$usuario->tp_funcionario = $request->input('tipo');
-        	}else{
-        		$usuario->tp_funcionario = UsuarioEnum::CORRETOR;
-        	}
+	            $usuario->nm_usuario 	= $request->input('nome');
+	            $usuario->nr_cpf 	= $request->input('cpf');
+	            $usuario->email = $request->input('email');
+	            $usuario->telefone = $request->input('telefone');
+	            $usuario->password = \Hash::make($request->input('senha'));
 
-            $usuario->ativo = true;
-            $usuario->admin = false;
+	            if(UsuarioEnum::isValid($request->input('tipo'))){
+	            	$usuario->tp_funcionario = $request->input('tipo');
+	        	}else{
+	        		$usuario->tp_funcionario = UsuarioEnum::CORRETOR;
+	        	}
 
-            $validator = \Validator::make($request->all(), $this->validaCadastro());
-	        if ($validator->fails()) {
-				return JSONUtils::returnDanger('Problema de validação verifique os campos e tente novamente.', "Erro");   
-	        }
+	            $usuario->ativo = true;
+	            if($request->input('tipo') == UsuarioEnum::ADMINISTRADOR){
+	            	$usuario->admin = true;
+	            } else{
+	            	$usuario->admin = false;
+	            }
 
-        	$usuario->save();
-			return JSONUtils::returnSuccess('usuario '. $usuario->nm_usuario .' cadastrada com sucesso.', $usuario);
+	            
+	            $validator = \Validator::make($request->all(), $this->validaCadastro());
+		        if ($validator->fails()) {
+					return JSONUtils::returnDanger('Problema de validação verifique os campos e tente novamente.',  $validator->errors()->all());   
+		        }
 
+	        	$usuario->save();
+				return JSONUtils::returnSuccess('Usuário '. $usuario->nm_usuario .' cadastrada com sucesso.', $usuario);
+			}
+			else{
+				return JSONUtils::returnDanger('Usuário não tem permissão para esta ação.', "Falta de Permissão");   
+			}
     	}catch(Exception $e){
     		return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
     	}
@@ -96,38 +114,50 @@ class UsuarioController extends Controller
     public function update(Request $request, $id)
     {
         try{
-            $usuario = Usuario::find($id);
+			$token = $request->input('token');
+			if(AutenticacaoController::verificaToken($token)){        	
+	            $usuario = Usuario::find($id);
 
-            $usuario->nm_usuario  = $request->input('nome');
-            $usuario->nr_cpf   = $request->input('cpf');
-            $usuario->email = $request->input('email');
-            //$usuario->telefone = $request->input('telefone');
-            //$usuario->password = \Hash::make($request->input('senha'));
+	            $usuario->nm_usuario  	= $request->input('nome');
+	            $usuario->nr_cpf   		= $request->input('cpf');
+	            $usuario->email 		= $request->input('email');
+	            $usuario->telefone 		= $request->input('telefone');
+	            //$usuario->password = \Hash::make($request->input('senha'));
 
-            if(UsuarioEnum::isValid($request->input('tipo'))){
-                $usuario->tp_funcionario = $request->input('tipo');
-            }else{
-                $usuario->tp_funcionario = UsuarioEnum::CORRETOR;
-            }
+	            if(UsuarioEnum::isValid($request->input('tipo'))){
+	                $usuario->tp_funcionario = $request->input('tipo');
+	            }else{
+	                $usuario->tp_funcionario = UsuarioEnum::CORRETOR;
+	            }
 
-            $usuario->ativo = true;
-            $usuario->admin = false;
+	            $usuario->ativo = true;
 
+	            if($request->input('tipo') == UsuarioEnum::ADMINISTRADOR){
+	            	$usuario->admin = true;
+	            } else{
+	            	$usuario->admin = false;
+	            }
 
-            $validator = \Validator::make($request->all(), $this->validaCadastro());
-            if ($validator->fails()) {
-                return JSONUtils::returnDanger('Problema de validação verifique os campos e tente novamente.', $validator->errors()->all());   
-            }
+	            $validator = \Validator::make($request->all(), $this->validaCadastro());
+	            if ($validator->fails()) {
+	                return JSONUtils::returnDanger('Problema de validação verifique os campos e tente novamente.', $validator->errors()->all());   
+	            }
 
-            $usuario->save();
-            return JSONUtils::returnSuccess($usuario->nm_usuario .' alterada com sucesso.', $usuario);
+	            $usuario->save();
+	            return JSONUtils::returnSuccess($usuario->nm_usuario .' alterada com sucesso.', $usuario);
+	        }
+			else{
+				return JSONUtils::returnDanger('Usuário não tem permissão para esta ação.', "Falta de Permissão");   
+			}   
         }catch(Exception $e){
             return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
         }
     }
 
-    public function destroy($id){
+    public function destroy(Request $request, $id)
+    {
         try{
+        	dd($request->input('token'), $id);
             $usuario = Usuario::find($id);
             $usuario->delete();
 

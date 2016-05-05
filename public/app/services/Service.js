@@ -29,8 +29,8 @@
 		*
 		* 	@return {Array} posts
 		*/
-		function get(url){
-			return $http(requestGet(url))
+		function get(url, data){
+			return $http(requestGet(url, data))
 	            .then(function(data, status, headers, config) {
 	                return data.data;
 	            }, function(error){
@@ -124,10 +124,19 @@
 		*	@param {String} url
 		* 	@return {Object} requestGet
 		*/
-		function requestGet(url){
-			return {
-				method  : 'GET',
-				url 	: URL.data  + url
+		function requestGet(url, data){
+			if(data){
+				return {
+					method  : 'GET',
+					url 	: URL.data  + url,
+					params 	: data
+				}
+			}else{
+				return {
+					method  : 'GET',
+					url 	: URL.data  + url
+				}
+
 			}
 		}
 	}

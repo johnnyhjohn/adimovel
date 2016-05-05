@@ -3,11 +3,16 @@
 
 	angular.module('adimovelApp').controller('UsuarioCtrl', Usuario);
 
-	Usuario.injector = ['Request', "URL", "$routeParams"];
+	Usuario.injector = ['Request', "URL", "$routeParams", "$rootScope"];
 
-	function Usuario(Request, URL, $routeParams) {
+	function Usuario(Request, URL, $routeParams, $rootScope) {
 		
 		var vm = this;
+		var user = localStorage.getItem('user');
+
+		if(user){
+			vm.user = JSON.parse(user);
+		}
 
 		vm.colunas = [
 			{
@@ -61,10 +66,17 @@
 		}
 
 		function getUsuarios(){
-			Request.get("usuario").then(function(res){
+			Request.get("usuario", vm.user.token).then(function(res){
+				console.log(res);
+				if(res[0].codigo == "DANGER"){
+					var alerta = new alert();
+					alerta.danger(res[0].mensagem);
+					vm.logout();
+					return false;
+				}
 				angular.forEach(res[0].objeto, function(value, key) {
-					//(value.tipo_pessoa == "INQ") ? value.tipo_pessoa = "Inquilino" : value.tipo_pessoa = "Proprietário";
-
+					(value.tp_funcionario == "COR") ? value.tp_funcionario = "Corretor" : value.tp_funcionario = "Administrador";
+					(value.ativo == true) ? value.ativo = "Ativo" : value.ativo = "Inativo";
 				});
 				vm.usuarios = res[0].objeto;
 			});
@@ -89,6 +101,7 @@
 		vm.setUsuario = function() {
 			
 			var data = {
+				token: 		vm.user.token.token,
 				nome:  		$("#nome").val(),
 				email:   	$("#email").val(),
 				cpf: 		$("#cpf").val(),
@@ -111,6 +124,7 @@
 
 		vm.update = function(){
 			var data = {
+				token: 		vm.user.token.token,
 				nome:  		$("#nome").val(),
 				email:   	$("#email").val(),
 				cpf: 		$("#cpf").val(),
@@ -138,7 +152,7 @@
 
 			var id = event.srcElement.attributes[0].value;
 			var tr = $(event.srcElement).closest('tr');
-			console.log(id);
+
 			Request.destroy('usuario/' + id)
 				.then(function(res){
 					var alerta = new alert();
@@ -150,6 +164,18 @@
 					}					
 					return res;
 			})
+		}
+		vm.logout = function(){
+			// Limpa o localStorage
+            localStorage.removeItem('user');
+            // Muda a propriedade autenticado para false
+            // Para assim mostrar que não tem mais usuario logado
+            $rootScope.autenticado = false;
+            // Remove os dados da propriedade currentUser
+            $rootScope.currentUser = null;           
+            // Redireciona para a tela de login do sistema
+            event.preventDefault();
+            window.location.reload();
 		}
 
 	}

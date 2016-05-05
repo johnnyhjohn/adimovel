@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Usuario;
+use App\Usuario as User;
 use Hash;
 use JWTAuth;
+
+use App\JSONUtils;
+use App\Messages;
+
 class AutenticacaoController extends Controller
 {
  	public function __construct()
@@ -20,6 +24,19 @@ class AutenticacaoController extends Controller
     {
         $users = User::all();
         return $users;
+    }
+
+    public static function verificaToken($token)
+    {
+    	try{
+
+			$user = JWTAuth::toUser($token);
+			
+    		return $user->admin;
+
+    	}catch(Exception $e){
+    		return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
+    	}
     }
     /**
      * Return a JWT

@@ -8,6 +8,11 @@
 	function Pessoa(Request, URL, $routeParams){
 
 		var vm = this;
+		var user = localStorage.getItem('user');
+
+		if(user){
+			vm.user = JSON.parse(user);
+		}
 
 		vm.colunas = [
 			{
@@ -45,6 +50,7 @@
 
 		vm.setPessoa = function(){
 			var data = {
+				token 	 : vm.user.token.token,
 				nome 	 : $("#nome").val(),
 				tipo 	 : $("#tipo").val(),
 				dta_nasc : $("#dta_nasc").val(),
@@ -60,7 +66,6 @@
 				lng 	 : $(".lng").val()
 			}
 			Request.set("pessoa", data).then(function(res){
-				console.log(res, data);
 				var alerta = new alert();
 				if(res[0].codigo == "SUCCESS"){
 					alerta.success(res[0].mensagem);
@@ -74,6 +79,7 @@
 
 		vm.update = function(){
 			var data = {
+				token 	 : vm.user.token.token,
 				nome 	 : $("#nome").val(),
 				tipo 	 : $("#tipo").val(),
 				dta_nasc : $("#dta_nasc").val(),
