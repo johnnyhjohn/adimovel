@@ -125,8 +125,8 @@
               montaRota('/admin', 'dashboard/dashboard.html'),
               
               montaRota('/admin/imoveis', 'Imoveis/lista.html'),
-              montaRota('/admin/imoveis/editar/:slug', 'Imoveis/editar.html'),
-              montaRota('/admin/imoveis/cadastro', 'Imoveis/cadastro.html'),
+              montaRota('/admin/imoveis/editar/:slug', 'Imoveis/editar.html', 'ImovelCtrl'),
+              montaRota('/admin/imoveis/cadastro', 'Imoveis/cadastro.html', 'ImovelCtrl'),
               
               montaRota('/admin/pessoas', 'Pessoa/lista.html'),
               montaRota('/admin/pessoas/editar/:slug', 'Pessoa/editar.html'),

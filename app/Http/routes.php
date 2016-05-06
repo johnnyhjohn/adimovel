@@ -15,6 +15,14 @@ Route::get('admin/login', 'Auth\AuthController@getLogin');
 
 Route::group(['prefix' => 'data'], function()
 {
+	Route::group(['prefix' => 'imoveis'], function()
+	{
+	    Route::post('', 'ImovelController@create');
+	    Route::get('{id?}', 'ImovelController@index');
+	    Route::put('{id}', 'ImovelController@update');
+	    Route::delete('{id}', 'ImovelController@destroy');
+	});
+
 	Route::group(['prefix' => 'pessoa'], function()
 	{
 	    Route::post('', 'PessoaController@create');

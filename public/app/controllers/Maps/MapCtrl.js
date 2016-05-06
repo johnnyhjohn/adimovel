@@ -19,7 +19,7 @@
             mapaMetaBox();
         } catch(e) {
             $("#pac-input").css("display","none");
-            console.log(e);
+            //console.log(e);
         }
     
     },500);

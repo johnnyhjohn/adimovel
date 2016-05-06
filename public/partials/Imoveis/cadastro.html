@@ -1,7 +1,7 @@
 <h1>Cadastro de Imóvel</h1>
 <div class="panel">
 	<div class="container container-responsive">
-	<form method="post">
+	<form id="cadastro-imovel" method="post">
 		<div class="col-md-4">
 			<div class="material-input select">
 				<label for="corretor" class="float-label">Corretor</label>
@@ -15,7 +15,9 @@
 			<div class="material-input select">
 				<label for="finalidade" class="float-label">Finalidade</label>
 				<select id="finalidade" class="form-control">
-					<option></option>
+					<option value="LOC">Locação</option>
+					<option value="VEN">Venda</option>
+					<option value="AMB">Ambos</option>
 				</select>
 				<span></span>
 			</div>	
@@ -24,7 +26,8 @@
 			<div class="material-input select">
 				<label for="vitrine" class="float-label">Mostrar no Site?</label>
 				<select id="vitrine" class="form-control">
-					<option></option>
+					<option value="true">SIM</option>
+					<option value="false">NÃO</option>
 				</select>
 				<span></span>
 			</div>	
@@ -44,7 +47,7 @@
 				<label for="tipo" class="float-label">Tipo do Imóvel</label>
 				<select id="tipo" class="form-control">
 					<option></option>
-					<option>Tipo 2</option>
+					<option value="1">Tipo 1</option>
 					<option>Tipo 3</option>
 				</select>
 				<span></span>
@@ -54,9 +57,8 @@
 			<div class="material-input select">
 				<label for='financiamento' class="float-label">Financiamento</label>
 				<select id='financiamento' class="form-control">
-					<option></option>
-					<option>Tipo 2</option>
-					<option>Tipo 3</option>
+					<option value="true">SIM</option>
+					<option value="false">NÃO</option>
 				</select>
 				<span></span>
 			</div>	
@@ -151,7 +153,7 @@
             <input type="hidden" name="lng" id="" class="lng">	 			
 		</div>
 		<div class="col-md-12">
-			<button id="btn-imovel" class="btn ripple pull-right">Cadastro</button>
+			<button id="btn-imovel" data-ng-click="vm.setImovel()" class="btn ripple pull-right">Cadastro</button>
 		</div>
 	</form>
 	</div>

@@ -58,3 +58,7 @@ class CreateImovel extends Migration
         Schema::drop('imovels');
     }
 }
+
+/*
+INSERT INTO imovels (tp_imovel,titulo_anuncio,id_proprietario,id_corretor,codigo_interno,endereco,nm_endereco,bairro,cidade,nm_cep,area,qt_quartos,qt_banheiros,qt_vagasgaragem,referencia,descricao,valor,vitrine,financiamento,dt_cadastrado,latitude,longitude,situacao_imovel) values (1,'Imovel 1',8,1,'123-21','Endereço eqe',12,'bairroo',1,'324234','234',2,1,2,'ref','descricc',122.00,true,true,'2016-01-01','12312','123','VEN')
+*/
