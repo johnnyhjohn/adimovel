@@ -127,6 +127,10 @@
               montaRota('/admin/imoveis', 'Imoveis/lista.html'),
               montaRota('/admin/imoveis/editar/:slug', 'Imoveis/editar.html', 'ImovelCtrl'),
               montaRota('/admin/imoveis/cadastro', 'Imoveis/cadastro.html', 'ImovelCtrl'),
+
+              montaRota('/admin/tipoimoveis', 'TipoImoveis/lista.html'),
+              montaRota('/admin/tipoimoveis/editar/:slug', 'TipoImoveis/editar.html', 'TipoImovelCtrl'),
+              montaRota('/admin/tipoimoveis/cadastro', 'TipoImoveis/cadastro.html', 'TipoImovelCtrl'),
               
               montaRota('/admin/pessoas', 'Pessoa/lista.html'),
               montaRota('/admin/pessoas/editar/:slug', 'Pessoa/editar.html'),

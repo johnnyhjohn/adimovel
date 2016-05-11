@@ -1,0 +1,27 @@
+<h1>Editar Tipo Imóvel</h1>
+<div class="panel">
+	<div class="container container-responsive">
+	<form method="post">
+		<div class="col-md-6">
+			<div class="material-input select">
+				<label for="tipo-titulo" class="float-label">Título</label>
+				<input id="tipo-titulo" type="text" class="form-control" value="{{ vm.tipoimovel.titulo }}">
+				<span></span>
+			</div>	
+		</div>
+		<div class="col-md-6">
+			<div class="material-input select">
+				<label for="ativo" class="float-label">Ativo</label>
+				<select id="ativo" class="form-control">
+					<option value="true">Sim</option>
+					<option value="false">Não</option>
+				</select>
+				<span></span>
+			</div>	
+		</div>
+		<div class="col-md-12">
+			<button id="btn-imovel" data-ng-click='vm.update()' class="btn ripple pull-right">Cadastro</button>
+		</div>
+	</form>
+	</div>
+</div>

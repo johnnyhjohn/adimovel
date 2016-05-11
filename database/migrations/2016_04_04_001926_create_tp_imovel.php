@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTipoImovel extends Migration
+class CreateTpImovel extends Migration
 {
     /**
      * Run the migrations.

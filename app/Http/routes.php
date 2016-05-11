@@ -23,6 +23,14 @@ Route::group(['prefix' => 'data'], function()
 	    Route::delete('{id}', 'ImovelController@destroy');
 	});
 
+	Route::group(['prefix' => 'tipoimoveis'], function()
+	{
+	    Route::post('', 'TipoImovelController@create');
+	    Route::get('{id?}', 'TipoImovelController@index');
+	    Route::put('{id}', 'TipoImovelController@update');
+	    Route::delete('{id}', 'TipoImovelController@destroy');
+	});
+
 	Route::group(['prefix' => 'pessoa'], function()
 	{
 	    Route::post('', 'PessoaController@create');
@@ -49,6 +57,10 @@ Route::group(['prefix' => 'data'], function()
 		Route::group(['prefix' => 'usuario'], function()
 		{
 		    Route::post('', 'UsuarioController@busca');
+		});
+		Route::group(['prefix' => 'tipoimoveis'], function()
+		{
+		    Route::post('', 'TipoImovelController@busca');
 		});
 	});
 
