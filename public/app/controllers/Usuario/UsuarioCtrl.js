@@ -58,7 +58,7 @@
 
 		function getUsuario(){
 			if($routeParams.slug !== undefined){
-				Request.get("usuario/" + $routeParams.slug)
+				Request.get("usuario" + $routeParams.slug)
 					.then(function(res){
 						vm.usuario = res[0].objeto;
 				});

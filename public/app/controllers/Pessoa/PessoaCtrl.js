@@ -136,7 +136,7 @@
 			Request.set('busca/pessoa', data).then(function(res) {
 				angular.forEach(res[0].objeto, function(value, key) {
 					(value.tp_pessoa == "INQ") ? value.tp_pessoa = "Inquilino" : value.tp_pessoa = "Proprietário";
-
+					(value.ativo == true) ? value.ativo = "Ativo" : value.ativo = "Inativo";
 				});
 				vm.pessoas = res[0].objeto;
 			});
@@ -147,7 +147,7 @@
 			Request.get("pessoa").then(function(res){
 				angular.forEach(res[0].objeto, function(value, key) {
 					(value.tp_pessoa == "INQ") ? value.tp_pessoa = "Inquilino" : value.tp_pessoa = "Proprietário";
-
+					(value.ativo == true) ? value.ativo = "Ativo" : value.ativo = "Inativo";
 				});
 				console.log(res);
 				vm.pessoas = res[0].objeto;

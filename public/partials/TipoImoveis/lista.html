@@ -45,13 +45,13 @@
 				    	<div class="modal-dialog" role="document">
 				      		<div class="modal-content">
 				        		<div class="modal-header">
-				          		<h4 class="modal-title" id="myModalLabel"></h4>
-				        	</div>
-				        	<div class="modal-body">
+				          		<h4 class="modal-title" id="myModalLabel">Deseja realmente excluir {{ tipoimovel.titulo}} ?</h4>
+				          	</div>
+				        	<div class="modal-bdody">
 				        		<div class="col-md-12">
 				          			<form>
 				            			<button data-id="{{ tipoimovel.id }}" class="btn ripple btn-confirm-delete" data-ng-click='vm.deleta()'>Sim</button>
-				            			<button class="btn btn-default ripple btn-close">Não</button>
+				            			<button class="btn btn-default ripple btn-close" data-dismiss="modal">Não</button>
 				          			</form>
 				        		</div>
 				        	</div>

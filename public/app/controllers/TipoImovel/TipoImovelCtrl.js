@@ -42,8 +42,7 @@
 		function getTipoImoveis(){
 			Request.get("tipoimoveis").then(function(res){
 				angular.forEach(res[0].objeto, function(value, key) {
-					//(value.tipo_pessoa == "INQ") ? value.tipo_pessoa = "Inquilino" : value.tipo_pessoa = "Proprietário";
-
+					(value.ativo == true) ? value.ativo = "Ativo" : value.ativo = "Inativo";
 				});
 				vm.tipoimoveis = res[0].objeto;
 			});
@@ -54,8 +53,9 @@
 				valor : $("#busca").val(),
 				coluna: $("#coluna").val()
 			}
+			console.log(data, '1')
 
-			Request.set('busca/tipoimovel', data).then(function(res) {
+			Request.set('busca/tipoimoveis', data).then(function(res) {
 				angular.forEach(res[0].objeto, function(value, key) {
 					//(value.tp_funcionario == "COR") ? value.tp_funcionario = "Corretor" : value.tp_funcionario = "Administrador";
 					//(value.ativo == true) ? value.ativo = "Ativo" : value.ativo = "Inativo";		
