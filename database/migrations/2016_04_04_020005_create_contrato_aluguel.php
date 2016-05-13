@@ -26,6 +26,7 @@ class CreateContratoAluguel extends Migration
             $table->date('dt_vencimento');
             $table->date('dt_revogado');
             $table->boolean('situacao_pagamento');
+            $table->char('finalidade', 3);
             $table->boolean('ativo');
             $table->timestamps();
         });

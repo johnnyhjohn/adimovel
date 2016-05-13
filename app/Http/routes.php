@@ -15,6 +15,14 @@ Route::get('admin/login', 'Auth\AuthController@getLogin');
 
 Route::group(['prefix' => 'data'], function()
 {
+	Route::group(['prefix' => 'administrar'], function()
+	{
+	    Route::post('', 'AdministrarController@create');
+	    Route::get('{id?}', 'AdministrarController@index');
+	    Route::put('{id}', 'AdministrarController@update');
+	    Route::delete('{id}', 'AdministrarController@destroy');
+	});
+
 	Route::group(['prefix' => 'imoveis'], function()
 	{
 	    Route::post('', 'ImovelController@create');
@@ -55,13 +63,20 @@ Route::group(['prefix' => 'data'], function()
 		{
 		    Route::post('', 'PessoaController@busca');
 		});
+		
 		Route::group(['prefix' => 'usuario'], function()
 		{
 		    Route::post('', 'UsuarioController@busca');
 		});
+
 		Route::group(['prefix' => 'tipoimoveis'], function()
 		{
 		    Route::post('', 'TipoImovelController@busca');
+		});
+
+		Route::group(['prefix' => 'administrar'], function()
+		{
+		    Route::post('', 'AdministrarController@busca');
 		});
 	});
 

@@ -3,65 +3,76 @@
 <div class="botoes">
 	<a class="btn btn-administra btn-aluguel ripple active" href="">Aluguel</a>
 	<a class="btn btn-administra btn-compra ripple" href="">Vendas</a>
-	<a class="pull-right" href="admin/imoveis/cadastro"><button class="btn btn-success">Adicionar</button></a>
+	<a class="pull-right" href="admin/administrar/cadastro"><button class="btn btn-success">Adicionar</button></a>
 </div>
 
 <div class="panel">
 	<div class="container container-responsive">
+		<div class="col-md-12">
 		<form class="busca">
-			<div class="material-input select text-center">
-				<div class="col-md-3">
-					<label for="nome" class="float-label"><i class="fa fa-search"></i> Busca</label>
-					<input id="nome" type="text" class="form-control">
+			<div class="material-input select">
+				<div class="col-md-4">
+					<label for="busca" class="float-label"><i class="fa fa-search"></i> Busca</label>
+					<input data-ng-keypress="vm.busca()" id="busca" type="text" class="form-control">
+					<span></span>
 				</div>
-				<div class="col-md-3">
-					<select name="" id="" class="form-control float-label">
-						<option value="">Filtro</option>
+				<div class="col-md-4">
+					<select 
+						data-ng-change='vm.busca()' 
+						data-ng-model='vm.coluna'
+						data-ng-options='template.value as template.name for template in vm.colunas track by template.value' 
+						name="" 
+						id="coluna" 
+						class="form-control float-label">
 					</select>
-				</div>
-				<div class="col-md-3">
-					<select name="" id="" class="form-control float-label">
-						<option value="">Pagamento</option>
-					</select>
-				</div>
-				<div class="col-md-3">
-				<button class="btn btn-success">Pesquisar</button>
 				</div>
 				<span></span>
 			</div>	
 		</form>	
+ 		</div>	
 		<table class="table">
 			<tr id="table-head">
 				<th id="nome" class="filtro">Codigo</th>
-				<th id="celular" class="filtro">Corretor</th>
-				<th id="projeto" class="filtro">Inquilino</th>
+				<th id="celular" class="filtro">Número Contrato</th>
+				<th id="projeto" class="filtro">Imovel</th>
 				<th id="projeto" class="filtro">Proprietário</th>
-				<th id="telefone" class="filtro">Nome do Imovel</th>
+				<th id="telefone" class="filtro">Inquilino</th>
 				<th id="projeto" class="filtro">Pagamento</th>
+				<th id="projeto" class="filtro">Finalidade</th>
 				<th>Opções</th>
 			</tr>
-			<tr>
-				<td>01</td>
-				<td>Juarez</td>
-				<td>Juca Bala</td>
-				<td>Juca Bala 3</td>
-				<td>Imóvel 1</td>
-				<td class="pendente">Pendente</td>
+			<tr data-ng-repeat="movimento in vm.movimentos | orderBy:'id'">
+
+				<td>{{ movimento.id }}</td>
+				<td>{{ movimento.nr_contrato }}</td>
+				<td>{{ movimento.imovel.titulo_anuncio }}</td>
+				<td>{{ movimento.proprietario.nm_pessoa }}</td>
+				<td>{{ movimento.inquilino.nm_pessoa }}</td>
+				<td class="pago">{{ movimento.situacao_pagamento }}</td>
+				<td>{{ movimento.finalidade }}</td>
 				<td>
-					<a href="admin/administrar/imoveis/aluguel/1"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
-					<button class="btn btn-danger btn-deleta" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o"></i></button>
-				</td>
-			</tr>
-			<tr>
-				<td>02</td>
-				<td>Juarez Martonha</td>
-				<td>Joao Feijão</td>
-				<td>Juca Bala 2</td>
-				<td>Imóvel 2</td>
-				<td class="pago">Pago</td>
-				<td>
-					<a href="admin/administrar/imoveis/aluguel/1"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
-					<button class="btn btn-danger btn-deleta" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-trash-o"></i></button>
+					<a href="admin/administrar/editar/{{ movimento.id }}"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
+					<button class="btn btn-danger btn-deleta" data-toggle="modal" data-target="#deleteModal-{{movimento.id}}"><i class="fa fa-trash-o"></i></button>
+				
+					<!-- Modal -->
+				  	<div class="modal fade" id="deleteModal-{{ movimento.id }}" data-seletor="{{ movimento.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				    	<div class="modal-dialog" role="document">
+				      		<div class="modal-content">
+				        		<div class="modal-header">
+				          		<h4 class="modal-title" id="myModalLabel">Deseja realmente excluir esse movimento ?</h4>
+				        	</div>
+				        	<div class="modal-body">
+				        		<div class="col-md-12">
+				          			<form>
+				            			<button data-id="{{ movimento.id }}" class="btn ripple btn-confirm-delete" data-ng-click='vm.deleta()'>Sim</button>
+				            			<button class="btn btn-default ripple btn-close" data-dismiss="modal">Não</button>
+				          			</form>
+				        		</div>
+				        	</div>
+				        	<div class="modal-footer">  
+				        	</div>
+				      	</div>
+				    </div>
 				</td>
 			</tr>
 		</table>

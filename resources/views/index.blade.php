@@ -38,6 +38,7 @@
         {!! HTML::script('app/app.module.js') !!}
         {!! HTML::script('app/routes.config.js') !!}
         {!! HTML::script('app/services/Service.js') !!}
+        {!! HTML::script('app/controllers/Administrar/AdministrarCtrl.js') !!}
         {!! HTML::script('app/controllers/Imovel/ImovelCtrl.js') !!}
         {!! HTML::script('app/controllers/TipoImovel/TipoImovelCtrl.js') !!}
         {!! HTML::script('app/controllers/Pessoa/PessoaCtrl.js') !!}

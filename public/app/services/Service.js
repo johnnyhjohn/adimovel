@@ -125,7 +125,6 @@
 		* 	@return {Object} requestGet
 		*/
 		function requestGet(url, data){
-			console.log(url);
 			if(data){
 				return {
 					method  : 'GET',
