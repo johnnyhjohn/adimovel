@@ -75,12 +75,15 @@
 		}
 
 		vm.setImovel = function() {
-			var data = {};
+			var data = {}
+			,	date = new Date();
 
 			$("#cadastro-imovel").find('input, textarea, select').each(function(key, value){
 				if($(value).attr('id')){
 					data[$(value).attr('id')] = $(value).val();
 				}
+				data['token'] = vm.user.token.token;
+				data['dt_cadastrado'] = (date.getFullYear() +"/"+ (date.getMonth() + 1) + "/"+ date.getDate());
 			});
 			console.log(data);
 			Request.set('imoveis', data).then(function(res){

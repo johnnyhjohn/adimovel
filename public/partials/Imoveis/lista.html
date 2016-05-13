@@ -35,7 +35,7 @@
 				<th id="projeto" class="filtro">Finalidade</th>
 				<th>Opções</th>
 			</tr>
-			<tr data-ng-repeat="imovel in vm.imoveis">
+			<tr data-ng-repeat="imovel in vm.imoveis | orderBy:'titulo_anuncio'">
 
 				<td>{{ imovel.id }}</td>
 				<td>{{ imovel.titulo_anuncio }}</td>
@@ -43,7 +43,7 @@
 				<td>{{ imovel.nm_endereco }}</td>
 				<td class="pago">{{ imovel.ativo }}</td>
 				<td>
-					<a href="admin/imovel/editar/{{ imovel.id }}"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
+					<a href="admin/imoveis/editar/{{ imovel.id }}"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
 					<button class="btn btn-danger btn-deleta" data-toggle="modal" data-target="#deleteModal-{{imovel.id}}"><i class="fa fa-trash-o"></i></button>
 				
 					<!-- Modal -->

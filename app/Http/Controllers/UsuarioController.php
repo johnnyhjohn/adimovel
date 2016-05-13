@@ -41,9 +41,15 @@ class UsuarioController extends Controller
 	        else{
 	        	return JSONUtils::returnDanger('Usuário não tem permissão para esta ação.', "Falta de Permissão");   
 	        }
-        } catch(Exception $e){
-            return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
-        }    
+        } catch (JWTException $e) {
+            return JSONUtils::returnDanger('Token Expirou.', "Falta de Permissão");   
+        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return JSONUtils::returnDanger('Token Expirou.', "Falta de Permissão");  
+        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return JSONUtils::returnDanger('Token Expirou.', "Falta de Permissão");  
+        }    catch(Exception $e){
+        	return JSONUtils::returnDanger('Token Expirou.', "Falta de Permissão");  
+        }
     }
 
     public function show($id)
@@ -67,7 +73,7 @@ class UsuarioController extends Controller
 	            $usuario->nm_usuario 	= $request->input('nome');
 	            $usuario->nr_cpf 	= $request->input('cpf');
 	            $usuario->email = $request->input('email');
-	            $usuario->telefone = $request->input('telefone');
+	            //$usuario->telefone = $request->input('telefone');
 	            $usuario->password = \Hash::make($request->input('senha'));
 
 	            if(UsuarioEnum::isValid($request->input('tipo'))){
@@ -157,9 +163,9 @@ class UsuarioController extends Controller
     public function destroy(Request $request, $id)
     {
         try{
-        	dd($request->input('token'), $id);
+        	//dd($request->input('token'), $id);
             $usuario = Usuario::find($id);
-            $usuario->delete();
+            //$usuario->delete();
 
             return JSONUtils::returnSuccess('Item deletado com sucesso.', $usuario);
         }catch(Exception $e){
@@ -180,5 +186,20 @@ class UsuarioController extends Controller
 	    } catch(Exception $e){
     		return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
     	}	
+    }
+
+    public function getCorretores()
+    {
+    	try{
+    		$corretor = Usuario::where("tp_funcionario", "=", "COR")
+    							->where("ativo", "=", "true")
+    							->orderBy('nm_usuario','asc')
+    							->get();
+    		
+    		return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $corretor);
+
+    	} catch(Exception $e){
+    		return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
+    	}
     }
 }

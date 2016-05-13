@@ -41,7 +41,7 @@
 		}, 500);
 
 		function active() {
-			var functions = [getUsuario(), getUsuarios()];
+			var functions = [getUsuario(), getUsuarios(), getCorretor()];
 		}
 
 		function getUsuario2() {
@@ -58,7 +58,11 @@
 
 		function getUsuario(){
 			if($routeParams.slug !== undefined){
+<<<<<<< Updated upstream
 				Request.get("usuario" + $routeParams.slug)
+=======
+				Request.get("usuario/" + $routeParams.slug, vm.user.token)
+>>>>>>> Stashed changes
 					.then(function(res){
 						vm.usuario = res[0].objeto;
 				});
@@ -67,7 +71,7 @@
 
 		function getUsuarios(){
 			Request.get("usuario", vm.user.token).then(function(res){
-				console.log(res);
+				
 				if(res[0].codigo == "DANGER"){
 					var alerta = new alert();
 					alerta.danger(res[0].mensagem);
@@ -79,6 +83,20 @@
 					(value.ativo == true) ? value.ativo = "Ativo" : value.ativo = "Inativo";
 				});
 				vm.usuarios = res[0].objeto;
+			});
+		}
+
+		function getCorretor(){
+			Request.get("usuario/corretor").then(function(res){
+				console.log(res);
+				if(res[0].codigo == "DANGER"){
+					var alerta = new alert();
+					alerta.danger(res[0].mensagem);
+					vm.logout();
+					return false;
+				}
+
+				vm.corretores = res[0].objeto;
 			});
 		}
 
@@ -135,7 +153,7 @@
 
 			Request.put("usuario/" + $routeParams.slug, data)
 				.then(function(res){
-					console.log(res, data);
+					console.log('update');
 					var alerta = new alert();
 					if(res[0].codigo == "SUCCESS"){
 						alerta.success(res[0].mensagem);

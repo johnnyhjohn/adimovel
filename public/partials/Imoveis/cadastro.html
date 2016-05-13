@@ -2,16 +2,27 @@
 <div class="panel">
 	<div class="container container-responsive">
 	<form id="cadastro-imovel" method="post">
-		<div class="col-md-4">
+		<div class="col-md-3">
+			<div class="material-input select">
+				<label for="codigo_interno" class="float-label">COD Interno</label>
+				<input id="codigo_interno" type="text" class="form-control">
+				<span></span>
+			</div>	
+		</div>		
+		<div class="col-md-3" data-ng-controller="UsuarioCtrl as vm">
 			<div class="material-input select">
 				<label for="corretor" class="float-label">Corretor</label>
 				<select id="corretor" class="form-control">
-					<option></option>
+					<option 
+						data-ng-repeat="corretor in vm.usuarios"  
+						data-ng-if="corretor.tp_funcionario == 'Corretor'"
+						value="corretor.id"
+						>{{ corretor.nm_usuario }}</option>
 				</select>
 				<span></span>
 			</div>	
 		</div>		
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<div class="material-input select">
 				<label for="finalidade" class="float-label">Finalidade</label>
 				<select id="finalidade" class="form-control">
@@ -22,7 +33,7 @@
 				<span></span>
 			</div>	
 		</div>		
-		<div class="col-md-4">
+		<div class="col-md-3">
 			<div class="material-input select">
 				<label for="vitrine" class="float-label">Mostrar no Site?</label>
 				<select id="vitrine" class="form-control">
@@ -43,12 +54,10 @@
 			</div>	
 		</div>		
 		<div class="col-md-4">
-			<div class="material-input select">
+			<div class="material-input select" data-ng-controller="TipoImovelCtrl as vm">
 				<label for="tipo" class="float-label">Tipo do Imóvel</label>
 				<select id="tipo" class="form-control">
-					<option></option>
-					<option value="1">Tipo 1</option>
-					<option>Tipo 3</option>
+					<option data-ng-repeat="tipo in vm.tipoimoveis">{{ tipo.titulo }}</option>
 				</select>
 				<span></span>
 			</div>	
@@ -110,21 +119,17 @@
 		</div>
 		<div class="col-md-12" data-ng-controller="mapaCtrl">
 			<h2>Endereço do Imóvel</h2>
-            <div id="map" data-lat="-25.0993621" data-long="-50.1584514">
-            	<div class="bubblingG">
-					<span id="bubblingG_1">
-					</span>
-					<span id="bubblingG_2">
-					</span>
-					<span id="bubblingG_3">
-					</span>
-				</div>
-			</div>
-            <input id="pac-input" class="controls">
             <div class="col-md-3">
 				<div class="material-input select">
 					<label for="endereco" class="float-label">Endereço</label>
 					<input type="text" id="endereco" name="endereco" class="form-control endereco">
+					<span></span>
+				</div>	
+            </div>
+            <div class="col-md-3">
+				<div class="material-input select">
+					<label for="nm_endereco" class="float-label">Endereço</label>
+					<input type="number" min='0' id="nm_endereco" name="nm_endereco" class="form-control endereco">
 					<span></span>
 				</div>	
             </div>
@@ -144,13 +149,33 @@
             </div>
             <div class="col-md-3">
 				<div class="material-input select">
+					<label for="referencia" class="float-label">Referencia</label>
+					<input type="text" id="referencia" name="cep" class="form-control cep">
+					<span></span>
+				</div>	
+            </div>
+            <div class="col-md-3">
+				<div class="material-input select">
 					<label for="cidade" class="float-label">Cidade</label>
 					<input type="text" id="cidade" name="cidade" class="form-control cidade">
 					<span></span>
 				</div>	
             </div>
-            <input type="hidden" name="lat" id="" class="lat">
-            <input type="hidden" name="lng" id="" class="lng">	 			
+            <input type="hidden" name="lat" id="lat" class="lat">
+            <input type="hidden" name="lng" id="lng" class="lng">	
+            <div class="col-md-12">
+	            <div id="map" data-lat="-25.0993621" data-long="-50.1584514">
+	            	<div class="bubblingG">
+						<span id="bubblingG_1">
+						</span>
+						<span id="bubblingG_2">
+						</span>
+						<span id="bubblingG_3">
+						</span>
+					</div>
+				</div>
+	            <input id="pac-input" class="controls"> 			
+            </div>			
 		</div>
 		<div class="col-md-12">
 			<button id="btn-imovel" data-ng-click="vm.setImovel()" class="btn ripple pull-right">Cadastro</button>

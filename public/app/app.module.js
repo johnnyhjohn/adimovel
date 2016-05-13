@@ -47,6 +47,7 @@
 					// Local da nossa aplicação
 					$rootScope.currentUser = user;
 
+
 					if($rootScope.autenticado !== true || $rootScope === undefined) {
 					 	event.preventDefault();
 					 	$window.location.href = '/admin/login';

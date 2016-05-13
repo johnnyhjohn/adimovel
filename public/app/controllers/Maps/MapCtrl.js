@@ -99,8 +99,8 @@
                 });
             }
 
-            $(".lat").val(place.geometry.location.lat)
-            $(".lng").val(place.geometry.location.lng)
+            $("#lat").val(place.geometry.location.lat)
+            $("#lng").val(place.geometry.location.lng)
 
             infowindow.setContent('\
                 <div><strong>' + place.name + '</strong><br>'

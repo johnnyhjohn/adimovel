@@ -54,23 +54,24 @@ class ImovelController extends Controller
 		try{
             $imovel = new Imovel();
 
+
             //$imovel->tp_imovel        = $request->input('tipo');
             $imovel->tp_imovel      = 1;
 
             $imovel->titulo_anuncio   = $request->input('nome');
             //$imovel->id_proprietario  = $request->input('id_proprietario');
-            $imovel->id_proprietario  = 8;
+            $imovel->id_proprietario  = 1;
 
             //$imovel->id_corretor      = $request->input('corretor');
             $imovel->id_corretor      = 1;
 
-            //$imovel->codigo_interno   = $request->input('codigo_interno');
-            $imovel->codigo_interno   = 'cod';
+            $imovel->codigo_interno   = $request->input('codigo_interno');
+            // $imovel->codigo_interno   = 'cod';
 
             $imovel->endereco         = $request->input('endereco');
             
-            //$imovel->nm_endereco      = $request->input('nm_endereco');
-            $imovel->nm_endereco      = 12;
+            $imovel->nm_endereco      = $request->input('nm_endereco');
+            // $imovel->nm_endereco      = 12;
 
             $imovel->bairro           = $request->input('bairro');
             $imovel->cidade           = $request->input('cidade');
@@ -79,33 +80,30 @@ class ImovelController extends Controller
             $imovel->qt_quartos       = $request->input('quartos');
             $imovel->qt_banheiros     = $request->input('banheiros');
             $imovel->qt_vagasgaragem  = $request->input('garagens');
-            //$imovel->referencia       = $request->input('referencia');
-            $imovel->referencia      = 'nm_endereco';
+            $imovel->referencia       = $request->input('referencia');
 
-            //$imovel->descricao        = $request->input('descricao');
-            $imovel->descricao      = 'nm_endereco';
+            $imovel->descricao        = $request->input('descricao');
 
             $imovel->valor            = $request->input('valor');
-            //$imovel->vitrine          = $request->input('vitrine');
-            $imovel->vitrine      = true;
+            $imovel->vitrine          = $request->input('vitrine');
 
-            //$imovel->financiamento    = $request->input('financiamento');
-            $imovel->financiamento      = true;
+            $imovel->financiamento    = $request->input('financiamento');
+            // $imovel->financiamento      = true;
 
-            //$imovel->dt_cadastrado    = $request->input('dt_cadastrado');
-            $imovel->dt_cadastrado      = '2016-01-01';
+            $imovel->dt_cadastrado    = $request->input('dt_cadastrado');
 
-            //$imovel->latitude         = $request->input('lat');
-            $imovel->latitude      = '123';
+            $imovel->latitude         = $request->input('lat');
+            // $imovel->latitude           = '123';
 
-            //$imovel->longitude        = $request->input('lng');
-            $imovel->longitude      = '432';
+            $imovel->longitude        = $request->input('lng');
+            // $imovel->longitude          = '432';
 
-            //$imovel->situacao_imovel  = $request->input('finalidade');
-            $imovel->situacao_imovel  = 'fin';
+            $imovel->situacao_imovel  = $request->input('finalidade');
+            // $imovel->situacao_imovel  = 'fin';
 
 
             $imovel->ativo = true;
+            // dd($imovel);
             /*
             $validator = \Validator::make($request->all(), $this->validaCadastro());
 	        if ($validator->fails()) {
@@ -113,7 +111,7 @@ class ImovelController extends Controller
 	        }
     */
         	$imovel->save();
-			return JSONUtils::returnSuccess($imovel->titulo_anuncio .' cadastrada com sucesso.', $imovel);
+			return JSONUtils::returnSuccess($imovel->titulo_anuncio .' cadastrado com sucesso.', $imovel);
 
     	}catch(Exception $e){
     		return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);

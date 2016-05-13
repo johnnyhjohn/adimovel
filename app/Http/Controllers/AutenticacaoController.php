@@ -29,14 +29,23 @@ class AutenticacaoController extends Controller
     public static function verificaToken($token)
     {
     	try{
-
+    		//dd(\JWTAuth::getToken());
 			$user = JWTAuth::toUser($token);
-			
+            if (!$user) {
+                return response()->json(['user_not_found'], 404);
+            }
     		return $user->admin;
 
-    	}catch(Exception $e){
-    		return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
-    	}
+    	} catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+            return response()->json(['token_expired'], $e->getStatusCode());
+        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(['token_invalid'], $e->getStatusCode());
+        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['token_absent'], $e->getStatusCode());
+        } 
+        catch(Exception $e){
+        	return JSONUtils::returnDanger('Token Expirou.', "Falta de Permissão");  
+        }
     }
     /**
      * Return a JWT
