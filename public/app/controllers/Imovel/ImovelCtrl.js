@@ -3,11 +3,17 @@
 
 	angular.module('adimovelApp').controller('ImovelCtrl', Imovel);
 
-	Imovel.injector = ['Request', "URL", "$routeParams"];
+	Imovel.injector = ['Request', "URL", "$routeParams", "$interval"];
 
-	function Imovel(Request, URL, $routeParams) {
+	function Imovel(Request, URL, $routeParams, $interval) {
 		
 		var vm = this;
+		var user = localStorage.getItem('user');
+
+		if(user){
+			vm.user = JSON.parse(user);
+		}
+
 
 		vm.colunas = [
 			{
@@ -34,9 +40,9 @@
 		setTimeout(function(){
 			$("#coluna").find('option:first').remove();
 		}, 500);
-
+		setInterval(getCountImoveis, 1000);
 		function active() {
-			var functions = [getImovel(), getImoveis()];
+			var functions = [getImovel(), getImoveis(), getCountImoveis()];
 		}
 
 		function getImovel(){
@@ -48,16 +54,20 @@
 			}
 		}
 
+		function getCountImoveis(){
+			Request.get("imoveis").then(function(res){
+				vm.imoveis_cadastrados = res[0].objeto.length;
+			});
+		}
+
 		function getImoveis(){
 			Request.get("imoveis").then(function(res){
 				angular.forEach(res[0].objeto, function(value, key) {
-					//(value.tipo_pessoa == "INQ") ? value.tipo_pessoa = "Inquilino" : value.tipo_pessoa = "Proprietário";
-
+					(value.tipo_pessoa == "INQ") ? value.tipo_pessoa = "Inquilino" : value.tipo_pessoa = "Proprietário";
 				});
 				vm.imoveis = res[0].objeto;
 			});
 		}
-
 		vm.busca = function(){
 			var data = {
 				valor : $("#busca").val(),
@@ -85,11 +95,13 @@
 				data['token'] = vm.user.token.token;
 				data['dt_cadastrado'] = (date.getFullYear() +"/"+ (date.getMonth() + 1) + "/"+ date.getDate());
 			});
-			console.log(data);
 			Request.set('imoveis', data).then(function(res){
 				var alerta = new alert();
 				if (res[0].codigo == "SUCCESS") {
 					alerta.success(res[0].mensagem);
+					$("#cadastro-imovel").find('input, textarea').each(function(key, value){
+						$(value).val('');
+					});
 				} else if (res[0].codigo == "DANGER") {
 					alerta = new alert();
 					alerta.danger(res[0].mensagem);
@@ -99,15 +111,17 @@
 		}
 
 		vm.update = function(){
-			var data = {
-				nome:  		$("#nome").val(),
-				email:   	$("#email").val(),
-				cpf: 		$("#cpf").val(),
-				senha: 		$("#senha").val(),
-				tipo: 		$("#tipo").val(),
-				telefone: 	$("#telefone").val()
-			};
+			var data = {}
+			,	date = new Date();
 
+			$("#editar-imovel").find('input, textarea, select').each(function(key, value){
+				if($(value).attr('id')){
+					data[$(value).attr('id')] = $(value).val();
+				}
+				data['token'] = vm.user.token.token;
+				data['dt_cadastrado'] = (date.getFullYear() +"/"+ (date.getMonth() + 1) + "/"+ date.getDate());
+			});
+			console.log(data);
 			Request.put("imoveis/" + $routeParams.slug, data)
 				.then(function(res){
 					console.log(res, data);

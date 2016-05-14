@@ -11,7 +11,8 @@ use App\Pessoa;
 use App\Http\ViewObject\UsuarioVO;
 use App\Usuario;
 
-//use App\TipoImovel;
+use App\Http\ViewObject\TpImovelVO;
+use App\TpImovel;
 
 use App\Imovel;
 
@@ -53,7 +54,7 @@ class ImovelVO
   public function convertFromEntity(Imovel $obj)
   {
     $this->id               = $obj->id;
-    //$this->tp_imovel        = TipoImovel::find($obj->tp_imovel);
+    $this->tp_imovel        = new TpImovelVO(TpImovel::find($obj->tp_imovel));
     $this->titulo_anuncio   = $obj->titulo_anuncio;
     $this->id_proprietario  = new PessoaVO(Pessoa::find($obj->id_proprietario));
     $this->id_corretor      = new UsuarioVO(Usuario::find($obj->id_corretor));
@@ -83,7 +84,7 @@ class ImovelVO
   {
     $obj = new Imovel();
     $obj->id                   = $this->id;
-    //$obj->tp_imovel            = $this->tp_imovel->convertToEntity()->id;
+    $obj->tp_imovel            = $this->tp_imovel->convertToEntity()->id;
     $obj->titulo_anuncio       = $this->titulo_anuncio;
     $obj->id_proprietario      = $this->id_proprietario->convertToEntity()->id;
     $obj->id_corretor          = $this->id_corretor->convertToEntity()->id;

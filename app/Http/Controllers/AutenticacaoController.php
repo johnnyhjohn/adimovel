@@ -42,8 +42,7 @@ class AutenticacaoController extends Controller
             return response()->json(['token_invalid'], $e->getStatusCode());
         } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
             return response()->json(['token_absent'], $e->getStatusCode());
-        } 
-        catch(Exception $e){
+        } catch(Exception $e){
         	return JSONUtils::returnDanger('Token Expirou.', "Falta de Permissão");  
         }
     }

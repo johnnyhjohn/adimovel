@@ -58,11 +58,7 @@
 
 		function getUsuario(){
 			if($routeParams.slug !== undefined){
-<<<<<<< Updated upstream
-				Request.get("usuario" + $routeParams.slug)
-=======
 				Request.get("usuario/" + $routeParams.slug, vm.user.token)
->>>>>>> Stashed changes
 					.then(function(res){
 						vm.usuario = res[0].objeto;
 				});

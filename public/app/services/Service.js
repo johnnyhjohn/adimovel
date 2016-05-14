@@ -47,7 +47,6 @@
 		function set(url, params){
 			return $http(requestPost(url, params))
 	            .then(function(data, status, headers, config) {
-	                console.log(data);
 	                return data.data;
 	            }, function(error){
 	                console.log(error);
@@ -125,7 +124,6 @@
 		* 	@return {Object} requestGet
 		*/
 		function requestGet(url, data){
-			console.log(url);
 			if(data){
 				return {
 					method  : 'GET',

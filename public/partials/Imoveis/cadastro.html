@@ -16,8 +16,21 @@
 					<option 
 						data-ng-repeat="corretor in vm.usuarios"  
 						data-ng-if="corretor.tp_funcionario == 'Corretor'"
-						value="corretor.id"
+						value="{{ corretor.id }}"
 						>{{ corretor.nm_usuario }}</option>
+				</select>
+				<span></span>
+			</div>	
+		</div>			
+		<div class="col-md-3" data-ng-controller="PessoaCtrl as user">
+			<div class="material-input select">
+				<label for="proprietario" class="float-label">Proprietario</label>
+				<select id="proprietario" class="form-control">
+					<option 
+						data-ng-repeat="corretor in user.pessoas"  
+						value="{{ corretor.id }}"
+						selected 
+						>{{ corretor.nm_pessoa }}</option>
 				</select>
 				<span></span>
 			</div>	
@@ -57,7 +70,7 @@
 			<div class="material-input select" data-ng-controller="TipoImovelCtrl as vm">
 				<label for="tipo" class="float-label">Tipo do Imóvel</label>
 				<select id="tipo" class="form-control">
-					<option data-ng-repeat="tipo in vm.tipoimoveis">{{ tipo.titulo }}</option>
+					<option data-ng-repeat="tipo in vm.tipoimoveis" value="{{ tipo.id }}">{{ tipo.titulo }}</option>
 				</select>
 				<span></span>
 			</div>	
@@ -128,7 +141,7 @@
             </div>
             <div class="col-md-3">
 				<div class="material-input select">
-					<label for="nm_endereco" class="float-label">Endereço</label>
+					<label for="nm_endereco" class="float-label">N Endereço</label>
 					<input type="number" min='0' id="nm_endereco" name="nm_endereco" class="form-control endereco">
 					<span></span>
 				</div>	
