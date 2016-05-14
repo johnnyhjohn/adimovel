@@ -1,0 +1,102 @@
+<h1>Cadastro de Movimento</h1>
+<div class="panel" data-ng-controller="AdministrarCtrl as vm">
+	<div class="container container-responsive">
+	<form id="cadastro-imovel" method="post">
+		<div class="col-md-4" data-ng-controller="ImovelCtrl as vm">
+			<div class="material-input select">
+				<label for="imovel" class="float-label">Imóvel</label>
+				<select id="imovel" class="form-control">
+					<option 
+						data-ng-repeat="imovel in vm.imoveis"
+						value="{{ imovel.id }}"
+						>{{ imovel.codigo_interno }} - {{ imovel.titulo_anuncio }} - {{ imovel.endereco }}</option>
+				</select>
+				<span></span>
+			</div>	
+		</div>
+		<div data-ng-controller="PessoaCtrl as vm">
+			<div class="col-md-4">
+				<div class="material-input select" >
+					<label for="proprietario" class="float-label">Proprietário</label>
+					<select id="proprietario" class="form-control">
+						<option 
+							data-ng-repeat="proprietario in vm.pessoas"  
+							data-ng-if="proprietario.tp_pessoa == 'Proprietário'"
+							value="{{ proprietario.id }}"
+							>{{ proprietario.nm_pessoa }} - {{ proprietario.nr_cpf }}</option>
+					</select>
+					<span></span>
+				</div>	
+			</div>
+			<div class="col-md-4">
+				<div class="material-input select">
+					<label for="inquilino" class="float-label">Inquilino</label>
+					<select id="inquilino" class="form-control">
+						<option 
+							data-ng-repeat="inquilino in vm.pessoas"  
+							data-ng-if="inquilino.tp_pessoa == 'Inquilino'"
+							value="{{ inquilino.id }}"
+							>{{ inquilino.nm_pessoa }} - {{ inquilino.nr_cpf }}</option>
+					</select>
+					<span></span>
+				</div>	
+			</div>		
+		</div>	
+		<div class="col-md-12">	
+			<h2>Informações do Contrato</h2>
+		</div>
+		<div class="col-md-4">
+			<div class="material-input select">
+				<label for="nr_contrato" class="float-label">Número Contrato</label>
+				<input type="text" id="nr_contrato" name="nr_contrato" class="form-control">
+				<span></span>
+			</div>	
+        </div>
+		<div class="col-md-4">
+			<div class="material-input select">
+				<label for="dt_inicio" class="float-label">Data Início</label>
+				<input type="date" id="dt_inicio" name="dt_inicio" class="form-control">
+				<span></span>
+			</div>	
+        </div>
+        <div class="col-md-4">
+			<div class="material-input select">
+				<label for="dt_vencimento" class="float-label">Data Vencimento</label>
+				<input type="date" id="dt_vencimento" name="dt_vencimento" class="form-control">
+				<span></span>
+			</div>	
+        </div>
+        <div class="col-md-4">
+			<div class="material-input select">
+				<label for="valor" class="float-label">Valor</label>
+				<input type="text" id="valor" name="valor" class="form-control">
+				<span></span>
+			</div>	
+        </div>
+        <div class="col-md-4">
+			<div class="material-input select">
+				<label for="situacao" class="float-label">Situação Pagamento</label>
+				<select id="situacao" class="form-control">
+					<option value="true">Pago</option>
+					<option value="false">Pendente</option>
+				</select>
+				<span></span>
+			</div>	
+		</div>
+		<div class="col-md-4">
+			<div class="material-input select">
+				<label for="finalidade" class="float-label">Finalidade</label>
+				<select id="finalidade" class="form-control">
+					<option value="LOC">Alugar</option>
+					<option value="VEN">Venda</option>
+				</select>
+				<span></span>
+			</div>	
+		</div>
+
+		<div class="col-md-12">
+			<button id="btn-imovel" data-ng-click="vm.setMovimento()" class="btn ripple pull-right">Cadastro</button>
+		</div>
+	</form>
+	</div>
+</div>

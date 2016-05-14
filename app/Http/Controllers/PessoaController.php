@@ -22,7 +22,7 @@ class PessoaController extends Controller
     	try{
     		$token = $request->input('token');
 
-    		if(AutenticacaoController::verificaToken($token)){
+    		//if(AutenticacaoController::verificaToken($token)){
 	            $pessoa = new Pessoa();
 
 	            $pessoa->nm_pessoa 	= $request->input('nome');
@@ -51,10 +51,10 @@ class PessoaController extends Controller
 
 	        	$pessoa->save();
 				return JSONUtils::returnSuccess('Pessoa '. $pessoa->nm_pessoa .' cadastrada com sucesso.', $pessoa);
-			}
-			else{
-				return JSONUtils::returnDanger('Usuário não tem permissão para esta ação.', "Falta de Permissão");   
-			}
+			//}
+			//else{
+			//	return JSONUtils::returnDanger('Usuário não tem permissão para esta ação.', "Falta de Permissão");   
+			//}
     	}catch(Exception $e){
     		return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
     	}
