@@ -58,6 +58,7 @@
 				dt_vencimento 	: $("#dt_vencimento").val(),
 				valor 	 		: $("#valor").val(),
 				situacao 	 	: $("#situacao").val(),
+				finalidade 		: $("#finalidade").val()
 			}
 			Request.set("administrar", data).then(function(res){
 				var alerta = new alert();

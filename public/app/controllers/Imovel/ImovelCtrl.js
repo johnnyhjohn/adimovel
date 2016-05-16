@@ -40,7 +40,7 @@
 		setTimeout(function(){
 			$("#coluna").find('option:first').remove();
 		}, 500);
-		setInterval(getCountImoveis, 1000);
+		setInterval(getCountImoveis, 10000);
 		function active() {
 			var functions = [getImovel(), getImoveis(), getCountImoveis()];
 		}
