@@ -40,7 +40,7 @@
 		setTimeout(function(){
 			$("#coluna").find('option:first').remove();
 		}, 500);
-		setInterval(getCountImoveis, 1000);
+		setInterval(getCountImoveis, 10000);
 		function active() {
 			var functions = [getImovel(), getImoveis(), getCountImoveis()];
 		}
@@ -64,6 +64,17 @@
 			Request.get("imoveis").then(function(res){
 				angular.forEach(res[0].objeto, function(value, key) {
 					(value.tipo_pessoa == "INQ") ? value.tipo_pessoa = "Inquilino" : value.tipo_pessoa = "Proprietário";
+					switch (value.situacao_imovel) {
+						case "LOC":
+							value.situacao_imovel = "Locação";
+							break;
+						case "PRO":
+							value.situacao_imovel = "Proprietário";
+							break;
+						default:
+							value.situacao_imovel = "Ambos"
+							break;
+					}
 				});
 				vm.imoveis = res[0].objeto;
 			});

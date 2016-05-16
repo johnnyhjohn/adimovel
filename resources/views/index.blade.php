@@ -21,7 +21,7 @@
         <ng-include src="'partials/layouts/header.html'"></ng-include>
         <section>
             <div class="container">
-                <div id="panel-master" class="col-md-11 col-md-offset-1 col-xs-offset-0 col-xs-10">
+                <div id="panel-master" class="col-md-11 col-md-offset-1 col-xs-offset-1 col-xs-11">
                     <div data-ng-view></div>
                 </div>
             </div>

@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\ViewObject\ImovelVO;
-//use App\Http\Enum\UsuarioEnum;
+use App\Http\Enum\ImoveisEnum;
 
 use App\JSONUtils;
 use App\Messages;
@@ -54,7 +54,6 @@ class ImovelController extends Controller
 		try{
             $imovel = new Imovel();
 
-
             $imovel->tp_imovel        = $request->input('tipo');
             $imovel->titulo_anuncio   = $request->input('nome');
             $imovel->id_proprietario  = $request->input('proprietario');
@@ -77,7 +76,8 @@ class ImovelController extends Controller
             $imovel->dt_cadastrado    = $request->input('dt_cadastrado');
             $imovel->latitude         = $request->input('lat');
             $imovel->longitude        = $request->input('lng');
-            $imovel->situacao_imovel  = $request->input('finalidade');
+            $imovel->situacao_imovel  = new ImoveisEnum($request->input('finalidade'));
+
             $imovel->ativo = true;
             // dd($imovel);
             

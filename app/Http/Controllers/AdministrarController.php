@@ -55,17 +55,17 @@ class AdministrarController extends Controller
 		try{
             $contrato = new ContratoAluguel();
 
-            $contrato->id_imovel   = $request->input('imovel');
-            $contrato->id_proprietario   = $request->input('proprietario');
-            $contrato->id_inquilino   = $request->input('inquilino');
-            $contrato->nr_contrato   = $request->input('nr_contrato');
-            $contrato->dt_inicio   = $request->input('dt_inicio');
-            $contrato->dt_vencimento   = $request->input('dt_vencimento');
-            $contrato->dt_revogado   = $request->input('dt_revogado');
-            $contrato->valor   = $request->input('valor');
+            $contrato->id_imovel        = $request->input('imovel');
+            $contrato->id_proprietario  = $request->input('proprietario');
+            $contrato->id_inquilino     = $request->input('inquilino');
+            $contrato->nr_contrato      = $request->input('nr_contrato');
+            $contrato->dt_inicio        = $request->input('dt_inicio');
+            $contrato->dt_vencimento    = $request->input('dt_vencimento');
+            $contrato->dt_revogado      = $request->input('dt_revogado');
+            $contrato->valor            = $request->input('valor');
             $contrato->situacao_pagamento   = $request->input('situacao');
-            $contrato->finalidade   = $request->input('finalidade');
-            $contrato->ativo = true;
+            $contrato->finalidade       = $request->input('finalidade');
+            $contrato->ativo            = true;
 
             $contrato->dt_revogado = '2016-01-01';
             //$validator = \Validator::make($request->all(), $this->validaCadastro());
@@ -74,6 +74,7 @@ class AdministrarController extends Controller
 	        //}
 
         	$contrato->save();
+            
 			return JSONUtils::returnSuccess($contrato->nr_contrato .' cadastrada com sucesso.', $contrato);
 
     	}catch(Exception $e){
@@ -84,7 +85,7 @@ class AdministrarController extends Controller
     public function validaCadastro()
     {
 		return [
-			'titulo'			=> 'required',
+			'titulo' => 'required',
         ];
     }
 

@@ -13,13 +13,15 @@
 		<div class="col-md-4">
 			<div class="material-input select">
 				<label for="corretor" class="float-label label-active">Tipo</label>
-				<select id="corretor" class="form-control" data-ng-if="vm.pessoa.tp_pessoa == 'INQ'">
-					<option value="INQ">Inquilino</option>
-					<option value="PRO">Proprietario</option>
-				</select>
-				<select id="corretor" class="form-control" data-ng-if="vm.pessoa.tp_pessoa == 'PRO'">
-					<option value="PRO">Proprietario</option>
-					<option value="INQ">Inquilino</option>
+				<select id="corretor" class="form-control">
+					<option 
+						data-ng-selected="vm.pessoa.tp_pessoa == 'INQ'"
+						value="INQ"
+					>Inquilino</option>
+					<option 
+						data-ng-selected="vm.pessoa.tp_pessoa == 'PRO'"
+						value="PRO"
+						>Proprietário</option>
 				</select>
 				<span class='input-focus'></span>
 			</div>	

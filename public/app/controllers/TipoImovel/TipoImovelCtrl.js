@@ -53,7 +53,6 @@
 				valor : $("#busca").val(),
 				coluna: $("#coluna").val()
 			}
-			console.log(data, '1')
 
 			Request.set('busca/tipoimoveis', data).then(function(res) {
 				angular.forEach(res[0].objeto, function(value, key) {

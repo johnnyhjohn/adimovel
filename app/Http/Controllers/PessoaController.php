@@ -22,7 +22,7 @@ class PessoaController extends Controller
     	try{
     		$token = $request->input('token');
 
-    		//if(AutenticacaoController::verificaToken($token)){
+    			//if(AutenticacaoController::verificaToken($token)){
 	            $pessoa = new Pessoa();
 
 	            $pessoa->nm_pessoa 	= $request->input('nome');
@@ -34,13 +34,7 @@ class PessoaController extends Controller
 	            $pessoa->nr_telefone = $request->input('telefone');
 	            $pessoa->endereco = $request->input('endereco');
 	            $pessoa->bairro   = $request->input('bairro');
-
-	            if(PessoaEnum::isValid($request->input('tipo'))){
-	            	$pessoa->tp_pessoa = $request->input('tipo');
-	        	}else{
-	        		$pessoa->tp_pessoa = PessoaEnum::INQUILINO;
-	        	}
-
+	        	$pessoa->tp_pessoa = new PessoaEnum($request->input('tipo'));
 	           	$pessoa->id_cidade = 1;
 	            $pessoa->ativo = true;
 
