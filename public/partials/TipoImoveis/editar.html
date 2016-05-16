@@ -13,8 +13,14 @@
 			<div class="material-input select">
 				<label for="ativo" class="float-label">Ativo</label>
 				<select id="ativo" class="form-control">
-					<option value="true">Sim</option>
-					<option value="false">Não</option>
+					<option 
+						data-ng-selected="vm.tipoimovel.ativo == true"
+						value="true">Sim
+					</option>
+					<option 
+						data-ng-selected="vm.tipoimovel.ativo == false"
+						value="false">Não
+					</option>
 				</select>
 				<span></span>
 			</div>	

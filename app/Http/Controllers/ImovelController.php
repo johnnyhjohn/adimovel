@@ -174,7 +174,8 @@ class ImovelController extends Controller
     public function destroy($id){
         try{
             $imovel = Imovel::find($id);
-            $imovel->delete();
+            $imovel->ativo = false;
+            $imovel->save();
 
             return JSONUtils::returnSuccess('Item deletado com sucesso.', $imovel);
         }catch(Exception $e){

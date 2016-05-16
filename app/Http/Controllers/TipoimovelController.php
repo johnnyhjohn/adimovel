@@ -100,7 +100,8 @@ class TipoImovelController extends Controller
     public function destroy($id){
         try{
             $tipoimovel = TpImovel::find($id);
-            $tipoimovel->delete();
+            $tipoimovel->ativo = false;
+            $tipoimovel->save();
 
             return JSONUtils::returnSuccess('Item deletado com sucesso.', $tipoimovel);
         }catch(Exception $e){

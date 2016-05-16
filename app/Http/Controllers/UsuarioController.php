@@ -165,7 +165,8 @@ class UsuarioController extends Controller
         try{
         	//dd($request->input('token'), $id);
             $usuario = Usuario::find($id);
-            //$usuario->delete();
+            $usuario->ativo = false;
+            $usuario->save();
 
             return JSONUtils::returnSuccess('Item deletado com sucesso.', $usuario);
         }catch(Exception $e){

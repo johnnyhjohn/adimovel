@@ -151,7 +151,8 @@ class PessoaController extends Controller
     {
     	try{
     		$pessoa = Pessoa::find($id);
-    		$pessoa->delete();
+    		$pessoa->ativo = false;
+    		$pessoa->save();
 
     		return JSONUtils::returnSuccess('Item deletado com sucesso.', $pessoa);
     	}catch(Exception $e){

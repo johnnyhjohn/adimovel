@@ -22,6 +22,7 @@ class AdministrarController extends Controller
             if ($id == null) {
                 
                 $contrato = ContratoAluguel::orderBy('id', 'asc')->get();
+                //$contrato = ContratoAluguel::orderBy('id', 'asc')->where('ativo', '=', 'true')->get();
 
                 $return = array();
 
