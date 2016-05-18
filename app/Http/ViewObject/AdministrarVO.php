@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\ViewObject;
-use App\ContratoAluguel;
+use App\Contrato;
 
 use App\Http\ViewObject\ImovelVO;
 use App\Imovel;
@@ -24,13 +24,13 @@ class AdministrarVO
   public $ativo;
   public $finalidade;
 
-  public function __construct(ContratoAluguel $obj = null){
+  public function __construct(Contrato $obj = null){
     if($obj != null){
       $this->convertFromEntity($obj);
     }
   }
 
-  public function convertFromEntity(ContratoAluguel $obj){
+  public function convertFromEntity(Contrato $obj){
     $this->id                 = $obj->id;
     $this->imovel             = new ImovelVO(Imovel::find($obj->id_imovel));
     $this->proprietario       = new PessoaVO(Pessoa::find($obj->id_proprietario));
@@ -46,7 +46,7 @@ class AdministrarVO
   }
 
   public function convertToEntity(){
-    $obj = new ContratoAluguel();
+    $obj = new Contrato();
     $obj->id                  = $this->id;
     $obj->id_imovel           = $this->imovel->convertToEntity()->id;
     $obj->id_proprietario     = $this->proprietario->convertToEntity()->id;

@@ -17,6 +17,7 @@ Route::group(['prefix' => 'data'], function()
 {
 	Route::group(['prefix' => 'administrar'], function()
 	{
+	    Route::post('movimento', 'AdministrarController@createMovimento');
 	    Route::post('', 'AdministrarController@create');
 	    Route::get('{id?}', 'AdministrarController@index');
 	    Route::put('{id}', 'AdministrarController@update');

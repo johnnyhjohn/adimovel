@@ -11,7 +11,9 @@ use App\Http\ViewObject\AdministrarVO;
 
 use App\JSONUtils;
 use App\Messages;
-use App\ContratoAluguel;
+use App\Contrato;
+use App\Movimentacao;
+use App\HistoricoAluguel;
 
 class AdministrarController extends Controller
 {
@@ -21,13 +23,13 @@ class AdministrarController extends Controller
         try{
             if ($id == null) {
                 
-                $contrato = ContratoAluguel::orderBy('id', 'asc')->get();
-                //$contrato = ContratoAluguel::orderBy('id', 'asc')->where('ativo', '=', 'true')->get();
+                $contrato = Contrato::orderBy('id', 'asc')->get();
+                //$contrato = Contrato::orderBy('id', 'asc')->where('ativo', '=', 'true')->get();
 
                 $return = array();
 
                 foreach ($contrato as $key => $value) {
-                    $cVO = new AdministrarVO(ContratoAluguel::find($value->id));
+                    $cVO = new AdministrarVO(Contrato::find($value->id));
                     $return[] = $cVO;
                 }
 
@@ -44,7 +46,7 @@ class AdministrarController extends Controller
     {
         try{
             return JSONUtils::returnSuccess(Messages::MSG_QUERY_SUCCESS,
-            new AdministrarVO(ContratoAluguel::find($id)));
+            new AdministrarVO(Contrato::find($id)));
         }catch(Exception $e){
             return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
         }
@@ -53,7 +55,7 @@ class AdministrarController extends Controller
     public function create(Request $request)
 	{
 		try{
-            $contrato = new ContratoAluguel();
+            $contrato = new Contrato();
 
             $contrato->id_imovel   = $request->input('imovel');
             $contrato->id_proprietario   = $request->input('proprietario');
@@ -74,7 +76,28 @@ class AdministrarController extends Controller
 	        //}
 
         	$contrato->save();
-			return JSONUtils::returnSuccess($contrato->nr_contrato .' cadastrada com sucesso.', $contrato);
+            $contrato_id = $contrato->id;
+
+            /*
+            //  Adicionando informações de contrato na tabela de Historico de Aluguel
+            */
+            $historico = new HistoricoAluguel();
+            $historico->id_imovel   = $request->input('imovel');
+            $historico->id_proprietario   = $request->input('proprietario');
+            $historico->id_inquilino   = $request->input('inquilino');
+            //$historico->nr_contrato   = $request->input('nr_contrato');
+            $historico->dt_inicio   = $request->input('dt_inicio');
+            $historico->dt_termino   = $request->input('dt_vencimento');
+            $historico->valor   = $request->input('valor');
+            $historico->id_contrato = $contrato_id;
+            //$validator = \Validator::make($request->all(), $this->validaCadastro());
+            //if ($validator->fails()) {
+            //  return JSONUtils::returnDanger('Problema de validação verifique os campos e tente novamente.', "Erro");   
+            //}
+
+            $historico->save();
+
+			return JSONUtils::returnSuccess('Contrato n° '. $contrato->nr_contrato .' cadastrado com sucesso.', $contrato);
 
     	}catch(Exception $e){
     		return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
@@ -91,7 +114,7 @@ class AdministrarController extends Controller
     public function update(Request $request, $id)
     {
         try{
-            $contrato = ContratoAluguel::find($id);
+            $contrato = Contrato::find($id);
 
             $contrato->id_imovel            = $request->input('imovel');
             $contrato->id_proprietario      = $request->input('proprietario');
@@ -120,7 +143,7 @@ class AdministrarController extends Controller
 
     public function destroy($id){
         try{
-            $contrato = ContratoAluguel::find($id);
+            $contrato = Contrato::find($id);
             //$contrato->delete();
             $contrato->ativo = false;
 
@@ -137,14 +160,14 @@ class AdministrarController extends Controller
     	try{
 	    	$input = $request->all();
 
-	    	$busca = ContratoAluguel::where($input['coluna'],'like', $input['valor'].'%')
+	    	$busca = Contrato::where($input['coluna'],'like', $input['valor'].'%')
 	    					->orderBy('id', 'asc')
 	    					->get();
             
             $return = array();
 
             foreach ($busca as $key => $value) {
-                $cVO = new AdministrarVO(ContratoAluguel::find($value->id));
+                $cVO = new AdministrarVO(Contrato::find($value->id));
                 $return[] = $cVO;
             }
 
@@ -153,5 +176,31 @@ class AdministrarController extends Controller
 	    } catch(Exception $e){
     		return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
     	}	
+    }
+
+    public function createMovimento(Request $request)
+    {
+        try{
+            $contrato = new Movimentacao();
+            
+            $contrato->id_contrato   = $request->input('id_contrato');
+            $contrato->valor         = $request->input('valor');
+            $contrato->dt_movimentacao   = '2016-01-01';
+            $contrato->mes   = 2;
+            $contrato->ano   = 2016;
+            $contrato->descricao = '';
+            $contrato->movimentacoes = json_encode($request->input('movimentacoes'));
+
+            //$validator = \Validator::make($request->all(), $this->validaCadastro());
+            //if ($validator->fails()) {
+            //  return JSONUtils::returnDanger('Problema de validação verifique os campos e tente novamente.', "Erro");   
+            //}
+
+            $contrato->save();
+            return JSONUtils::returnSuccess('Movimento cadastrado com sucesso.', $contrato);
+
+        }catch(Exception $e){
+            return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
+        }
     }
 }

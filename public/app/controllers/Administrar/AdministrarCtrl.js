@@ -48,7 +48,10 @@
 			var functions = [getMovimentos(), getMovimento()];
 		}
 
-		vm.setMovimento = function(){
+		/*
+		//  Cadastro do imóvel em ADMINISTRAR
+		*/
+		vm.setContrato = function(){
 			var data = {
 				imovel 	 		: $("#imovel").val(),
 				proprietario 	: $("#proprietario").val(),
@@ -71,6 +74,7 @@
 				return res;
 			});
 		}
+
 
 		vm.update = function(){
 			var data = {
@@ -152,6 +156,74 @@
 						vm.movimento = res[0].objeto;
 				});
 			}
+		}
+
+		/*
+		//  Cadastro do movimento de descontos e impostos do imovel
+		*/
+		vm.setMovimentoVenda = function(){
+
+			var movimentacao = { 
+				movimento : 'DESCONTO', 
+				valor : $("#desconto").val(), 
+				credito : true 
+			};
+			
+			var data = {
+				id_contrato 	: $("#id_contrato").val(),
+				valor 	 		: $("#total").text(),
+				movimentacoes	: movimentacao
+			}
+
+			
+			Request.set("administrar/movimento", data).then(function(res){
+				var alerta = new alert();
+				if(res[0].codigo == "SUCCESS"){
+					alerta.success(res[0].mensagem);
+				}else if(res[0].codigo == "DANGER"){
+					alerta = new alert();
+					alerta.danger(res[0].mensagem);
+				}
+				return res;
+			});
+			
+		}
+		
+		vm.setMovimentoAluguel = function(){
+			
+			var movimentacao = { 
+				movimento : "DESCONTO", 
+				valor : "", 
+				credito : true 
+			};
+			
+			var data = {
+				id_contrato 	: $("#id_contrato").val(),
+				valor 	 		: $("#valor-total").val(),
+				movimentacoes	: movimentacao
+			}
+
+			
+			Request.set("administrar/movimento", data).then(function(res){
+				var alerta = new alert();
+				if(res[0].codigo == "SUCCESS"){
+					alerta.success(res[0].mensagem);
+				}else if(res[0].codigo == "DANGER"){
+					alerta = new alert();
+					alerta.danger(res[0].mensagem);
+				}
+				return res;
+			});
+			
+		}
+
+		vm.desconto = function(){
+			var desconto = $("#desconto").val();
+			var valor = $("#valor").val();
+
+			var total = valor - desconto;
+			$("#total").html(total);
+			$("#valor-total").val(total);
 		}
 	}
 	

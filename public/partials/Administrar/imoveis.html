@@ -1,51 +1,51 @@
-<h1>Movimentação Imóvel 1 <span class="pull-right btn-aluguel btn-pago ripple" data-situacao="pago">Pago</span></h1>
+<h1>Movimentação Contrato {{ vm.movimento.nr_contrato }} <span class="pull-right btn-aluguel btn-pago ripple" data-situacao="pago">Pago</span></h1>
 
 <div class="panel">
 	<div class="container container-responsive">
-		<h2>Inquilino: Juarez <span class="pull-right">Imóvel: Imóvel 1</span></h2>
+		<h2>Inquilino: {{ vm.movimento.inquilino.nm_pessoa }} <span class="pull-right">Imóvel: {{ vm.movimento.imovel.codigo_interno }} - {{ vm.movimento.imovel.endereco }}</span></h2>
 		<h2>Mês: Janeiro <span class="pull-right">Ano: 2016</span></h2>
 		<table class="table">
 			<tr>
 				<td><strong>Aluguel</strong></td>
 				<td></td>
 				<td></td>
-				<td>R$600,00</td>
+				<td>R$ {{ vm.movimento.valor }}</td>
 			</tr>
 			<tr>
 				<td><strong>Endereço</strong></td>
 				<td></td>
 				<td></td>
-				<td>Rua Cesário Alvin</td>
+				<td>{{ vm.movimento.imovel.endereco }}</td>
 			</tr>
 			<tr>
 				<td><strong>Tipo</strong></td>
 				<td></td>
 				<td></td>
-				<td>Casa</td>
+				<td>{{ vm.movimento.imovel.tp_imovel.titulo }}</td>
 			</tr>
 			<tr>
 				<td><strong>Proprietário</strong></td>
 				<td></td>
 				<td></td>
-				<td>Joao Nevez</td>
+				<td>{{ vm.movimento.proprietario.nm_pessoa }}</td>
 			</tr>
 			<tr>
 				<td><strong>Telefone</strong></td>
 				<td></td>
 				<td></td>
-				<td>(42) 9876 - 1234</td>
+				<td>{{ vm.movimento.proprietario.nr_telefone }}</td>
 			</tr>
 			<tr>
 				<td><strong>Email</strong></td>
 				<td></td>
 				<td></td>
-				<td>joaomartonha@uol.com.br</td>
+				<td>{{ vm.movimento.proprietario.nr_telefone }}</td>
 			</tr>
 			<tr>
 				<td><strong>Situação</strong></td>
 				<td></td>
 				<td></td>
-				<td class="pago">Pago</td>
+				<td class="pago">{{ vm.movimento.situacao_pagamento }}</td>
 			</tr>
 		</table>
 		<p>Adicionar Custos <button class="btn btn-success btn-custos"><i class="fa fa-plus"></i></button></p>
@@ -69,9 +69,14 @@
 				<form id="custo-form"></form>
 			</div>	
 		</div>
-		<h4>Total: <span class="pull-right"><strong>R$:600,00</strong></span></h4>
+		<h4>Total: <span class="pull-right">R$: <strong id="total">{{ vm.movimento.valor }}</strong></span></h4>
 		<hr>
-		<button id="btn-imovel" class="btn btn-submit ripple pull-right">Atualizar</button>
+		
+		<input type="hidden" name="id_contrato" id="id_contrato" value="{{ vm.movimento.id }}">
+		<input type="hidden" name="valor" id="valor" value="{{ vm.movimento.valor }}">
+		<input type="hidden" name="valor-total" id="valor-total" value="{{ vm.movimento.valor }}">
+
+		<button id="btn-imovel" data-ng-click="vm.setMovimentoAluguel()" class="btn btn-submit ripple pull-right">Atualizar</button>
 		<button id="btn-recibo" class="btn btn-submit ripple pull-right">Gerar Recibo</button>
 	</div>
 </div>

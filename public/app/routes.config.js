@@ -144,8 +144,8 @@
               montaRota('/admin/administrar/imoveis', 'Administrar/imoveis-lista.html', 'AdministrarCtrl'),
               montaRota('/admin/administrar/cadastro', 'Administrar/cadastro.html'),
               montaRota('/admin/administrar/editar/:slug', 'Administrar/editar.html'),
-              montaRota('/admin/administrar/imoveis/compra/:slug', 'Administrar/compra.html'),
-              montaRota('/admin/administrar/imoveis/aluguel/:slug', 'Administrar/imoveis.html'),
+              montaRota('/admin/administrar/movimento/compra/:slug', 'Administrar/compra.html', 'AdministrarCtrl'),
+              montaRota('/admin/administrar/movimento/aluguel/:slug', 'Administrar/imoveis.html', 'AdministrarCtrl'),
               
               montaRota('/admin/relatorios',    'Relatorios/inicio.html'),
               

@@ -165,21 +165,21 @@ $(document).ready(function(){
 				<div class='col-md-4'>\
 					<div class='material-input'>\
 						<label class='float-label label-active'>Custo</label>\
-						<input type='text' class='form-control' name='custo' value='"+ custo +"'>\
+						<input type='text' class='form-control custo-campo' name='"+ custo +"' value='"+ custo +"'>\
 						<span class='input-focus'></span>\
 					</div>\
 				</div>\
 				<div class='col-md-4'>\
 					<div class='material-input'>\
 						<label class='float-label'>Descrição</label>\
-						<input type='text' class='form-control'>\
+						<input type='text' class='form-control' name=''>\
 						<span></span>\
 					</div>\
 				</div>\
 				<div class='col-md-3'>\
 					<div class='material-input'>\
 						<label class='float-label'>Valor</label>\
-						<input type='text' class='form-control'>\
+						<input type='text' class='form-control vlr' name=''>\
 						<span></span>\
 					</div>\
 				</div>\

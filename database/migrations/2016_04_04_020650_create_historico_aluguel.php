@@ -14,6 +14,8 @@ class CreateHistoricoAluguel extends Migration
     {
         Schema::create('historico_aluguels', function(Blueprint $table){
             $table->increments('id');
+            $table->integer('id_contrato')->unsigned();
+            $table->foreign('id_contrato')->references('id')->on('contratos');
             $table->integer('id_imovel')->unsigned();
             $table->foreign('id_imovel')->references('id')->on('imovels');
             $table->integer('id_inquilino')->unsigned();
