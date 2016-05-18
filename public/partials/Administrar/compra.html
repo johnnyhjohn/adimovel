@@ -1,44 +1,44 @@
-<h1>Movimentação Imóvel 1 <span id="btn-venda" class="pull-right btn-aluguel btn-pago ripple" data-situacao="pago">Pago</span></h1>
+<h1>Movimentação Imóvel {{ vm.movimento.id }}<span id="btn-venda" class="pull-right btn-aluguel btn-pago ripple" data-situacao="pago">Pago</span></h1>
 
 <div class="panel">
 	<div class="container container-responsive">
-		<h2>Inquilino: Juarez <span class="pull-right">Imóvel: Imóvel 1</span></h2>
+		<h2>Inquilino: {{ vm.movimento.inquilino }} <span class="pull-right">Imóvel: {{ vm.movimento.titulo_anuncio }}</span></h2>
 		<table class="table">
 			<tr>
 				<td><strong>Valor do Imóvel</strong></td>
 				<td></td>
 				<td></td>
-				<td>R$600,00</td>
+				<td>R${{ vm.movimento.valor }}</td>
 			</tr>
 			<tr>
 				<td><strong>Endereço</strong></td>
 				<td></td>
 				<td></td>
-				<td>Rua Cesário Alvin</td>
+				<td>{{ vm.movimento.endereco }}</td>
 			</tr>
 			<tr>
 				<td><strong>Tipo</strong></td>
 				<td></td>
 				<td></td>
-				<td>Casa</td>
+				<td>{{ vm.movimento.tipo }}</td>
 			</tr>
 			<tr>
 				<td><strong>Proprietário</strong></td>
 				<td></td>
 				<td></td>
-				<td>Joao Nevez</td>
+				<td>{{ vm.movimento.proprietario }}</td>
 			</tr>
 			<tr>
 				<td><strong>Telefone</strong></td>
 				<td></td>
 				<td></td>
-				<td>(42) 9876 - 1234</td>
+				<td>{{ vm.movimento.telefone_inquilino }}</td>
 			</tr>
 			<tr>
 				<td><strong>Email</strong></td>
 				<td></td>
 				<td></td>
-				<td>joaomartonha@uol.com.br</td>
+				<td>{{ vm.movimento.email_inquilino }}</td>
 			</tr>
 			<tr>
 				<td><strong>Situação</strong></td>
@@ -53,13 +53,13 @@
 				<div class="col-md-12">
 					<div class="material-input">
 						<label class="float-label">Desconto</label>
-						<input id="desconto" type="text" class="form-control"> 
+						<input ng-model="desconto" id="desconto" type="text" class="form-control"> 
 						<span></span>
 					</div>
 				</div>
 			</form>
 		</div>
-		<h4>Total: <span class="pull-right"><strong>R$:600,00</strong></span></h4>
+		<h4>Total: <span class="pull-right"><strong>R$:{{ vm.movimento.valor - desconto }}</strong></span></h4>
 		<hr>
 		<button id="btn-imovel" class="btn btn-submit ripple pull-right">Atualizar</button>
 	</div>

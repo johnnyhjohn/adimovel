@@ -140,16 +140,16 @@
 					(value.finalidade == "VEN") ? value.finalidade = "Venda" : value.finalidade = "Aluguel";
 					(value.situacao_pagamento == true) ? value.situacao_pagamento = "Pago" : value.situacao_pagamento = "Pendente";
 				});
-				console.log(res);
 				vm.movimentos = res[0].objeto;
 			});
 		}
 
 		function getMovimento(){
 			if($routeParams.slug !== undefined){
-				Request.get("administrar/" + $routeParams.slug)
+				Request.get("administrar/movimentacao/" + $routeParams.slug)
 					.then(function(res){
-						vm.movimento = res[0].objeto;
+						vm.movimento = res[0].objeto[0];
+						console.log(vm.movimento);
 				});
 			}
 		}

@@ -11,47 +11,14 @@
 				<h1 class="pull-left">Destaques</h1>
 				<hr>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-3" data-ng-repeat="imovel in vm.imoveis | limitTo:4">
 				<div class="itens">
 					<figure>
 						<img src="image/thumb.jpeg" class="img-responsive">
 					</figure>
 					<div class='info'>
-						<p>Imobiliária 1</p>
-						<span class="valor">R$ 400,00</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="itens">
-					<figure>
-						<img src="image/thumb.jpeg" class="img-responsive">
-					</figure>
-					<div class='info'>
-						<p>Imobiliária 1</p>
-						<span class="valor">R$ 400,00</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="itens">
-					<figure>
-						<img src="image/thumb.jpeg" class="img-responsive">
-					</figure>
-					<div class='info'>
-						<p>Imobiliária 1</p>
-						<span class="valor">R$ 400,00</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="itens">
-					<figure>
-						<img src="image/thumb.jpeg" class="img-responsive">
-					</figure>
-					<div class='info'>
-						<p>Imobiliária 1</p>
-						<span class="valor">R$ 400,00</span>
+						<p>{{ imovel.titulo_anuncio }}</p>
+						<span class="valor">R$ {{ imovel.valor }}</span>
 					</div>
 				</div>
 			</div>
@@ -63,47 +30,14 @@
 				<h1 class="pull-left">Vendas</h1>
 				<hr>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-3" data-ng-repeat="imovel in vm.imoveis | limitTo:4">
 				<div class="itens">
 					<figure>
 						<img src="image/thumb.jpeg" class="img-responsive">
 					</figure>
 					<div class='info'>
-						<p>Imobiliária 1</p>
-						<span class="valor">R$ 400,00</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="itens">
-					<figure>
-						<img src="image/thumb.jpeg" class="img-responsive">
-					</figure>
-					<div class='info'>
-						<p>Imobiliária 1</p>
-						<span class="valor">R$ 400,00</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="itens">
-					<figure>
-						<img src="image/thumb.jpeg" class="img-responsive">
-					</figure>
-					<div class='info'>
-						<p>Imobiliária 1</p>
-						<span class="valor">R$ 400,00</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="itens">
-					<figure>
-						<img src="image/thumb.jpeg" class="img-responsive">
-					</figure>
-					<div class='info'>
-						<p>Imobiliária 1</p>
-						<span class="valor">R$ 400,00</span>
+						<p>{{ imovel.titulo_anuncio }}</p>
+						<span class="valor">R$ {{ imovel.valor }}</span>
 					</div>
 				</div>
 			</div>
@@ -115,53 +49,17 @@
 				<h1 class="pull-left">Locações</h1>
 				<hr>
 			</div>
-			<div class="col-md-3">
+			<div class="col-md-3" data-ng-repeat="imovel in vm.imoveis | limitTo:4">
 				<div class="itens">
 					<figure>
 						<img src="image/thumb.jpeg" class="img-responsive">
 					</figure>
 					<div class='info'>
-						<p>Imobiliária 1</p>
-						<span class="valor">R$ 400,00</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="itens">
-					<figure>
-						<img src="image/thumb.jpeg" class="img-responsive">
-					</figure>
-					<div class='info'>
-						<p>Imobiliária 1</p>
-						<span class="valor">R$ 400,00</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="itens">
-					<figure>
-						<img src="image/thumb.jpeg" class="img-responsive">
-					</figure>
-					<div class='info'>
-						<p>Imobiliária 1</p>
-						<span class="valor">R$ 400,00</span>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-3">
-				<div class="itens">
-					<figure>
-						<img src="image/thumb.jpeg" class="img-responsive">
-					</figure>
-					<div class='info'>
-						<p>Imobiliária 1</p>
-						<span class="valor">R$ 400,00</span>
+						<p>{{ imovel.titulo_anuncio }}</p>
+						<span class="valor">R$ {{ imovel.valor }}</span>
 					</div>
 				</div>
 			</div>
 		</div>		
 	</article>
 </section>
-<footer>
-	
-</footer>

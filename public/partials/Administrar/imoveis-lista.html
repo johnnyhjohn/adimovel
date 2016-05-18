@@ -51,7 +51,11 @@
 				<td class="pago">{{ movimento.situacao_pagamento }}</td>
 				<td>{{ movimento.finalidade }}</td>
 				<td>
+<<<<<<< Updated upstream
 					<button class="btn btn-warning"><i class="fa fa-share-square"></i></button>
+=======
+					<a href="admin/administrar/movimento/{{ movimento.id }}"><button class="btn btn-warning"><i class="fa fa-share-square"></i></button></a>
+>>>>>>> Stashed changes
 					<a href="admin/administrar/editar/{{ movimento.id }}"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
 					<button class="btn btn-danger btn-deleta" data-toggle="modal" data-target="#deleteModal-{{movimento.id}}"><i class="fa fa-trash-o"></i></button>
 				

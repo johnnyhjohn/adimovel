@@ -114,13 +114,13 @@
 
       	function getRoutes(){
       		return [
-              montaRota('/',        'Site/index.html'),
-              montaRota('/sobre',   'Site/sobre.html'),
-              montaRota('/vendas',  'Site/vendas.html'),
-              montaRota('/contato', 'Site/contato.html'),
-              montaRota('/locacao', 'Site/locacoes.html'),
-              montaRota('/vendas/:slug', 'Site/imovel.html'),
-              montaRota('/locacao/:slug','Site/imovel.html'),
+              montaRota('/',        'Site/index.html', 'ImovelCtrl'),
+              montaRota('/sobre',   'Site/sobre.html', 'ImovelCtrl'),
+              montaRota('/vendas',  'Site/vendas.html', 'ImovelCtrl'),
+              montaRota('/contato', 'Site/contato.html', 'ImovelCtrl'),
+              montaRota('/locacao', 'Site/locacoes.html', 'ImovelCtrl'),
+              montaRota('/vendas/:slug', 'Site/imovel.html', 'ImovelCtrl'),
+              montaRota('/locacao/:slug','Site/imovel.html', 'ImovelCtrl'),
               
               montaRota('/admin', 'dashboard/dashboard.html'),
               
@@ -145,7 +145,7 @@
               montaRota('/admin/administrar/cadastro', 'Administrar/cadastro.html'),
               montaRota('/admin/administrar/editar/:slug', 'Administrar/editar.html'),
               montaRota('/admin/administrar/imoveis/compra/:slug', 'Administrar/compra.html'),
-              montaRota('/admin/administrar/imoveis/aluguel/:slug', 'Administrar/imoveis.html'),
+              montaRota('/admin/administrar/movimento/:slug', 'Administrar/compra.html', 'AdministrarCtrl'),
               
               montaRota('/admin/relatorios',    'Relatorios/inicio.html'),
               

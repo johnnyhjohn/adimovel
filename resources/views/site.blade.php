@@ -26,6 +26,8 @@
         {!! HTML::script('bower_components/angular-route/angular-route.min.js') !!}
         {!! HTML::script('bower_components/Chart.js/Chart.min.js') !!}
         {!! HTML::script('app/app.module.js') !!}
+        {!! HTML::script('app/services/Service.js') !!}
+        {!! HTML::script('app/controllers/Imovel/ImovelCtrl.js') !!}
         {!! HTML::script('app/routes.config.js') !!}
         {!! HTML::script('assets/script.js') !!}
         <script type="text/javascript">

@@ -36,7 +36,6 @@
         {!! HTML::script('bower_components/Chart.js/Chart.min.js') !!}
         {!! HTML::script('assets/script.js') !!}
         {!! HTML::script('app/app.module.js') !!}
-        {!! HTML::script('app/routes.config.js') !!}
         {!! HTML::script('app/services/Service.js') !!}
         {!! HTML::script('app/controllers/Administrar/AdministrarCtrl.js') !!}
         {!! HTML::script('app/controllers/Imovel/ImovelCtrl.js') !!}
@@ -46,6 +45,7 @@
         {!! HTML::script('app/controllers/Usuario/LoginCtrl.js') !!}
         {!! HTML::script('app/controllers/Maps/MapCtrl.js') !!}
         {!! HTML::script('app/controllers/Grafico/ChartCtrl.js') !!}
+        {!! HTML::script('app/routes.config.js') !!}
         <div class="map"></div>
         <script type="text/javascript">
             $.ajaxSetup({

@@ -21,6 +21,13 @@ Route::group(['prefix' => 'data'], function()
 	    Route::get('{id?}', 'AdministrarController@index');
 	    Route::put('{id}', 'AdministrarController@update');
 	    Route::delete('{id}', 'AdministrarController@destroy');
+		Route::group(['prefix' => 'movimentacao'], function()
+		{
+		    Route::post('', 'AdministrarController@create');
+		    Route::get('{id}', 'AdministrarController@movimentacao');
+		    Route::put('{id}', 'AdministrarController@update');
+		    Route::delete('{id}', 'AdministrarController@destroy');
+		});
 	});
 
 	Route::group(['prefix' => 'imoveis'], function()
