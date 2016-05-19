@@ -15,26 +15,26 @@
 		}
 
 		vm.colunas = [
-			{
-				value 	: 'imovel',
-				name : 'Imovel'	
-			},
-			{
-				value 	: 'proprietario',
-				name : 'Proprietario'
-			},
-			{
-				value 	: 'inquilino',
-				name : 'Inquilino'
-			},
+			// {
+			// 	value 	: 'id_imovel',
+			// 	name : 'Imovel'	
+			// },
+			// {
+			// 	value 	: 'id_proprietario',
+			// 	name : 'Proprietario'
+			// },
+			// {
+			// 	value 	: 'id_inquilino',
+			// 	name : 'Inquilino'
+			// },
 			{
 				value 	: 'nr_contrato',
 				name : 'Numero Contrato'
 			},
-			{
-				value 	: 'finalidade',
-				name : 'Finalidade'
-			}
+			// {
+			// 	value 	: 'finalidade',
+			// 	name : 'Finalidade'
+			// }
 		];
 
 
@@ -130,7 +130,7 @@
 
 			Request.set('busca/administrar', data).then(function(res) {
 				angular.forEach(res[0].objeto, function(value, key) {
-					(value.finalidade == "VEN") ? value.finalidade = "Venda" : value.finalidade = "Alugar";
+					(value.finalidade == "VEN") ? value.finalidade = "Venda" : value.finalidade = "Aluguel";
 					(value.ativo == true) ? value.ativo = "Ativo" : value.ativo = "Inativo";
 				});
 				vm.movimentos = res[0].objeto;
@@ -144,7 +144,7 @@
 					(value.finalidade == "VEN") ? value.finalidade = "Venda" : value.finalidade = "Aluguel";
 					(value.situacao_pagamento == true) ? value.situacao_pagamento = "Pago" : value.situacao_pagamento = "Pendente";
 				});
-				console.log(res);
+				
 				vm.movimentos = res[0].objeto;
 			});
 		}
@@ -153,7 +153,11 @@
 			if($routeParams.slug !== undefined){
 				Request.get("administrar/" + $routeParams.slug)
 					.then(function(res){
+						var value = res[0].objeto;
+						(value.finalidade == "VEN") ? value.finalidade = "Venda" : value.finalidade = "Aluguel";
+						(value.situacao_pagamento == true) ? value.situacao_pagamento = "Pago" : value.situacao_pagamento = "Pendente";
 						vm.movimento = res[0].objeto;
+						
 				});
 			}
 		}
@@ -191,19 +195,49 @@
 		
 		vm.setMovimentoAluguel = function(){
 			
-			var movimentacao = { 
-				movimento : "DESCONTO", 
-				valor : "", 
-				credito : true 
-			};
+			var movimentacao = {}
+			, 	total = $("#total").text();
+
+			if($("#movimento").val() == "Custo"){
+				movimentacao = {
+					movimento : "CUSTO",
+					custos 	  : {},
+					credito   : true,
+				};
+				var custos = [];
+				var juros  = 0;
+				$(".custo-input").each(function(index, el) {
+					var custo = {
+						custo : $(el).find(".custo-campo").val(),
+						valor : $(el).find(".vlr").val(),
+						descricao : $(el).find(".desc").val()
+					}
+					juros = juros + custo.valor;
+					custos.push(custo);
+				});
+
+				movimentacao.custos = custos;
+
+				total = total - juros;
+
+				if(total <= 0){
+					total = 0;
+				}
+
+			} else {
+				movimentacao = { 
+					movimento : "DESCONTO", 
+					valor : $("#desconto").val(), 
+					credito : true 
+				};
+			}
 			
 			var data = {
 				id_contrato 	: $("#id_contrato").val(),
-				valor 	 		: $("#valor-total").val(),
+				valor 	 		: total,
 				movimentacoes	: movimentacao
 			}
 
-			
 			Request.set("administrar/movimento", data).then(function(res){
 				var alerta = new alert();
 				if(res[0].codigo == "SUCCESS"){
@@ -224,6 +258,38 @@
 			var total = valor - desconto;
 			$("#total").html(total);
 			$("#valor-total").val(total);
+		}
+
+		vm.updatePagamento = function(){
+			var situacao = $(".btn-aluguel").data('situacao');
+
+			var data = {
+				situacao : situacao,
+			}
+
+			Request.put("administrar/situacao/" + vm.movimento.id, data)
+				.then(function(res){
+					console.log(res, data);
+					var alerta = new alert();
+					if(res[0].codigo == "SUCCESS"){
+						alerta.success(res[0].mensagem);
+					}else if(res[0].codigo == "DANGER"){
+						alerta = new alert();
+						alerta.danger(res[0].mensagem);
+					}
+					return res;
+			});
+		}
+
+		vm.change = function(tipo) {
+			Request.get("administrar/"+tipo).then(function(res){
+				angular.forEach(res[0].objeto, function(value, key) {
+					(value.finalidade == "VEN") ? value.finalidade = "Venda" : value.finalidade = "Aluguel";
+					(value.situacao_pagamento == true) ? value.situacao_pagamento = "Pago" : value.situacao_pagamento = "Pendente";
+				});
+				
+				vm.movimentos = res[0].objeto;
+			});
 		}
 	}
 	

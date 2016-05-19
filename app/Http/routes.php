@@ -17,7 +17,10 @@ Route::group(['prefix' => 'data'], function()
 {
 	Route::group(['prefix' => 'administrar'], function()
 	{
+		Route::put('situacao/{id}', 'AdministrarController@atualizaSituacao');
 	    Route::post('movimento', 'AdministrarController@createMovimento');
+	    Route::get('vendas', 'AdministrarController@getImoveisVendas');
+	    Route::get('aluguel', 'AdministrarController@getImoveisAluguel');
 	    Route::post('', 'AdministrarController@create');
 	    Route::get('{id?}', 'AdministrarController@index');
 	    Route::put('{id}', 'AdministrarController@update');
@@ -26,6 +29,7 @@ Route::group(['prefix' => 'data'], function()
 
 	Route::group(['prefix' => 'imoveis'], function()
 	{
+		// Route::put('situacao/{id}', 'ImovelController@atualizaSituacao');
 	    Route::post('', 'ImovelController@create');
 	    Route::get('{id?}', 'ImovelController@index');
 	    Route::put('{id}', 'ImovelController@update');

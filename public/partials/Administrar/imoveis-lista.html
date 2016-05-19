@@ -1,8 +1,8 @@
 <h1>Gerenciar Imóveis</h1>
 
 <div class="botoes">
-	<a class="btn btn-administra btn-aluguel ripple active" href="">Aluguel</a>
-	<a class="btn btn-administra btn-compra ripple" href="">Vendas</a>
+	<a class="btn btn-administra btn-aluguel ripple active" data-ng-click="vm.change('aluguel')" href="">Aluguel</a>
+	<a class="btn btn-administra btn-compra ripple" data-ng-click="vm.change('vendas')" href="">Vendas</a>
 	<a class="pull-right" href="admin/administrar/cadastro"><button class="btn btn-success">Adicionar</button></a>
 </div>
 
@@ -13,7 +13,7 @@
 			<div class="material-input select">
 				<div class="col-md-4">
 					<label for="busca" class="float-label"><i class="fa fa-search"></i> Busca</label>
-					<input data-ng-keypress="vm.busca()" id="busca" type="text" class="form-control">
+					<input data-ng-keyup="vm.busca()" id="busca" type="number" class="form-control">
 					<span></span>
 				</div>
 				<div class="col-md-4">

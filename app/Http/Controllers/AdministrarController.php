@@ -42,6 +42,56 @@ class AdministrarController extends Controller
         }    
     }
 
+    public function getImoveisVendas()
+    {
+        try{    
+            $contrato = Contrato::where("finalidade","=","VEN")->orderBy('id', 'asc')->get();
+            //$contrato = Contrato::orderBy('id', 'asc')->where('ativo', '=', 'true')->get();
+
+            $return = array();
+
+            foreach ($contrato as $key => $value) {
+                $cVO = new AdministrarVO(Contrato::find($value->id));
+                $return[] = $cVO;
+            }
+
+            return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $return);
+        } catch(Exception $e){
+            return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
+        }           
+    }
+    public function getImoveisAluguel()
+    {
+        try{    
+            $contrato = Contrato::where("finalidade","=","LOC")->orderBy('id', 'asc')->get();
+            //$contrato = Contrato::orderBy('id', 'asc')->where('ativo', '=', 'true')->get();
+
+            $return = array();
+
+            foreach ($contrato as $key => $value) {
+                $cVO = new AdministrarVO(Contrato::find($value->id));
+                $return[] = $cVO;
+            }
+
+            return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $return);
+        } catch(Exception $e){
+            return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
+        }           
+    }
+
+    public function atualizaSituacao(Request $request, $id)
+    {
+        try{
+            $contrato = Contrato::find($id);
+            $contrato->situacao_pagamento = ($request->input('situacao') == "pago") ? true : false;
+
+            $contrato->save();
+            return JSONUtils::returnSuccess($contrato->nr_contrato .' alterado com sucesso.', $contrato);
+        }catch(Exception $e){
+            return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
+        }
+    }
+
     public function show($id)
     {
         try{
@@ -191,10 +241,10 @@ class AdministrarController extends Controller
             $contrato->descricao = '';
             $contrato->movimentacoes = json_encode($request->input('movimentacoes'));
 
-            //$validator = \Validator::make($request->all(), $this->validaCadastro());
-            //if ($validator->fails()) {
-            //  return JSONUtils::returnDanger('Problema de validação verifique os campos e tente novamente.', "Erro");   
-            //}
+            $validator = \Validator::make($request->all(), $this->validaMovimento());
+            if ($validator->fails()) {
+             return JSONUtils::returnDanger('Problema de validação verifique os campos e tente novamente.', $validator->errors()->all());   
+            }
 
             $contrato->save();
             return JSONUtils::returnSuccess('Movimento cadastrado com sucesso.', $contrato);
@@ -203,4 +253,67 @@ class AdministrarController extends Controller
             return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
         }
     }
+
+    public function validaMovimento()
+    {
+        return [
+            'valor' => 'numeric|min:0',
+        ];
+    }
+
+    // Só pra não perder o método
+    public function movimentacao($id)
+    {
+        try{
+
+            $movimentacao  = \DB::select("
+                SELECT
+                    c.*,
+                    p.nm_pessoa as proprietario, 
+                    p.email as email_proprietario, 
+                    p.nr_telefone as telefone_proprietario,
+                    p2.nm_pessoa as inquilino, 
+                    p2.email as email_inquilino,
+                    p2.nr_telefone as telefone_inquilino,
+                    i.titulo_anuncio, 
+                    i.endereco, 
+                    i.tp_imovel, 
+                    i.situacao_imovel,
+                    i.valor,
+                    tp.titulo as tipo
+                FROM 
+                    contrato_aluguels c 
+                INNER JOIN 
+                    imovels as i on c.id_imovel = i.id 
+                RIGHT JOIN 
+                    tp_imovels as tp on i.tp_imovel = tp.id
+                INNER JOIN 
+                    pessoas as p on p.id = (
+                        SELECT 
+                            id 
+                        FROM 
+                            pessoas 
+                        WHERE
+                            tp_pessoa = 'PRO' 
+                        AND id = c.id_proprietario
+                    ) 
+                INNER JOIN 
+                    pessoas as p2 on p2.id = (
+                        SELECT 
+                            id 
+                        FROM
+                            pessoas 
+                        WHERE 
+                            tp_pessoa = 'INQ' 
+                        AND id = c.id_inquilino
+                    ) 
+                WHERE 
+                    c.id=".$id
+                );
+
+            return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $movimentacao);
+        }catch(Exception $e){
+            return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
+        }
+    }    
 }
