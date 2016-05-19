@@ -58,6 +58,17 @@ Route::group(['prefix' => 'data'], function()
 	    Route::delete('{id}', 'UsuarioController@destroy');
 	});
 
+	Route::group(['prefix' => 'relatorios'], function()
+	{
+	    Route::get('{id?}', 'RelatorioController@gerar');
+	    Route::get('inquilino/{id?}', 'RelatorioController@gerarInquilino');
+	    Route::get('proprietario/{id?}', 'RelatorioController@gerarProprietario');
+	    //Route::get('{id?}', 'RelatorioController@index');
+	    //Route::post('', 'RelatorioController@create');
+	    //Route::put('{id}', 'RelatorioController@update');
+	    //Route::delete('{id}', 'RelatorioController@destroy');
+	});
+
 	Route::group(['prefix' => 'busca'], function()
 	{
 		Route::group(['prefix' => 'pessoa'], function()

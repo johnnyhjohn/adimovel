@@ -170,6 +170,9 @@
 			};
 			
 			var data = {
+				id_proprietario	: $("#id_proprietario").val(),
+				id_inquilino	: $("#id_inquilino").val(),
+				id_usuario		: vm.user.id,
 				id_contrato 	: $("#id_contrato").val(),
 				valor 	 		: $("#total").text(),
 				movimentacoes	: movimentacao

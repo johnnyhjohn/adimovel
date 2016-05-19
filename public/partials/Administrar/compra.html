@@ -63,7 +63,9 @@
 		<hr>
 
 		<input type="hidden" name="id_contrato" id="id_contrato" value="{{ vm.movimento.id }}">
-		
+		<input type="hidden" name="id_proprietario" id="id_proprietario" value="{{ vm.movimento.proprietario.id }}">
+		<input type="hidden" name="id_inquilino" id="id_inquilino" value="{{ vm.movimento.inquilino.id }}">
+
 		<button id="btn-imovel" data-ng-click="vm.setMovimentoVenda()" class="btn btn-submit ripple pull-right">Atualizar</button>
 	</div>
 </div>

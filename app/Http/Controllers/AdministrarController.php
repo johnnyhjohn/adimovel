@@ -14,6 +14,7 @@ use App\Messages;
 use App\Contrato;
 use App\Movimentacao;
 use App\HistoricoAluguel;
+use App\Recibo;
 
 class AdministrarController extends Controller
 {
@@ -183,13 +184,13 @@ class AdministrarController extends Controller
         try{
             $contrato = new Movimentacao();
             
-            $contrato->id_contrato   = $request->input('id_contrato');
-            $contrato->valor         = $request->input('valor');
-            $contrato->dt_movimentacao   = '2016-01-01';
-            $contrato->mes   = 2;
-            $contrato->ano   = 2016;
-            $contrato->descricao = '';
-            $contrato->movimentacoes = json_encode($request->input('movimentacoes'));
+            $contrato->id_contrato      = $request->input('id_contrato');
+            $contrato->valor            = $request->input('valor');
+            $contrato->dt_movimentacao  = '2016-01-01';
+            $contrato->mes              = 2;
+            $contrato->ano              = 2016;
+            $contrato->descricao        = '';
+            $contrato->movimentacoes    = json_encode($request->input('movimentacoes'));
 
             //$validator = \Validator::make($request->all(), $this->validaCadastro());
             //if ($validator->fails()) {
@@ -197,6 +198,27 @@ class AdministrarController extends Controller
             //}
 
             $contrato->save();
+
+            $recibo = new Recibo();
+            $recibo->id_proprietario   = $request->input('id_proprietario');
+            $recibo->id_inquilino      = $request->input('id_inquilino');
+            $recibo->id_usuario        = $request->input('id_usuario');
+            $recibo->id_movimentacao   = $contrato->id;
+            $recibo->valor             = $request->input('valor');
+            $recibo->mes               = 1;
+            $recibo->ano               = 2016;
+            $recibo->dt_emissao        = '2016-01-01';
+            $recibo->descricao         = '';
+            $recibo->ativo             = true;
+
+            //$validator = \Validator::make($request->all(), $this->validaCadastro());
+            //if ($validator->fails()) {
+            //  return JSONUtils::returnDanger('Problema de validação verifique os campos e tente novamente.', "Erro");   
+            //}
+
+            $recibo->save();
+
+
             return JSONUtils::returnSuccess('Movimento cadastrado com sucesso.', $contrato);
 
         }catch(Exception $e){

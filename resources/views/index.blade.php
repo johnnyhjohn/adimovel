@@ -43,6 +43,7 @@
         {!! HTML::script('app/controllers/TipoImovel/TipoImovelCtrl.js') !!}
         {!! HTML::script('app/controllers/Pessoa/PessoaCtrl.js') !!}
         {!! HTML::script('app/controllers/Usuario/UsuarioCtrl.js') !!}
+        {!! HTML::script('app/controllers/Relatorio/RelatorioCtrl.js') !!}
         {!! HTML::script('app/controllers/Usuario/LoginCtrl.js') !!}
         {!! HTML::script('app/controllers/Maps/MapCtrl.js') !!}
         {!! HTML::script('app/controllers/Grafico/ChartCtrl.js') !!}
