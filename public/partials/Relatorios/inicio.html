@@ -1,28 +1,24 @@
 <h1>Relatórios</h1>
 
-<div class="panel" data-ng-controller="PessoaCtrl as pes">
+<div class="panel">
 	<div class="container container-responsive">
 		<p>Selecione um relatório para gerar:</p>
 		<form>
  			<div class="col-md-12">
  				<div class="material-input">
-					<select id="pessoa" class="form-control" data-ng-model="pessoa">
-						<option value="">Selecione um tipo</option>
-						<option value="Inquilino">Inquilino</option>
-						<option value="Proprietário">Proprietário</option>
+					<select id="corretor" class="form-control">
+						<option>Inquilino</option>
+						<option>Proprietario</option>
 					</select>
 					<span></span>
 				</div>
  			</div>
- 			<div class="col-md-12" >
+ 			<div class="col-md-12">
  				<div class="material-input">
 	 				<label class="float-label">Nome</label>
-					<select id="id-pessoa" class="form-control" data-ng-model="idpessoa">
-						<option 
-							data-ng-repeat="proprietario in pes.pessoas"  
-							data-ng-if="proprietario.tp_pessoa == pessoa"
-							value="{{ proprietario.id }}"
-						>{{ proprietario.nm_pessoa }}</option>
+					<select id="corretor" class="form-control">
+						<option>Joao da Silva</option>
+						<option>Proprietario</option>
 					</select>
 					<span></span>
 				</div>
@@ -30,20 +26,9 @@
  			<div class="col-md-6">
  				<div class="material-input">
 	 				<label class="float-label">Mes</label>
-					<select id="mes" class="form-control" ng-model="mes">
-						<option value="">Selecione um Mês</option>
-						<option value="1">Janeiro</option>
-						<option value="2">Fevereiro</option>
-						<option value="3">Março</option>
-						<option value="4">Abril</option>
-						<option value="5">Maio</option>
-						<option value="6">Junho</option>
-						<option value="7">Julho</option>
-						<option value="8">Agosto</option>
-						<option value="9">Setembro</option>
-						<option value="10">Outubro</option>
-						<option value="11">Novembro</option>
-						<option value="12">Dezembro</option>
+					<select id="corretor" class="form-control">
+						<option>Janeiro</option>
+						<option>Proprietario</option>
 					</select>
 					<span></span>
 				</div>
@@ -51,27 +36,15 @@
  			<div class="col-md-6">
  				<div class="material-input">
 	 				<label class="float-label">Ano</label>
-					<select id="ano" class="form-control" ng-model="ano">
-						<option value="">Selecione um Ano</option>
-						<option value="2016">2016</option>
-						<option value="2017">2017</option>
-						<option value="2018">2018</option>
-						<option value="2019">2019</option>
-						<option value="2020">2020</option>
+					<select id="corretor" class="form-control">
+						<option>2015</option>
+						<option>Proprietario</option>
 					</select>
 					<span></span>
 				</div>
  			</div>
  			<div class="col-md-12">
- 				<!--<button id="btn-imovel" data-ng-click="vm.gerarRelatorio()" class="btn ripple pull-right">Gerar</button>-->
- 				<a href="admin/relatorios/proprietario/{{ idpessoa }}?ano={{ano}}&mes={{mes}}" id="btn-imovel"  class="btn ripple pull-right"
-					data-ng-if="pessoa == 'Proprietário'"
- 				>Gerar</a>
-
- 				<a href="admin/relatorios/inquilino/{{ idpessoa }}?ano={{ano}}&mes={{mes}}" id="btn-imovel" class="btn ripple pull-right"
-					data-ng-if="pessoa == 'Inquilino'"
- 				>Gerar</a>
-
+ 				<button id="btn-imovel" class="btn ripple pull-right">Gerar</button>
  			</div>
 		</form>
 	</div>

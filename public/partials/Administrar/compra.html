@@ -1,4 +1,4 @@
-<h1>Movimentação Contrato {{ vm.movimento.nr_contrato }} <span id="btn-venda" class="pull-right btn-aluguel btn-pago ripple" data-situacao="pago">Pago</span></h1>
+<h1>Movimentação Contrato {{ vm.movimento.nr_contrato }} <span id="btn-venda" class="pull-right btn-aluguel btn-{{ vm.movimento.situacao_pagamento.toLowerCase() }} ripple" data-situacao="pago" data-ng-click="vm.updatePagamento()">{{ vm.movimento.situacao_pagamento }}</span></h1>
 
 <div class="panel">
 	<div class="container container-responsive">
@@ -53,7 +53,7 @@
 				<div class="col-md-12">
 					<div class="material-input">
 						<label class="float-label">Desconto</label>
-						<input ng-model="desconto" id="desconto" type="text" class="form-control"> 
+						<input ng-model="desconto" id="desconto" type="number" max="{{ vm.movimento.valor }}" class="form-control"> 
 						<span></span>
 					</div>
 				</div>
@@ -63,9 +63,7 @@
 		<hr>
 
 		<input type="hidden" name="id_contrato" id="id_contrato" value="{{ vm.movimento.id }}">
-		<input type="hidden" name="id_proprietario" id="id_proprietario" value="{{ vm.movimento.proprietario.id }}">
-		<input type="hidden" name="id_inquilino" id="id_inquilino" value="{{ vm.movimento.inquilino.id }}">
-
+		
 		<button id="btn-imovel" data-ng-click="vm.setMovimentoVenda()" class="btn btn-submit ripple pull-right">Atualizar</button>
 	</div>
 </div>

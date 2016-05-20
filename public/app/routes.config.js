@@ -147,11 +147,7 @@
               montaRota('/admin/administrar/movimento/compra/:slug', 'Administrar/compra.html', 'AdministrarCtrl'),
               montaRota('/admin/administrar/movimento/aluguel/:slug', 'Administrar/imoveis.html', 'AdministrarCtrl'),
               
-              montaRota('/admin/relatorios',  'Relatorios/inicio.html', 'RelatorioCtrl'),
-              montaRota('/admin/relatorios/gerar/:slug',  'Relatorios/inicio.html', 'RelatorioCtrl'),
-              
-              montaRota('/admin/relatorios/inquilino/:slug',  'Relatorios/inquilino.html', 'RelatorioCtrl'),
-              montaRota('/admin/relatorios/proprietario/:slug',  'Relatorios/proprietario.html', 'RelatorioCtrl'),
+              montaRota('/admin/relatorios',    'Relatorios/inicio.html'),
               
               montaRota('/admin/configuracao',  'Configuracoes/index.html'),
       		]

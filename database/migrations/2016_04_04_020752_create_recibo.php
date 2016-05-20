@@ -25,8 +25,6 @@ class CreateRecibo extends Migration
             $table->integer('ano');
             $table->date('dt_emissao');
             $table->string('descricao');
-            $table->integer('id_movimentacao')->unsigned();
-            $table->foreign('id_movimentacao')->references('id')->on('movimentacaos');
             $table->boolean('ativo');
             $table->timestamps();
         });

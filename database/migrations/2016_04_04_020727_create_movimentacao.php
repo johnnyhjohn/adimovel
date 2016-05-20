@@ -14,8 +14,8 @@ class CreateMovimentacao extends Migration
     {
         Schema::create('movimentacaos', function(Blueprint $table){
             $table->increments('id');
-            //$table->integer('id_pessoa')->unsigned();
-            //$table->foreign('id_pessoa')->references('id')->on('pessoas');
+            //$table->integer('id_imovel')->unsigned();
+            //$table->foreign('id_imovel')->references('id')->on('imovels');
             $table->integer('id_contrato')->unsigned();
             $table->foreign('id_contrato')->references('id')->on('contratos');
             $table->integer('mes');
@@ -26,6 +26,7 @@ class CreateMovimentacao extends Migration
             //$table->integer('tp_movimentacao')->unsigned();
             //$table->foreign('tp_movimentacao')->references('id')->on('tipo_movimentacaos');
             $table->text('movimentacoes');
+            $table->integer('id_recibo')->nullable();
             $table->timestamps();
         });
     }

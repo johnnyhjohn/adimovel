@@ -172,14 +172,14 @@ $(document).ready(function(){
 				<div class='col-md-4'>\
 					<div class='material-input'>\
 						<label class='float-label'>Descrição</label>\
-						<input type='text' class='form-control' name=''>\
+						<input type='text' class='form-control desc' name=''>\
 						<span></span>\
 					</div>\
 				</div>\
 				<div class='col-md-3'>\
 					<div class='material-input'>\
 						<label class='float-label'>Valor</label>\
-						<input type='text' class='form-control vlr' name=''>\
+						<input type='number' class='form-control vlr' name=''>\
 						<span></span>\
 					</div>\
 				</div>\
@@ -202,12 +202,10 @@ function toggleActiveAlugelCompra(){
 		case true:
 			$('.btn-aluguel').removeClass('active');
 			$(this).addClass('active');
-			montaListaVenda();
 		break;
 		default:
 			$('.btn-compra').removeClass('active')
 			$(this).addClass('active');
-			montaListaLocacao();
 		break;
 	}
 }
@@ -353,27 +351,23 @@ function addMaterialInput(){
 function rippleEffect () {
   	event.preventDefault();
 	if ($(this).hasClass('btn-pago') && $(this).attr("id") != "btn-venda") {
-		$(this).removeClass('btn-pago').addClass('btn-atrasado');
-		$(this).html("Atrasado");
-		$(this).data('situacao','atrasado');
-	} else if ($(this).hasClass('btn-atrasado') && $(this).attr("id") != "btn-venda") {
-	 	$(this).removeClass('btn-atrasado').addClass('btn-pendente');
+	 	$(this).removeClass('btn-pago').addClass('btn-pendente');
 		$(this).html("Pendente");
-		$(this).data('situacao','pendente');
+		$(this).data('situacao','pago');
 	} else if ($(this).hasClass('btn-pendente') && $(this).attr("id") != "btn-venda") {
 		$(this).removeClass('btn-pendente').addClass('btn-pago');
 		$(this).html("Pago");
-		$(this).data('situacao','pago');
+		$(this).data('situacao','pendente');
 	}  
 
 	if ($(this).hasClass('btn-pago') && $(this).attr("id") == "btn-venda") {
 		$(this).removeClass('btn-pago').addClass('btn-pendente');
 		$(this).html("Pendente");
-		$(this).data('situacao','atrasado');
+		$(this).data('situacao','pago');
 	} else if($(this).hasClass('btn-pendente') && $(this).attr("id") == "btn-venda") {
 		$(this).removeClass('btn-pendente').addClass('btn-pago');
 		$(this).html("Pago");
-		$(this).data('situacao','pago');
+		$(this).data('situacao','pendente');
 	}  
   	var $div = $('<div/>'),
       	btnOffset = $(this).offset(),
