@@ -18,9 +18,10 @@ Route::group(['prefix' => 'data'], function()
 	Route::group(['prefix' => 'administrar'], function()
 	{
 		Route::put('situacao/{id}', 'AdministrarController@atualizaSituacao');
-	    Route::post('movimento', 'AdministrarController@createMovimento');
-	    Route::get('vendas', 'AdministrarController@getImoveisVendas');
+ 	    Route::get('vendas', 'AdministrarController@getImoveisVendas');
 	    Route::get('aluguel', 'AdministrarController@getImoveisAluguel');
+
+	    Route::post('movimento', 'AdministrarController@createMovimento');
 	    Route::post('', 'AdministrarController@create');
 	    Route::get('{id?}', 'AdministrarController@index');
 	    Route::put('{id}', 'AdministrarController@update');
@@ -29,7 +30,6 @@ Route::group(['prefix' => 'data'], function()
 
 	Route::group(['prefix' => 'imoveis'], function()
 	{
-		// Route::put('situacao/{id}', 'ImovelController@atualizaSituacao');
 	    Route::post('', 'ImovelController@create');
 	    Route::get('{id?}', 'ImovelController@index');
 	    Route::put('{id}', 'ImovelController@update');
@@ -60,6 +60,17 @@ Route::group(['prefix' => 'data'], function()
 	    Route::get('{id?}', 'UsuarioController@index');
 	    Route::put('{id}', 'UsuarioController@update');
 	    Route::delete('{id}', 'UsuarioController@destroy');
+	});
+
+	Route::group(['prefix' => 'relatorios'], function()
+	{
+	    Route::get('{id?}', 'RelatorioController@gerar');
+	    Route::get('inquilino/{id?}', 'RelatorioController@gerarInquilino');
+	    Route::get('proprietario/{id?}', 'RelatorioController@gerarProprietario');
+	    //Route::get('{id?}', 'RelatorioController@index');
+	    //Route::post('', 'RelatorioController@create');
+	    //Route::put('{id}', 'RelatorioController@update');
+	    //Route::delete('{id}', 'RelatorioController@destroy');
 	});
 
 	Route::group(['prefix' => 'busca'], function()

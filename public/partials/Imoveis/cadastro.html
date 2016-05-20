@@ -28,7 +28,6 @@
 				<select id="proprietario" class="form-control">
 					<option 
 						data-ng-repeat="corretor in user.pessoas"  
-						data-ng-if="corretor.tp_pessoa == 'Proprietário'"
 						value="{{ corretor.id }}"
 						selected 
 						>{{ corretor.nm_pessoa }}</option>

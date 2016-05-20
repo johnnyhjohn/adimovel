@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\ViewObject\ImovelVO;
-use App\Http\Enum\ImoveisEnum;
+//use App\Http\Enum\UsuarioEnum;
 
 use App\JSONUtils;
 use App\Messages;
@@ -74,11 +74,10 @@ class ImovelController extends Controller
             $imovel->valor            = $request->input('valor');
             $imovel->vitrine          = $request->input('vitrine');
             $imovel->financiamento    = $request->input('financiamento');
-            $imovel->finalidade       = $request->input('finalidade');
             $imovel->dt_cadastrado    = $request->input('dt_cadastrado');
             $imovel->latitude         = $request->input('lat');
             $imovel->longitude        = $request->input('lng');
-            $imovel->situacao_imovel  = $request->input('situacao');
+            $imovel->situacao_imovel  = $request->input('finalidade');
             $imovel->ativo = true;
             // dd($imovel);
             
@@ -111,30 +110,26 @@ class ImovelController extends Controller
         ];
     }
 
-    public function atualizaSituacao(Request $request, $id)
-    {
-        try{
-            $imovel = Imovel::find($id);
-            $imovel->situacao_imovel = ($request->input('situacao') == "pago") ? true : false;
-
-            $imovel->save();
-            return JSONUtils::returnSuccess($imovel->titulo_anuncio .' alterado com sucesso.', $imovel);
-        }catch(Exception $e){
-            return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
-        }
-    }
-
     public function update(Request $request, $id)
     {
         try{
             $imovel = Imovel::find($id);
             $imovel->tp_imovel        = $request->input('tipo');
+            // $imovel->tp_imovel      = 1;
+
             $imovel->titulo_anuncio   = $request->input('nome');
             $imovel->id_proprietario  = $request->input('proprietario');
+
             $imovel->id_corretor      = $request->input('corretor');
+
             $imovel->codigo_interno   = $request->input('codigo_interno');
+            // $imovel->codigo_interno   = 'cod';
+
             $imovel->endereco         = $request->input('endereco');
+            
             $imovel->nm_endereco      = $request->input('nm_endereco');
+            // $imovel->nm_endereco      = 12;
+
             $imovel->bairro           = $request->input('bairro');
             $imovel->cidade           = $request->input('cidade');
             $imovel->nm_cep           = $request->input('cep');
@@ -143,16 +138,31 @@ class ImovelController extends Controller
             $imovel->qt_banheiros     = $request->input('banheiros');
             $imovel->qt_vagasgaragem  = $request->input('garagens');
             $imovel->referencia       = $request->input('referencia');
+
             $imovel->descricao        = $request->input('descricao');
+
             $imovel->valor            = $request->input('valor');
             $imovel->vitrine          = $request->input('vitrine');
+
             $imovel->financiamento    = $request->input('financiamento');
-            $imovel->finalidade       = $request->input('finalidade');
+            // $imovel->financiamento      = true;
+
             $imovel->dt_cadastrado    = $request->input('dt_cadastrado');
+
             $imovel->latitude         = $request->input('lat');
+            // $imovel->latitude           = '123';
+
             $imovel->longitude        = $request->input('lng');
-            $imovel->situacao_imovel  = $request->input('situacao');
+            // $imovel->longitude          = '432';
+
+            $imovel->situacao_imovel  = $request->input('finalidade');
+            // $imovel->situacao_imovel  = 'fin';
             $imovel->ativo = true;
+            // dd($imovel);
+            // $validator = \Validator::make($request->all(), $this->validaCadastro());
+            // if ($validator->fails()) {
+            //     return JSONUtils::returnDanger('Problema de validação verifique os campos e tente novamente.', "Erro");   
+            // }
 
             $validator = \Validator::make($request->all(), $this->validaCadastro());
             if ($validator->fails()) {

@@ -15,26 +15,26 @@
 		}
 
 		vm.colunas = [
-			// {
-			// 	value 	: 'id_imovel',
-			// 	name : 'Imovel'	
-			// },
-			// {
-			// 	value 	: 'id_proprietario',
-			// 	name : 'Proprietario'
-			// },
-			// {
-			// 	value 	: 'id_inquilino',
-			// 	name : 'Inquilino'
-			// },
+	/*		{
+				value 	: 'imovel',
+				name : 'Imovel'	
+			},
 			{
+				value 	: 'proprietario',
+				name : 'Proprietario'
+			},
+			{
+				value 	: 'inquilino',
+				name : 'Inquilino'
+			},
+	*/		{
 				value 	: 'nr_contrato',
 				name : 'Numero Contrato'
-			},
-			// {
-			// 	value 	: 'finalidade',
-			// 	name : 'Finalidade'
-			// }
+			}//,
+	/*		{
+				value 	: 'finalidade',
+				name : 'Finalidade'
+			} */
 		];
 
 
@@ -144,7 +144,7 @@
 					(value.finalidade == "VEN") ? value.finalidade = "Venda" : value.finalidade = "Aluguel";
 					(value.situacao_pagamento == true) ? value.situacao_pagamento = "Pago" : value.situacao_pagamento = "Pendente";
 				});
-				
+				console.log(res);
 				vm.movimentos = res[0].objeto;
 			});
 		}
@@ -154,10 +154,9 @@
 				Request.get("administrar/" + $routeParams.slug)
 					.then(function(res){
 						var value = res[0].objeto;
-						(value.finalidade == "VEN") ? value.finalidade = "Venda" : value.finalidade = "Aluguel";
-						(value.situacao_pagamento == true) ? value.situacao_pagamento = "Pago" : value.situacao_pagamento = "Pendente";
++						(value.finalidade == "VEN") ? value.finalidade = "Venda" : value.finalidade = "Aluguel";
++						(value.situacao_pagamento == true) ? value.situacao_pagamento = "Pago" : value.situacao_pagamento = "Pendente";
 						vm.movimento = res[0].objeto;
-						
 				});
 			}
 		}
@@ -174,6 +173,9 @@
 			};
 			
 			var data = {
+				id_proprietario	: $("#id_proprietario").val(),
+				id_inquilino	: $("#id_inquilino").val(),
+				id_usuario		: vm.user.id,
 				id_contrato 	: $("#id_contrato").val(),
 				valor 	 		: $("#total").text(),
 				movimentacoes	: movimentacao
@@ -195,6 +197,13 @@
 		
 		vm.setMovimentoAluguel = function(){
 			
+			var movimentacao = { 
+				movimento : "DESCONTO", 
+				valor : "", 
+				credito : true 
+			};
+			
+
 			var movimentacao = {}
 			, 	total = $("#total").text();
 
@@ -234,10 +243,10 @@
 			
 			var data = {
 				id_contrato 	: $("#id_contrato").val(),
+				proprietario : $("#id_proprietario").val(),
 				valor 	 		: total,
-				movimentacoes	: movimentacao
+ 				movimentacoes	: movimentacao
 			}
-
 			Request.set("administrar/movimento", data).then(function(res){
 				var alerta = new alert();
 				if(res[0].codigo == "SUCCESS"){
@@ -258,6 +267,7 @@
 			var total = valor - desconto;
 			$("#total").html(total);
 			$("#valor-total").val(total);
+		
 		}
 
 		vm.updatePagamento = function(){
@@ -267,7 +277,7 @@
 				situacao : situacao,
 			}
 
-			Request.put("administrar/situacao/" + vm.movimento.id, data)
+			Request.put("administrar/situacao/"  +vm.movimento.id, data)
 				.then(function(res){
 					console.log(res, data);
 					var alerta = new alert();

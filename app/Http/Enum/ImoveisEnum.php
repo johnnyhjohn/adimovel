@@ -8,7 +8,7 @@ class ImoveisEnum extends Enum {
 
     const AMBOS 		= "AMB";
     const LOCACAO	 	= "LOC";
-    const VENDA	 		= "VEN";
+    const VENDA	 	= "VEN";
 }
 
 ?>

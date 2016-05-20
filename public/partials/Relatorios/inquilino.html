@@ -1,0 +1,47 @@
+<h1>Relatório Inquilino</h1>
+
+<div class="panel">
+	<div class="container container-responsive">
+		<div>
+			<h3>Mes: {{ vm.relatoriosinquilino[0].mes }}<span class="pull-right">Ano: {{ vm.relatoriosinquilino[0].ano }}</span></h3>
+			<h3>
+				Proprietario: {{ vm.relatoriosinquilino[0].proprietario.nm_pessoa }} 
+				<span class="pull-right">CPF: {{ vm.relatoriosinquilino[0].proprietario.nr_cpf }}</span>
+			</h3>
+			<h3>
+				Inquilino: {{ vm.relatoriosinquilino[0].inquilino.nm_pessoa }}
+				<span class="pull-right">CPF: {{ vm.relatoriosinquilino[0].inquilino.nr_cpf }}</span>
+			</h3>
+			<h3>
+				Imóvel: {{ vm.relatoriosinquilino[0].movimentacao.contrato.imovel.codigo_interno }} 
+				- {{ vm.relatoriosinquilino[0].movimentacao.contrato.imovel.endereco }}
+				, {{ vm.relatoriosinquilino[0].movimentacao.contrato.imovel.nm_endereco }} 
+			</h3>
+		</div>
+		<h4 class="text-center">Movimentações do Mês</h4>
+		<table class="table table-hover table-responsive">
+			<tr id="table-head">
+				<th>Titulo</th>
+				<th>Descrição</th>
+				<th>Valor</th>
+			</tr>
+			<tr>
+				<td>Aluguel</td>
+				<td></td>
+				<td>R$ 800,00</td>
+			</tr>
+			<tr>
+				<td>Taxa Administrativa</td>
+				<td></td>
+				<td>R$ 100,00</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td>TOTAL: <strong>{{ vm.relatoriosinquilino[0].movimentacao.valor }}</strong></td>
+			</tr>	
+		</table>
+
+		<button class="btn btn-primary pull-right">Imprimir</button>
+	</div>
+</div>
