@@ -202,12 +202,18 @@ function toggleActiveAlugelCompra(){
 		case true:
 			$('.btn-aluguel').removeClass('active');
 			$(this).addClass('active');
+<<<<<<< HEAD
 			//montaListaVenda();
+=======
+>>>>>>> fa5d8e1a7c7be467d7966294e727450d9a58c18b
 		break;
 		default:
 			$('.btn-compra').removeClass('active')
 			$(this).addClass('active');
+<<<<<<< HEAD
 			//montaListaLocacao();
+=======
+>>>>>>> fa5d8e1a7c7be467d7966294e727450d9a58c18b
 		break;
 	}
 }
@@ -354,6 +360,7 @@ function rippleEffect () {
   	event.preventDefault();
 	if ($(this).hasClass('btn-pago') && $(this).attr("id") != "btn-venda") {
 	 	$(this).removeClass('btn-pago').addClass('btn-pendente');
+<<<<<<< HEAD
  		$(this).html("Pendente");
 		$(this).data('situacao','pago');
  	} else if ($(this).hasClass('btn-pendente') && $(this).attr("id") != "btn-venda") {
@@ -371,6 +378,25 @@ function rippleEffect () {
  		$(this).html("Pago");
 		$(this).data('situacao','pendente');
  	} 
+=======
+		$(this).html("Pendente");
+		$(this).data('situacao','pago');
+	} else if ($(this).hasClass('btn-pendente') && $(this).attr("id") != "btn-venda") {
+		$(this).removeClass('btn-pendente').addClass('btn-pago');
+		$(this).html("Pago");
+		$(this).data('situacao','pendente');
+	}  
+
+	if ($(this).hasClass('btn-pago') && $(this).attr("id") == "btn-venda") {
+		$(this).removeClass('btn-pago').addClass('btn-pendente');
+		$(this).html("Pendente");
+		$(this).data('situacao','pago');
+	} else if($(this).hasClass('btn-pendente') && $(this).attr("id") == "btn-venda") {
+		$(this).removeClass('btn-pendente').addClass('btn-pago');
+		$(this).html("Pago");
+		$(this).data('situacao','pendente');
+	}  
+>>>>>>> fa5d8e1a7c7be467d7966294e727450d9a58c18b
   	var $div = $('<div/>'),
       	btnOffset = $(this).offset(),
   		xPos = event.pageX - btnOffset.left,

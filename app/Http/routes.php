@@ -18,10 +18,15 @@ Route::group(['prefix' => 'data'], function()
 	Route::group(['prefix' => 'administrar'], function()
 	{
 		Route::put('situacao/{id}', 'AdministrarController@atualizaSituacao');
+<<<<<<< HEAD
  	    Route::get('vendas', 'AdministrarController@getImoveisVendas');
 	    Route::get('aluguel', 'AdministrarController@getImoveisAluguel');
 
+=======
+>>>>>>> fa5d8e1a7c7be467d7966294e727450d9a58c18b
 	    Route::post('movimento', 'AdministrarController@createMovimento');
+	    Route::get('vendas', 'AdministrarController@getImoveisVendas');
+	    Route::get('aluguel', 'AdministrarController@getImoveisAluguel');
 	    Route::post('', 'AdministrarController@create');
 	    Route::get('{id?}', 'AdministrarController@index');
 	    Route::put('{id}', 'AdministrarController@update');
@@ -30,6 +35,7 @@ Route::group(['prefix' => 'data'], function()
 
 	Route::group(['prefix' => 'imoveis'], function()
 	{
+		// Route::put('situacao/{id}', 'ImovelController@atualizaSituacao');
 	    Route::post('', 'ImovelController@create');
 	    Route::get('{id?}', 'ImovelController@index');
 	    Route::put('{id}', 'ImovelController@update');
