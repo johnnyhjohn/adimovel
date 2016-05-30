@@ -30,10 +30,6 @@
 			{
 				value 	: 'endereco',
 				name : 'Endereço'
-			},
-			{
-				value 	: 'tp_pessoa',
-				name : 'Tipo'
 			}
 		];
 
@@ -52,7 +48,6 @@
 			var data = {
 				token 	 : vm.user.token.token,
 				nome 	 : $("#nome").val(),
-				tipo 	 : $("#tipo").val(),
 				dta_nasc : $("#dta_nasc").val(),
 				email 	 : $("#email").val(),
 				telefone : $("#telefone").val(),
@@ -81,7 +76,6 @@
 			var data = {
 				token 	 : vm.user.token.token,
 				nome 	 : $("#nome").val(),
-				tipo 	 : $("#tipo").val(),
 				dta_nasc : $("#dta_nasc").val(),
 				email 	 : $("#email").val(),
 				telefone : $("#telefone").val(),
@@ -135,7 +129,6 @@
 
 			Request.set('busca/pessoa', data).then(function(res) {
 				angular.forEach(res[0].objeto, function(value, key) {
-					(value.tp_pessoa == "INQ") ? value.tp_pessoa = "Inquilino" : value.tp_pessoa = "Proprietário";
 					(value.ativo == true) ? value.ativo = "Ativo" : value.ativo = "Inativo";
 				});
 				vm.pessoas = res[0].objeto;
@@ -146,7 +139,6 @@
 		function getPessoas(){
 			Request.get("pessoa").then(function(res){
 				angular.forEach(res[0].objeto, function(value, key) {
-					(value.tp_pessoa == "INQ") ? value.tp_pessoa = "Inquilino" : value.tp_pessoa = "Proprietário";
 					(value.ativo == true) ? value.ativo = "Ativo" : value.ativo = "Inativo";
 				});
 				console.log(res);

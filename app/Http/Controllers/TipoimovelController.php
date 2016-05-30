@@ -114,9 +114,14 @@ class TipoImovelController extends Controller
     	try{
 	    	$input = $request->all();
 
-	    	$busca = TpImovel::where($input['coluna'],'like', $input['valor'].'%')
+            if($input['valor'] == ''){
+                $busca = TpImovel::orderBy('titulo', 'asc')->get();
+
+            }else{
+	    	  $busca = TpImovel::where($input['coluna'],'like', $input['valor'].'%')
 	    					->orderBy('titulo', 'asc')
 	    					->get();
+            }
 
 	    	return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $busca);
 	    } catch(Exception $e){

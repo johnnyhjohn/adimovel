@@ -15,28 +15,6 @@
 		}
 
 		vm.colunas = [
-<<<<<<< HEAD
-	/*		{
-				value 	: 'imovel',
-				name : 'Imovel'	
-			},
-			{
-				value 	: 'proprietario',
-				name : 'Proprietario'
-			},
-			{
-				value 	: 'inquilino',
-				name : 'Inquilino'
-			},
-	*/		{
-				value 	: 'nr_contrato',
-				name : 'Numero Contrato'
-			}//,
-	/*		{
-				value 	: 'finalidade',
-				name : 'Finalidade'
-			} */
-=======
 			// {
 			// 	value 	: 'id_imovel',
 			// 	name : 'Imovel'	
@@ -57,7 +35,6 @@
 			// 	value 	: 'finalidade',
 			// 	name : 'Finalidade'
 			// }
->>>>>>> fa5d8e1a7c7be467d7966294e727450d9a58c18b
 		];
 
 
@@ -177,13 +154,9 @@
 				Request.get("administrar/" + $routeParams.slug)
 					.then(function(res){
 						var value = res[0].objeto;
-<<<<<<< HEAD
-+						(value.finalidade == "VEN") ? value.finalidade = "Venda" : value.finalidade = "Aluguel";
-+						(value.situacao_pagamento == true) ? value.situacao_pagamento = "Pago" : value.situacao_pagamento = "Pendente";
-=======
 						(value.finalidade == "VEN") ? value.finalidade = "Venda" : value.finalidade = "Aluguel";
 						(value.situacao_pagamento == true) ? value.situacao_pagamento = "Pago" : value.situacao_pagamento = "Pendente";
->>>>>>> fa5d8e1a7c7be467d7966294e727450d9a58c18b
+
 						vm.movimento = res[0].objeto;
 						
 				});
@@ -303,17 +276,10 @@
 			
 			var data = {
 				id_contrato 	: $("#id_contrato").val(),
-<<<<<<< HEAD
 				proprietario : $("#id_proprietario").val(),
 				valor 	 		: total,
  				movimentacoes	: movimentacao
 			}
-=======
-				valor 	 		: total,
-				movimentacoes	: movimentacao
-			}
-
->>>>>>> fa5d8e1a7c7be467d7966294e727450d9a58c18b
 			Request.set("administrar/movimento", data).then(function(res){
 				var alerta = new alert();
 				if(res[0].codigo == "SUCCESS"){
@@ -336,7 +302,7 @@
 			$("#valor-total").val(total);
 		
 		}
-
+/*
 		vm.updatePagamento = function(){
 			var situacao = $(".btn-aluguel").data('situacao');
 
@@ -368,7 +334,7 @@
 				vm.movimentos = res[0].objeto;
 			});
 		}
-
+*/
 		vm.updatePagamento = function(){
 			var situacao = $(".btn-aluguel").data('situacao');
 

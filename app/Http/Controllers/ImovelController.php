@@ -153,14 +153,12 @@ class ImovelController extends Controller
             $imovel->longitude        = $request->input('lng');
             $imovel->situacao_imovel  = $request->input('situacao');
             $imovel->ativo = true;
-<<<<<<< HEAD
+
             // dd($imovel);
             // $validator = \Validator::make($request->all(), $this->validaCadastro());
             // if ($validator->fails()) {
             //     return JSONUtils::returnDanger('Problema de validação verifique os campos e tente novamente.', "Erro");   
             // }
-=======
->>>>>>> fa5d8e1a7c7be467d7966294e727450d9a58c18b
 
             $validator = \Validator::make($request->all(), $this->validaCadastro());
             if ($validator->fails()) {

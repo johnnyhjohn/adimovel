@@ -62,9 +62,6 @@
 
 		function getImoveis(){
 			Request.get("imoveis").then(function(res){
-				angular.forEach(res[0].objeto, function(value, key) {
-					(value.tipo_pessoa == "INQ") ? value.tipo_pessoa = "Inquilino" : value.tipo_pessoa = "Proprietário";
-				});
 				vm.imoveis = res[0].objeto;
 			});
 		}

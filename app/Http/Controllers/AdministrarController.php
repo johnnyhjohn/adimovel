@@ -42,7 +42,7 @@ class AdministrarController extends Controller
             return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
         }    
     }
-
+/*
     public function getImoveisVendas()
     {
         try{    
@@ -92,7 +92,7 @@ class AdministrarController extends Controller
             return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
         }
     }
-
+*/
     public function show($id)
     {
         try{
@@ -333,12 +333,6 @@ dd($request->all());
         }
     }
 
-    public function validaMovimento()
-    {
-        return [
-            'valor' => 'numeric|min:0',
-        ];
-    }
 
     // Só pra não perder o método
     public function movimentacao($id)

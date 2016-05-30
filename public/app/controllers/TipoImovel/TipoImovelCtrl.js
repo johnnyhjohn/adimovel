@@ -53,8 +53,7 @@
 				valor : $("#busca").val(),
 				coluna: $("#coluna").val()
 			}
-			console.log(data, '1')
-
+			
 			Request.set('busca/tipoimoveis', data).then(function(res) {
 				angular.forEach(res[0].objeto, function(value, key) {
 					//(value.tp_funcionario == "COR") ? value.tp_funcionario = "Corretor" : value.tp_funcionario = "Administrador";

@@ -14,7 +14,7 @@ class CreatePessoa extends Migration
     {
         Schema::create('pessoas', function(Blueprint $table){
             $table->increments('id');
-            $table->char('tp_pessoa', 3);
+            //$table->char('tp_pessoa', 3);
             $table->string('nm_pessoa');
             $table->date('dt_nascimento');
             $table->string('nr_cpf', 15)->unique();

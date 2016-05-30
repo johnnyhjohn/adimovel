@@ -15,15 +15,10 @@
 				<select id="corretor" class="form-control">
 					<option 
 						data-ng-repeat="corretor in user.corretores"  
-						data-ng-if="corretor.tp_funcionario == 'COR' && corretor.id == vm.imovel.id_corretor.id"
+						data-ng-selected="corretor.id == vm.imovel.id_corretor.id"
 						value="{{ corretor.id }}"
 						selected 
 						>{{ corretor.nm_usuario }}</option>
-					<option 
-						data-ng-repeat="corretor in user.corretores"  
-						data-ng-if="corretor.tp_funcionario == 'COR' && corretor.id !== vm.imovel.id_corretor.id"
-						value="{{ corretor.id }}"
-						>{{ corretor.nm_usuario }} </option>
 
 				</select>
 				<span></span>
@@ -40,7 +35,7 @@
 						>{{ corretor.nm_pessoa }}</option>
 					<option 
 						data-ng-repeat="corretor in user.corretores"  
-						data-ng-if="corretor.tp_funcionario == 'COR' && corretor.id !== vm.imovel.id_corretor.id"
+						data-ng-if="corretor.id !== vm.imovel.id_corretor.id"
 						value="{{ corretor.id }}"
 						>{{ corretor.nm_usuario }} </option>
 

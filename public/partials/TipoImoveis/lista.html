@@ -31,8 +31,15 @@
 				<th id="projeto" class="filtro">Status</th>
 				<th>Opções</th>
 			</tr>
+			<tr class="text-center" data-ng-if="vm.tipoimoveis == null || vm.tipoimoveis == '' ">
+				<td></td>
+				<td>Nenhum
+				registro
+				encontrado</td>
+				<td></td>
+				<td></td>
+			</tr>
 			<tr data-ng-repeat="tipoimovel in vm.tipoimoveis">
-
 				<td>{{ tipoimovel.id }}</td>
 				<td>{{ tipoimovel.titulo }}</td>
 				<td class="pago">{{ tipoimovel.ativo }}</td>

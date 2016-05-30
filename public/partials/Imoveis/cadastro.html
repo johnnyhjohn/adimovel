@@ -15,7 +15,6 @@
 				<select id="corretor" class="form-control">
 					<option 
 						data-ng-repeat="corretor in vm.usuarios"  
-						data-ng-if="corretor.tp_funcionario == 'Corretor'"
 						value="{{ corretor.id }}"
 						>{{ corretor.nm_usuario }}</option>
 				</select>
@@ -28,7 +27,6 @@
 				<select id="proprietario" class="form-control">
 					<option 
 						data-ng-repeat="corretor in user.pessoas"  
-						data-ng-if="corretor.tp_pessoa == 'Proprietário'"
 						value="{{ corretor.id }}"
 						selected 
 						>{{ corretor.nm_pessoa }}</option>
