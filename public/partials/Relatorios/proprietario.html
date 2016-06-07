@@ -2,8 +2,8 @@
 
 <div class="panel">
 	<div class="container container-responsive">
-		<h2>Mes: Janeiro<span class="pull-right">Ano: 2016</span></h2>
-		<h2>Proprietario: Juca bala <span class="pull-right">CPF: 123124214</span></h2>
+		<h2>Mes: {{ vm.relatoriosproprietario[0].mes }}<span class="pull-right">Ano: {{ vm.relatoriosproprietario[0].ano }}</span></h2>
+		<h2>Proprietario: {{ vm.relatoriosproprietario[0].proprietario.nm_pessoa }}<span class="pull-right">CPF: {{ vm.relatoriosproprietario[0].proprietario.nr_cpf }}</span></h2>
 		<h3 class="text-center">Imóveis Alugados</h3>
 		<table class="table table-hover">
 			<tr id="table-head">
@@ -45,6 +45,6 @@
 				<td>Av ads</td>
 			</tr>	
 		</table>
-		<button class="btn btn-primary pull-right">Imprimir</button>
+		<button class="btn btn-primary pull-right" onclick="window.print();">Imprimir</button>
 	</div>
 </div>

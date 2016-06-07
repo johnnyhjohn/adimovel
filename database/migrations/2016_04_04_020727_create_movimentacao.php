@@ -18,6 +18,8 @@ class CreateMovimentacao extends Migration
             //$table->foreign('id_pessoa')->references('id')->on('pessoas');
             $table->integer('id_contrato')->unsigned();
             $table->foreign('id_contrato')->references('id')->on('contratos');
+            $table->integer('id_imovel')->unsigned();
+            $table->foreign('id_imovel')->references('id')->on('imovels');
             $table->integer('mes');
             $table->integer('ano');
             $table->double('valor', 20,2);

@@ -20,7 +20,6 @@
 					<select id="id-pessoa" class="form-control" data-ng-model="idpessoa">
 						<option 
 							data-ng-repeat="proprietario in pes.pessoas"  
-							data-ng-if="proprietario.tp_pessoa == pessoa"
 							value="{{ proprietario.id }}"
 						>{{ proprietario.nm_pessoa }}</option>
 					</select>

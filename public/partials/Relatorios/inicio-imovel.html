@@ -1,0 +1,39 @@
+<h1>Relatórios</h1>
+
+<div class="panel">
+	<div class="container container-responsive" data-ng-controller="ImovelCtrl as imv">
+		<p>Selecione um relatório para gerar:</p>
+		<form>
+ 			<div class="col-md-8" >
+ 				<div class="material-input" >
+	 				<label class="float-label">Imóvel</label>
+					<select id="id-pessoa" class="form-control" ng-model="idimovel">
+						<option 
+							data-ng-repeat="imovel in imv.imoveis"  
+							value="{{ imovel.id }}"
+						>{{ imovel.codigo_interno }} - {{ imovel.endereco }} n°{{ imovel.nm_endereco }}</option>
+					</select>
+					<span></span>
+				</div>
+ 			</div>
+ 			<div class="col-md-4">
+ 				<div class="material-input">
+	 				<label class="float-label">Ano</label>
+					<select id="ano" class="form-control" ng-model="ano">
+						<option value="">Selecione um Ano</option>
+						<option value="2016">2016</option>
+						<option value="2017">2017</option>
+						<option value="2018">2018</option>
+						<option value="2019">2019</option>
+						<option value="2020">2020</option>
+					</select>
+					<span></span>
+				</div>
+ 			</div>
+ 			<div class="col-md-12">
+ 				<a id="btn-imovel" href="/admin/relatorios/imovel/{{ idimovel }}?ano={{ ano }}" class="btn ripple pull-right">Gerar</a>
+
+ 			</div>
+		</form>
+	</div>
+</div>

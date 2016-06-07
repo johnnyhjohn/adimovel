@@ -108,9 +108,36 @@ class RelatorioController extends Controller
                 $mes        = $request->input('mes');
                 $ano        = $request->input('ano');
                 
-                $recibo = Recibo::where('id_proprietario', '=', $id)
+                $recibo = Recibo::where('recibos.id_proprietario', '=', $id)
+                                    ->rightJoin('imovels', 'recibos.id_imovel', '=', 'imovels.id')
                                     ->where('ano', '=', $ano)
                                     ->where('mes', '=', $mes)
+                                    ->orderBy('recibos.id', 'asc')
+                                    ->get();
+                
+                //$contrato = Contrato::orderBy('id', 'asc')->where('ativo', '=', 'true')->get();
+                $return = array();
+            
+                foreach ($recibo as $key => $value) {
+                    $cVO = new ReciboVO(Recibo::find($value->id));
+                    $return[] = $cVO;
+                }
+                dd($return);
+                
+                return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $return);
+            
+        } catch(Exception $e){
+            return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
+        }    
+    }
+
+    public function gerarImovel($id, Request $request)
+    {  
+        try{
+                $ano        = $request->input('ano');
+                
+                $recibo = Recibo::where('id_imovel', '=', $id)
+                                    ->where('ano', '=', $ano)
                                     ->orderBy('id', 'asc')
                                     ->get();
                 

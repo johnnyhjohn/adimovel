@@ -21,7 +21,7 @@
 		}, 500);
 
 		function active(){
-			var functions = [getRelatorioInquilino(), getRelatorioProprietario()];
+			var functions = [getRelatorioInquilino(), getRelatorioProprietario(), getRelatorioImovel()];
 		}
 
 		function getRelatorioInquilino(){
@@ -34,7 +34,8 @@
 				Request.get("relatorios/inquilino/" + $routeParams.slug, data )
 					.then(function(res){
 						vm.relatoriosinquilino = res[0].objeto;
-						console.log(vm.relatoriosinquilino);
+						vm.movimentacoes = res[0].objeto[0].movimentacao.movimentacoes;
+						console.log(vm.movimentacoes);						
 				});
 			}
 		}
@@ -49,11 +50,24 @@
 				Request.get("relatorios/proprietario/" + $routeParams.slug, data )
 					.then(function(res){
 						vm.relatoriosproprietario = res[0].objeto;
+						console.log(vm.relatoriosproprietario);
 				});
 			}
 		}
 
-		
+		function getRelatorioImovel(){
+			var data = {
+				id 		: $("#idimovel").val(),
+				ano 	: $routeParams.ano
+			}
+
+			if($routeParams.slug !== undefined){
+				Request.get("relatorios/imovel/" + $routeParams.slug, data )
+					.then(function(res){
+						vm.relatoriosimovel = res[0].objeto;
+				});
+			}
+		}
 
 	}
 

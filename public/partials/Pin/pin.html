@@ -1,0 +1,172 @@
+<h1>PIN</h1>
+
+<div class="panel">
+	<div class="container container-responsive" data-ng-controller="mapaCtrl as vm">	
+		
+		<div class="col-md-12 text-center">
+			<label class="float-label" id="demo">Clique no botão para obter sua localização:</label>
+			<button class="btn btn-primary" onclick="getLocation()">Clique aqui</button>
+        </div>
+        <div class="col-md-12">
+			
+			<div class="col-md-12" >
+	            <div id="mapa"></div>
+	            <input id="pac-input" class="controls"> 			
+            </div>
+
+			<h2>Informações do Imóvel</h2>
+			<div class="col-md-12">
+				<div class="material-input select">
+					<label for="referencia" class="float-label">Título</label>
+					<input type="text" id="referencia" name="cep" class="form-control cep" value="">
+					<span></span>
+				</div>	
+            </div>
+            <div class="col-md-3">
+				<div class="material-input select">
+					<label for="endereco" class="float-label">Endereço</label>
+					<input type="text" id="endereco" name="endereco" class="form-control endereco" value="">
+					<span></span>
+				</div>	
+            </div>
+            <div class="col-md-3">
+				<div class="material-input select">
+					<label for="nr_endereco" class="float-label">N° Endereço</label>
+					<input type="number" min='0' id="nr_endereco" name="nr_endereco" class="form-control endereco" value="">
+					<span></span>
+				</div>	
+            </div>
+            <div class="col-md-3">
+				<div class="material-input select">
+					<label for="bairro" class="float-label">Bairro</label>
+					<input type="text" id="bairro" name="bairro" class="form-control bairro" value="">
+					<span></span>
+				</div>	
+            </div>
+            <div class="col-md-3">
+				<div class="material-input select">
+					<label for="cep" class="float-label">CEP</label>
+					<input type="text" id="cep" name="cep" class="form-control cep" value="">
+					<span></span>
+				</div>	
+            </div>
+            <div class="col-md-3">
+				<div class="material-input select">
+					<label for="cidade" class="float-label">Cidade</label>
+					<input type="text" id="cidade" name="cidade" class="form-control cidade" value="">
+					<span></span>
+				</div>	
+            </div>				
+            <div class="col-md-12">
+				<div class="material-input select">
+					<label for="referencia" class="float-label">Observações</label>
+					<input type="text" id="referencia" name="cep" class="form-control cep" value="">
+					<span></span>
+				</div>	
+            </div>
+            
+ 			
+		</div>
+
+	</div>
+</div>
+<script type="text/javascript">
+
+var geocode;
+
+function getLocation()
+{
+  	if (navigator.geolocation)
+    {
+    	geocode = new google.maps.Geocoder();
+    	navigator.geolocation.getCurrentPosition(showPosition,showError);
+    }
+}
+ 
+function showPosition(position)
+{
+	lat=position.coords.latitude;
+	lon=position.coords.longitude;
+	latlon=new google.maps.LatLng(lat, lon)
+        
+		geocode.geocode({ 'latLng': latlon }, function (results, status) {
+	            if (status == google.maps.GeocoderStatus.OK) {
+	                if (results[1]) {
+	                    for (var i = 0; i < results[0].address_components.length; i++) {
+	                        
+	                        for (var b = 0; b < results[0].address_components[i].types.length; b++) {
+	                        	console.log(results[0].address_components[i]);
+	                            if (results[0].address_components[i].types[b] == "administrative_area_level_1") {
+	                                state = results[0].address_components[i];
+	                            }
+	                            if (results[0].address_components[i].types[b] == "locality") {
+	                                city = results[0].address_components[i];
+	                            }
+	                            if (results[0].address_components[i].types[b] == "postal_code") {
+	                                postalCode = results[0].address_components[i];
+	                            }
+	                            if (results[0].address_components[i].types[b] == "route") {
+	                                route = results[0].address_components[i];
+	                            }
+	                            if (results[0].address_components[i].types[b] == "street_number") {
+	                                street_number = results[0].address_components[i];
+	                            }
+	                            if (results[0].address_components[i].types[b] == "sublocality_level_1") {
+	                                sublocality = results[0].address_components[i];
+	                            }
+	                        }
+	                    }
+	                	
+	                	var endereco = route.short_name;
+	                	var numero 	= street_number.short_name;
+	                	var estado 	= state.short_name;
+	                	var cidade 	= city.short_name;
+	                	var bairro 	= sublocality.short_name;
+	                	var cep 	= postalCode.short_name;
+
+	                    $("#endereco").val(endereco);
+	                    $("#nr_endereco").val(numero);
+	                    $("#bairro").val(bairro);
+	                    $("#estado").val(estado);
+	                    $("#cidade").val(cidade);
+	                    $("#cep").val(cep);
+	                    $("#latitude").val(position.coords.latitude);
+	                    $("#longitude").val(position.coords.longitude);
+	                }
+	            }
+	    });
+	  	mapa =	document.getElementById('mapa')
+	  	mapa.style.height	=	'250px';
+	  	mapa.style.width	=	'500px';
+	 
+	  	var myOptions = {
+	  		center:latlon,zoom:14,
+	  		mapTypeId:google.maps.MapTypeId.ROADMAP,
+	  		mapTypeControl:false,
+	  		navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+	  	};
+
+	  	var map 	=	new google.maps.Map(document.getElementById("mapa"),myOptions);
+	  	var marker 	=	new google.maps.Marker({position:latlon,map:map,title:"Você está Aqui!"});
+  
+  }
+ 
+function showError(error)
+{
+  	switch(error.code)
+    {
+	    case error.PERMISSION_DENIED:
+	      alert('Usuário rejeitou a solicitação de Geolocalização.');
+	      break;
+	    case error.POSITION_UNAVAILABLE:
+	      alert('Localização indisponível.');
+	      break;
+	    case error.TIMEOUT:
+	      alert('O tempo da requisição expirou.');
+	      break;
+	    case error.UNKNOWN_ERROR:
+	      alert('Algum erro desconhecido aconteceu.');
+	      break;
+    }
+}
+</script>

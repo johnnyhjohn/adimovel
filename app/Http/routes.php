@@ -69,6 +69,7 @@ Route::group(['prefix' => 'data'], function()
 	    Route::get('{id?}', 'RelatorioController@gerar');
 	    Route::get('inquilino/{id?}', 'RelatorioController@gerarInquilino');
 	    Route::get('proprietario/{id?}', 'RelatorioController@gerarProprietario');
+	    Route::get('imovel/{id?}', 'RelatorioController@gerarImovel');
 	    //Route::get('{id?}', 'RelatorioController@index');
 	    //Route::post('', 'RelatorioController@create');
 	    //Route::put('{id}', 'RelatorioController@update');

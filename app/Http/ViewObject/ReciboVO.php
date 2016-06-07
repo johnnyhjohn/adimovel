@@ -9,6 +9,9 @@ use App\Usuario;
 use App\Http\ViewObject\PessoaVO;
 use App\Pessoa;
 
+use App\Http\ViewObject\ImovelVO;
+use App\Imovel;
+
 use App\Http\ViewObject\MovimentacaoVO;
 use App\Movimentacao;
 
@@ -35,6 +38,7 @@ class ReciboVO
   public function convertFromEntity(Recibo $obj){
     $this->id                 = $obj->id;
     $this->usuario             = new UsuarioVO(Usuario::find($obj->id_usuario));
+    $this->imovel             = new ImovelVO(Imovel::find($obj->id_imovel));
     $this->proprietario       = new PessoaVO(Pessoa::find($obj->id_proprietario));
     $this->inquilino          = new PessoaVO(Pessoa::find($obj->id_inquilino));
     $this->valor              = $obj->valor;
@@ -50,6 +54,7 @@ class ReciboVO
     $obj = new Recibo();
     $obj->id                  = $this->id;
     $obj->id_usuario          = $this->usuario->convertToEntity()->id;
+    $obj->id_imovel          = $this->imovel->convertToEntity()->id;
     $obj->id_proprietario     = $this->proprietario->convertToEntity()->id;
     $obj->id_inquilino        = $this->inquilino->convertToEntity()->id;
     $obj->valor               = $this->valor;

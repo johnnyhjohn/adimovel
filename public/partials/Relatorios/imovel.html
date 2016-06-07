@@ -1,0 +1,41 @@
+<h1>Relatório Inquilino</h1>
+
+<div class="panel">
+	<div class="container container-responsive">
+		<div>
+			<h3>Ano: {{ vm.relatoriosimovel[0].ano }}</h3>
+			<h3>
+				Proprietario: {{ vm.relatoriosimovel[0].proprietario.nm_pessoa }} 
+				<span class="pull-right">CPF: {{ vm.relatoriosimovel[0].proprietario.nr_cpf }}</span>
+			</h3>
+			<h3>
+				Imóvel: {{ vm.relatoriosimovel[0].movimentacao.contrato.imovel.codigo_interno }} 
+				- {{ vm.relatoriosimovel[0].movimentacao.contrato.imovel.endereco }}
+				, {{ vm.relatoriosimovel[0].movimentacao.contrato.imovel.nm_endereco }} 
+			</h3>
+		</div>
+		<h4 class="text-center">Movimentações do Ano</h4>
+		<table class="table table-hover table-responsive">
+			<tr id="table-head">
+				<th>Mes</th>
+				<th>Inquilino</th>
+				<th>Situação</th>
+				<th>Valor</th>
+			</tr>
+			<tr data-ng-repeat="imovel in vm.relatoriosimovel | orderBy:'mes'">
+				<td>{{ imovel.mes }}</td>
+				<td>{{ imovel.inquilino.nm_pessoa }}</td>
+				<td>{{ imovel.movimentacao.movimentacoes }}</td>
+				<td>R$ {{ imovel.valor }}</td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><strong>TOTAL:</strong></td>
+			</tr>	
+		</table>
+
+		<button class="btn btn-primary pull-right" onclick="window.print();">Imprimir</button>
+	</div>
+</div>
