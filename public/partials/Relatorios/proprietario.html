@@ -2,8 +2,8 @@
 
 <div class="panel">
 	<div class="container container-responsive">
-		<h2>Mes: {{ vm.relatoriosproprietario[0].mes }}<span class="pull-right">Ano: {{ vm.relatoriosproprietario[0].ano }}</span></h2>
-		<h2>Proprietario: {{ vm.relatoriosproprietario[0].proprietario.nm_pessoa }}<span class="pull-right">CPF: {{ vm.relatoriosproprietario[0].proprietario.nr_cpf }}</span></h2>
+		<h2>Mes: {{ $_GET['mes']; }}<span class="pull-right">Ano: </span></h2>
+		<h2>Proprietario: {{ vm.relatoriosproprietario[0].nomeproprietario }}<span class="pull-right">CPF: {{ vm.relatoriosproprietario[0].cpfproprietario }}</span></h2>
 		<h3 class="text-center">Imóveis Alugados</h3>
 		<table class="table table-hover">
 			<tr id="table-head">
@@ -11,15 +11,11 @@
 				<th>Inquilino</th>
 				<th>Valor</th>
 			</tr>
-			<tr>
-				<td>Imovel 1</td>
-				<td>Joao</td>
-				<td>12312</td>
-			</tr>
-			<tr>
-				<td>Imovel 2</td>
-				<td>Juca</td>
-				<td>12312</td>
+			<tr data-ng-repeat="recibo in vm.relatoriosproprietario"
+				data-ng-if="recibo.recibo != null">
+				<td>{{ recibo.codigo_interno }} - {{ recibo.endereco }} - {{ recibo.nm_endereco }}</td>
+				<td>{{ recibo.nomeinquilino }} - {{ recibo.cpfinquilino }}</td>
+				<td>R$ {{ recibo.valorrecibo }}</td>
 			</tr>
 			<tr>
 				<td></td>
@@ -31,18 +27,14 @@
 		<table class="table table-hover">
 			<tr id="table-head">
 				<th id="nome" class="filtro">Código Interno</th>
-				<th id="nome" class="filtro">Imovel</th>
-				<th id="projeto" class="filtro">Endereço</th>
+				<th id="nome" class="filtro">Endereço</th>
+				<th id="projeto" class="filtro">Número</th>
 			</tr>
-			<tr>
-				<td>123-12</td>
-				<td>Imovel Av xpto, 12</td>
-				<td>Av zap zap</td>
-			</tr>
-			<tr>
-				<td>543-43</td>
-				<td>Imovel Av Zap Zap, 88</td>
-				<td>Av ads</td>
+			<tr data-ng-repeat="recibo in vm.relatoriosproprietario"
+				data-ng-if="recibo.recibo == null">
+				<td>{{ recibo.codigo_interno }}</td>
+				<td>{{ recibo.endereco }}</td>
+				<td>{{ recibo.nm_endereco }}</td>
 			</tr>	
 		</table>
 		<button class="btn btn-primary pull-right" onclick="window.print();">Imprimir</button>

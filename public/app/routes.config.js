@@ -100,7 +100,6 @@
       			rota.config.controller   = controller;
       			rota.config.controllerAs = 'vm'
       		}
-      		
       		return rota;
       	}
 
@@ -157,6 +156,8 @@
               montaRota('/admin/relatorios/imovel/:slug',  'Relatorios/imovel.html', 'RelatorioCtrl'),
               
               montaRota('/admin/pin',  'Pin/pin.html'),
+              montaRota('/admin/pin/editar/:slug', 'Pin/editar.html', 'PinCtrl'),
+              montaRota('/admin/pin/cadastro', 'Pin/cadastro.html', 'PinCtrl'),
 
               montaRota('/admin/configuracao',  'Configuracoes/index.html'),
       		]
