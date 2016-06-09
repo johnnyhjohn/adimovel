@@ -69,7 +69,7 @@
 			myBarChart.datasets[0].bars[2].value = Math.floor((Math.random() * 70) + 20);
 			// Would update the first dataset's value of 'March' to be 50
 			myBarChart.update();
-		}, 2000);
+		}, 10000);
 	};
 
 })();

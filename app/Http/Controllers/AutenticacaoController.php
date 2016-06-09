@@ -34,7 +34,7 @@ class AutenticacaoController extends Controller
             if (!$user) {
                 return response()->json(['user_not_found'], 404);
             }
-    		return $user->admin;
+    		return $user;
 
     	} catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
             return response()->json(['token_expired'], $e->getStatusCode());

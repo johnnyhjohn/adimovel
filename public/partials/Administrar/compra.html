@@ -1,9 +1,5 @@
 <h1>Movimentação Contrato {{ vm.movimento.nr_contrato }} <span id="btn-venda" class="pull-right btn-aluguel btn-{{ vm.movimento.situacao_pagamento.toLowerCase() }} ripple" data-situacao="pago" data-ng-click="vm.updatePagamento()">{{ vm.movimento.situacao_pagamento }}</span></h1>
-<<<<<<< HEAD
- 
-=======
 
->>>>>>> fa5d8e1a7c7be467d7966294e727450d9a58c18b
 <div class="panel">
 	<div class="container container-responsive">
 		<h2>Comprador: {{ vm.movimento.inquilino.nm_pessoa }} <span class="pull-right">Imóvel: {{ vm.movimento.imovel.codigo_interno }} - {{ vm.movimento.imovel.titulo_anuncio }}</span></h2>
@@ -12,7 +8,7 @@
 				<td><strong>Valor do Imóvel</strong></td>
 				<td></td>
 				<td></td>
-				<td>R$ <span id="valorbase">{{ vm.movimento.valor }}</span></td>
+				<td>R$ {{ vm.movimento.valor }}</td>
 			</tr>
 			<tr>
 				<td><strong>Endereço</strong></td>
@@ -51,7 +47,56 @@
 				<td class="pago">{{ vm.movimento.situacao_pagamento }}</td>
 			</tr>
 		</table>
-		<p>Adicionar Desconto <button class="btn btn-success btn-desconto"><i class="fa fa-plus"></i></button></p>
+		<div id="pagamento">
+			<p>Escolha o modo de pagamento:</p>
+			<form id="metodo-pagamento">
+				<select class="form-control">
+					<option value="Boleto">Boleto</option>
+					<option value="Cartão de Crédito">Cartão de Crédito</option>
+					<option value="Dinheiro">Dinheiro</option>
+				</select>
+				<div class="col-md-12">
+				<div class="material-input">
+					<label for="entrada" class="float-label">Entrada</label>
+					<input data-ng-model="entrada" type="number" id="entrada" class="form-control"">
+					<span></span>
+				</div>
+				</div>
+				<strong>Parcelado?</strong> <input data-ng-model="parcela" id="parcela" type="checkbox" class="form-control">
+				<div data-ng-show="parcela">
+					<div class="material-input">
+						<label for="n_parcela" class="float-label">N° de Parcelas</label>
+						<input data-ng-model="valor_parcela" id="n_parcela" type="number" min="1" class="form-control" integer> 
+						<span></span>
+					</div>
+					<div class="material-input">
+						<label for="valor_parcela" class="float-label">Valor das Parcelas</label>
+						<input id="valor_parcela" type="text" class="form-control" value="{{ ((vm.movimento.valor - entrada ) / valor_parcela).toFixed(2) | currency:'R$' }}"> 
+						<span></span>
+					</div>
+					<div class="material-input">
+						<label for="descricao" class="float-label">Observação</label>
+						<textarea id="descricao" class="form-control""></textarea>
+						<span></span>
+					</div>
+				</div>
+				<strong>Financiado?</strong> <input data-ng-model="financiado" id="financiado" type="checkbox" class="form-control">
+				<div data-ng-show="financiado">
+					<div class="material-input">
+						<label for="conta" class="float-label label-active">N° do contrato</label>
+						<input  id="conta" type="number" min="1" class="form-control" integer value="{{ vm.movimento.nr_contrato }}"> 
+						<span class="input-focus"></span>
+					</div>
+					<div class="material-input">
+						<label for="instituicao" class="float-label">Instituição Financeira</label>
+						<input id="instituicao" type="text" class="form-control" integer value=""> 
+						<span></span>
+					</div>
+				</div>	
+			</form>
+			<hr>
+		</div>
+		<p>Adicionar Desconto <button class="btn btn-success btn-desconto pull-right no-top"><i class="fa fa-plus"></i></button></p>
 		<div class="desconto">
 			<form>
 				<div class="col-md-12">
@@ -63,13 +108,13 @@
 				</div>
 			</form>
 		</div>
-		<h4>Total: <span class="pull-right">R$: <strong id="total">{{ vm.movimento.valor - desconto }}</strong></span></h4>
+		<hr>
+		<br>
+		<h4>Total: <span class="pull-right">R$: <strong id="total">{{ ( vm.movimento.valor - entrada ) - desconto }}</strong></span></h4>
 		<hr>
 
 		<input type="hidden" name="id_contrato" id="id_contrato" value="{{ vm.movimento.id }}">
-		<input type="hidden" name="id_proprietario" id="id_proprietario" value="{{ vm.movimento.proprietario.id }}">
-		<input type="hidden" name="id_inquilino" id="id_inquilino" value="{{ vm.movimento.inquilino.id }}">
-
+		
 		<button id="btn-imovel" data-ng-click="vm.setMovimentoVenda()" class="btn btn-submit ripple pull-right">Atualizar</button>
 	</div>
 </div>

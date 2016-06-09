@@ -64,6 +64,9 @@
 				var alerta = new alert();
 				if(res[0].codigo == "SUCCESS"){
 					alerta.success(res[0].mensagem);
+					$("form").find('input, textarea').each(function(key, value){
+						$(value).val('');
+					});
 				}else if(res[0].codigo == "DANGER"){
 					alerta = new alert();
 					alerta.danger(res[0].mensagem);

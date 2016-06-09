@@ -2,6 +2,7 @@
 
 namespace App\Http\ViewObject;
 use App\Movimentacao;
+use App\Http\ViewObject\MovimentacaoVO;
 
 use App\Http\ViewObject\ContratoVO;
 use App\Contrato;
@@ -33,6 +34,7 @@ class ContratoVO
   }
 
   public function convertFromEntity(Contrato $obj){
+    //dd(new MovimentacaoVO(Movimentacao::where('id_contrato','=',$obj->id)->get()[0]), Movimentacao::find(4));
     $this->id                 = $obj->id;
     $this->imovel             = new ImovelVO(Imovel::find($obj->id_imovel));
     $this->proprietario       = new PessoaVO(Pessoa::find($obj->id_proprietario));

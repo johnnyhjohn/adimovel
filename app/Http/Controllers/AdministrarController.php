@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\ViewObject\AdministrarVO;
+use App\Http\ViewObject\MovimentacaoVO;
+use App\Http\ViewObject\ContratoVO;
 //use App\Http\Enum\UsuarioEnum;
 
 use App\JSONUtils;
@@ -24,7 +26,7 @@ class AdministrarController extends Controller
         try{
             if ($id == null) {
                 
-                $contrato = Contrato::orderBy('id', 'asc')->get();
+                $contrato = Contrato::orderBy('id', 'asc')->where('ativo','=','t')->get();
                 //$contrato = Contrato::orderBy('id', 'asc')->where('ativo', '=', 'true')->get();
 
                 $return = array();
@@ -42,7 +44,7 @@ class AdministrarController extends Controller
             return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
         }    
     }
-/*
+
     public function getImoveisVendas()
     {
         try{    
@@ -84,79 +86,43 @@ class AdministrarController extends Controller
     {
         try{
             $contrato = Contrato::find($id);
-            $contrato->situacao_pagamento = ($request->input('situacao') == "pago") ? true : false;
-
+            
+            $contrato->situacao_pagamento = ($request->input('situacao') === "pago") ? true : false;
+            //d($request->input('situacao'), $contrato->situacao_pagamento);
             $contrato->save();
             return JSONUtils::returnSuccess($contrato->nr_contrato .' alterado com sucesso.', $contrato);
         }catch(Exception $e){
             return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
         }
     }
-*/
+
     public function show($id)
     {
         try{
+            $contrato = new ContratoVO(Contrato::find($id));
+            
             return JSONUtils::returnSuccess(Messages::MSG_QUERY_SUCCESS,
-            new AdministrarVO(Contrato::find($id)));
+             $contrato);
         }catch(Exception $e){
             return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
         }
     }
 
-    public function getImoveisVendas()
-    {
-        try{    
-            $contrato = Contrato::where("finalidade","=","VEN")->orderBy('id', 'asc')->get();
-            //$contrato = Contrato::orderBy('id', 'asc')->where('ativo', '=', 'true')->get();
-
-            $return = array();
-
-            foreach ($contrato as $key => $value) {
-                $cVO = new AdministrarVO(Contrato::find($value->id));
-                $return[] = $cVO;
-            }
-
-            return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $return);
-        } catch(Exception $e){
-            return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
-        }           
-    }
-    public function getImoveisAluguel()
-    {
-        try{    
-            $contrato = Contrato::where("finalidade","=","LOC")->orderBy('id', 'asc')->get();
-            //$contrato = Contrato::orderBy('id', 'asc')->where('ativo', '=', 'true')->get();
-
-            $return = array();
-
-            foreach ($contrato as $key => $value) {
-                $cVO = new AdministrarVO(Contrato::find($value->id));
-                $return[] = $cVO;
-            }
-
-            return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $return);
-        } catch(Exception $e){
-            return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
-        }           
-    }
-
-    public function validaMovimento()
-    {
-        return [
-            'valor' => 'numeric|min:0',
-        ];
-    }
-
-    public function atualizaSituacao(Request $request, $id)
+    public function getMovimentos($id)
     {
         try{
-            $contrato = Contrato::find($id);
-            $contrato->situacao_pagamento = ($request->input('situacao') == "pago") ? true : false;
+            $movimentacaos = Movimentacao::where('id_contrato','=',$id)->orderBy('id','asc')->get();
 
-            $contrato->save();
-            return JSONUtils::returnSuccess($contrato->nr_contrato .' alterado com sucesso.', $contrato);
+            $return = array();
+
+            foreach ($movimentacaos as $movimentacao) {
+                $mVO = new MovimentacaoVO(Movimentacao::find($movimentacao->id));
+                $return[] = $mVO;
+            }
+            return JSONUtils::returnSuccess(Messages::MSG_QUERY_SUCCESS,
+                 $return);
         }catch(Exception $e){
-            return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
+            return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
         }
     }
 
@@ -165,16 +131,16 @@ class AdministrarController extends Controller
 		try{
             $contrato = new Contrato();
 
-            $contrato->id_imovel   = $request->input('imovel');
-            $contrato->id_proprietario   = $request->input('proprietario');
-            $contrato->id_inquilino   = $request->input('inquilino');
-            $contrato->nr_contrato   = $request->input('nr_contrato');
-            $contrato->dt_inicio   = $request->input('dt_inicio');
-            $contrato->dt_vencimento   = $request->input('dt_vencimento');
-            $contrato->dt_revogado   = $request->input('dt_revogado');
-            $contrato->valor   = $request->input('valor');
+            $contrato->id_imovel            = $request->input('imovel');
+            $contrato->id_proprietario      = $request->input('proprietario');
+            $contrato->id_inquilino         = $request->input('inquilino');
+            $contrato->nr_contrato          = $request->input('nr_contrato');
+            $contrato->dt_inicio            = $request->input('dt_inicio');
+            $contrato->dt_vencimento        = $request->input('dt_vencimento');
+            $contrato->dt_revogado          = $request->input('dt_revogado');
+            $contrato->valor                = $request->input('valor');
             $contrato->situacao_pagamento   = $request->input('situacao');
-            $contrato->finalidade   = $request->input('finalidade');
+            $contrato->finalidade           = $request->input('finalidade');
             $contrato->ativo = true;
 
             $contrato->dt_revogado = '2016-01-01';
@@ -223,7 +189,7 @@ class AdministrarController extends Controller
     {
         try{
             $contrato = Contrato::find($id);
-
+            
             $contrato->id_imovel            = $request->input('imovel');
             $contrato->id_proprietario      = $request->input('proprietario');
             $contrato->id_inquilino         = $request->input('inquilino');
@@ -233,7 +199,9 @@ class AdministrarController extends Controller
             $contrato->dt_revogado          = $request->input('dt_revogado');
             $contrato->valor                = $request->input('valor');
             $contrato->situacao_pagamento   = $request->input('situacao');
-            $contrato->finalidade   = $request->input('finalidade');
+            $contrato->finalidade           = $request->input('finalidade');
+            $contrato->ativo = true;
+
             $contrato->ativo                = $request->input('ativo');
 
             $contrato->dt_revogado = '2016-01-01';
@@ -305,25 +273,25 @@ class AdministrarController extends Controller
             }
 
             $contrato->save();
-dd($request->all());
-            $recibo = new Recibo();
-            $recibo->id_proprietario   = $request->input('proprietario');
-            $recibo->id_inquilino      = $request->input('id_inquilino');
-            $recibo->id_usuario        = $request->input('id_usuario');
-            $recibo->id_movimentacao   = $contrato->id;
-            $recibo->valor             = $request->input('valor');
-            $recibo->mes               = 1;
-            $recibo->ano               = 2016;
-            $recibo->dt_emissao        = '2016-01-01';
-            $recibo->descricao         = '';
-            $recibo->ativo             = true;
 
-            //$validator = \Validator::make($request->all(), $this->validaCadastro());
-            //if ($validator->fails()) {
-            //  return JSONUtils::returnDanger('Problema de validação verifique os campos e tente novamente.', "Erro");   
-            //}
+            // $recibo = new Recibo();
+            // $recibo->id_proprietario   = $request->input('proprietario');
+            // $recibo->id_inquilino      = $request->input('id_inquilino');
+            // $recibo->id_usuario        = $request->input('id_usuario');
+            // $recibo->id_movimentacao   = $contrato->id;
+            // $recibo->valor             = $request->input('valor');
+            // $recibo->mes               = 1;
+            // $recibo->ano               = 2016;
+            // $recibo->dt_emissao        = '2016-01-01';
+            // $recibo->descricao         = '';
+            // $recibo->ativo             = true;
 
-            $recibo->save();
+            // //$validator = \Validator::make($request->all(), $this->validaCadastro());
+            // //if ($validator->fails()) {
+            // //  return JSONUtils::returnDanger('Problema de validação verifique os campos e tente novamente.', "Erro");   
+            // //}
+
+            // $recibo->save();
 
 
             return JSONUtils::returnSuccess('Movimento cadastrado com sucesso.', $contrato);
@@ -333,6 +301,12 @@ dd($request->all());
         }
     }
 
+    public function validaMovimento()
+    {
+        return [
+            'valor' => 'numeric|min:0',
+        ];
+    }
 
     // Só pra não perder o método
     public function movimentacao($id)

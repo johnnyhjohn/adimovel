@@ -21,19 +21,13 @@ class UsuarioController extends Controller
     public function index(Request $request, $id = null)
     {  
         try{
-        	$token = $request->input('token');
-        	if(AutenticacaoController::verificaToken($token)){
+
+        	$token 		= $request->input('token');
+        	$usuario 	= AutenticacaoController::verificaToken($token);
+
+        	if($usuario->admin || $usuario->id == $id){
 	            if ($id == null) {
-	                $usuario = Usuario::orderBy('nm_usuario', 'asc')->get();
-
-	                $return = array();
-
-	                foreach ($usuario as $key => $value) {
-	                    $uVO = new UsuarioVO(Usuario::find($value->id));
-	                    $return[] = $uVO;
-	                }
-
-	                return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $return);
+	            	return $this->getUsuarios();
 	            } else {
 	                return $this->show($id);
 	            }
@@ -42,13 +36,13 @@ class UsuarioController extends Controller
 	        	return JSONUtils::returnDanger('Usuário não tem permissão para esta ação.', "Falta de Permissão");   
 	        }
         } catch (JWTException $e) {
-            return JSONUtils::returnDanger('Token Expirou.', "Falta de Permissão");   
+            return JSONUtils::returnDanger('Token Expirou.', $e);   
         } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-            return JSONUtils::returnDanger('Token Expirou.', "Falta de Permissão");  
+            return JSONUtils::returnDanger('Token Expirou.', $e);  
         } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
-            return JSONUtils::returnDanger('Token Expirou.', "Falta de Permissão");  
-        }    catch(Exception $e){
-        	return JSONUtils::returnDanger('Token Expirou.', "Falta de Permissão");  
+            return JSONUtils::returnDanger('Token Expirou.', $e);  
+        } catch(Exception $e){
+        	return JSONUtils::returnDanger('Token Expirou.', $e);  
         }
     }
 
@@ -66,7 +60,7 @@ class UsuarioController extends Controller
 	{
 		try{
 			$token = $request->input('token');
-			if(AutenticacaoController::verificaToken($token)){
+			if(AutenticacaoController::verificaToken($token)->admin){
 
 	            $usuario = new Usuario();
 
@@ -121,7 +115,7 @@ class UsuarioController extends Controller
     {
         try{
 			$token = $request->input('token');
-			if(AutenticacaoController::verificaToken($token)){        	
+			if(AutenticacaoController::verificaToken($token)->admin){        	
 	            $usuario = Usuario::find($id);
 
 	            $usuario->nm_usuario  	= $request->input('nome');
@@ -189,6 +183,20 @@ class UsuarioController extends Controller
     	}	
     }
 
+    public function getUsuarios()
+    {
+	    $usuario = Usuario::orderBy('nm_usuario', 'asc')->get();
+
+	    $return = array();
+
+	    foreach ($usuario as $key => $value) {
+	        $uVO = new UsuarioVO(Usuario::find($value->id));
+	        $return[] = $uVO;
+	    }
+
+	    return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $return);
+    }
+
     public function getCorretores()
     {
     	try{
@@ -201,6 +209,18 @@ class UsuarioController extends Controller
 
     	} catch(Exception $e){
     		return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
+    	}
+    }
+
+    public function getPerfil(Request $request)
+    {
+    	try{
+    		$token   = $request->input('token');
+    		$usuario = AutenticacaoController::verificaToken($token);
+
+    		return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $usuario);
+    	} catch(Exception $e){
+    		return JSONUtils::returnDanger('Problema de acesso à basede dados.', $e);
     	}
     }
 }

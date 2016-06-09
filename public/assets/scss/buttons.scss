@@ -98,6 +98,41 @@
   background: white;
   animation: ripple-animation 2s; 
 }
+        span{
+            font-size: 20px;
+            a{
+                text-decoration: none;
+                color: $secondary-color;
+                &:hover{
+                    text-decoration: none;
+                    color: $secondary-color;
+                }
+            }
+            &.btn-aluguel{
+                position: relative;
+                right: 10px;
+                color: white;
+                padding: 8px 12px;
+                border-radius: 4px;
+                text-transform: uppercase;
+                font-size: 18px;
+                cursor: pointer;
+                transition: all ease .3s;
+                &.btn-pago{
+                    background-color: $green;
+                }
+                &.btn-pendente{
+                    background-color: $yellow;
+                }
+                &.btn-atrasado{
+                    background-color: $red;
+                }
+
+            }
+        }
+.no-top{
+    top: 0;
+}
 
 @keyframes ripple-animation {
   	from {

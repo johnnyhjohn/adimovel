@@ -24,6 +24,7 @@ Route::group(['prefix' => 'data'], function()
 	    //Route::get('vendas', 'AdministrarController@getImoveisVendas');
 	    //Route::get('aluguel', 'AdministrarController@getImoveisAluguel');
 	    Route::post('', 'AdministrarController@create');
+	    Route::get('movimento/{id?}', 'AdministrarController@getMovimentos');
 	    Route::get('{id?}', 'AdministrarController@index');
 	    Route::put('{id}', 'AdministrarController@update');
 	    Route::delete('{id}', 'AdministrarController@destroy');
@@ -59,6 +60,7 @@ Route::group(['prefix' => 'data'], function()
 		//Route::get('{id?}', 'UsuarioController@index');
 	    Route::post('', 'UsuarioController@create');
 	    Route::get('corretor', 'UsuarioController@getCorretores');
+	    Route::get('perfil', 'UsuarioController@getPerfil');
 	    Route::get('{id?}', 'UsuarioController@index');
 	    Route::put('{id}', 'UsuarioController@update');
 	    Route::delete('{id}', 'UsuarioController@destroy');

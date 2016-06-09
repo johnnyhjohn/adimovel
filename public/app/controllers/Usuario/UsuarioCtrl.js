@@ -60,18 +60,35 @@
 			if($routeParams.slug !== undefined){
 				Request.get("usuario/" + $routeParams.slug, vm.user.token)
 					.then(function(res){
+						console.log(res);
 						vm.usuario = res[0].objeto;
 				});
 			}
 		}
 
+		
+		function getPerfil(){
+			Request.get("usuario/perfil", vm.user.token)
+				.then(function(res){
+					vm.usuario = res[0].objeto;
+			});
+		}
+
 		function getUsuarios(){
+
+			if($routeParams.perfil == 'perfil'){
+				getPerfil();
+				return false;
+			}
+
+			if($routeParams.slug) return false;
+
 			Request.get("usuario", vm.user.token).then(function(res){
 				
 				if(res[0].codigo == "DANGER"){
 					var alerta = new alert();
 					alerta.danger(res[0].mensagem);
-					vm.logout();
+					//vm.logout();
 					return false;
 				}
 				angular.forEach(res[0].objeto, function(value, key) {
@@ -84,11 +101,9 @@
 
 		function getCorretor(){
 			Request.get("usuario/corretor").then(function(res){
-				console.log(res);
 				if(res[0].codigo == "DANGER"){
 					var alerta = new alert();
 					alerta.danger(res[0].mensagem);
-					vm.logout();
 					return false;
 				}
 
@@ -189,7 +204,7 @@
             $rootScope.currentUser = null;           
             // Redireciona para a tela de login do sistema
             event.preventDefault();
-            window.location.reload();
+            //window.location.reload();
 		}
 
 	}

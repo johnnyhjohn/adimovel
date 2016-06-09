@@ -1,15 +1,15 @@
-<h1>Movimentação Contrato {{ vm.movimento.nr_contrato }} <span class="pull-right btn-aluguel btn-{{ vm.movimento.situacao_pagamento.toLowerCase() }} ripple" data-ng-click="vm.updatePagamento()" data-situacao="{{ vm.movimento.situacao_pagamento }}">{{ vm.movimento.situacao_pagamento }}</span></h1>
+<h1>Movimentação Contrato {{ vm.movimento.nr_contrato }} <!-- <span class="pull-right btn-aluguel btn-{{ vm.movimento.situacao_pagamento.toLowerCase() }} ripple" data-ng-click="vm.updatePagamento()" data-situacao="{{ vm.movimento.situacao_pagamento.toLowerCase() }}">{{ vm.movimento.situacao_pagamento }}</span> --></h1>
 
 <div class="panel">
 	<div class="container container-responsive">
 		<h2>Inquilino: {{ vm.movimento.inquilino.nm_pessoa }} <span class="pull-right">Imóvel: {{ vm.movimento.imovel.codigo_interno }} - {{ vm.movimento.imovel.endereco }}</span></h2>
-		<h2>Mês: Janeiro <span class="pull-right">Ano: 2016</span></h2>
+		<!-- <h2>Mês: Janeiro <span class="pull-right">Ano: 2016</span></h2> -->
 		<table class="table">
 			<tr>
 				<td><strong>Aluguel</strong></td>
 				<td></td>
 				<td></td>
-				<td>R$ <span id="valorbase">{{ vm.movimento.valor }}</span></td>
+				<td>R$ {{ vm.movimento.valor }}</td>
 			</tr>
 			<tr>
 				<td><strong>Endereço</strong></td>
@@ -48,6 +48,11 @@
 				<td class="pago">{{ vm.movimento.situacao_pagamento }}</td>
 			</tr>
 		</table>
+		{{ vm.movimento.movimentacoes }}
+		<div id="parcelas" >
+			<li data-parcela="{{nome}}-{{ vm.situacao_aluguel[mes] }}-{{mes}}" data-ng-repeat="(nome, mes) in vm.meses track by $index" class="parcelas">Parcela {{ nome }} - <span class="btn btn-aluguel btn-{{ vm.situacao_aluguel[mes].toLowerCase() }} ripple" data-ng-click="vm.alteraAluguel()" data-situacao="{{ vm.situacao_aluguel[mes].toLowerCase() }}">{{ vm.situacao_aluguel[mes] }}</span></li>
+			<hr>
+		</div>
 		<p>Adicionar Custos <button class="btn btn-success btn-custos"><i class="fa fa-plus"></i></button></p>
 		<div class="custos">
 			<div class="col-md-12">
@@ -76,7 +81,6 @@
 		<input type="hidden" name="id_contrato" id="id_contrato" value="{{ vm.movimento.id }}">
 		<input type="hidden" name="valor" id="valor" value="{{ vm.movimento.valor }}">
 		<input type="hidden" name="valor-total" id="valor-total" value="{{ vm.movimento.valor }}">
-		<input type="hidden" name="id_proprietario" id="id_proprietario" value="{{ vm.movimento.proprietario.id }}">
 
 		<button id="btn-imovel" data-ng-click="vm.setMovimentoAluguel()" class="btn btn-submit ripple pull-right">Atualizar</button>
 		<button id="btn-recibo" class="btn btn-submit ripple pull-right">Gerar Recibo</button>

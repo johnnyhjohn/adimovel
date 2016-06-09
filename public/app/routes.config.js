@@ -120,9 +120,20 @@
               montaRota('/locacao', 'Site/locacoes.html', 'ImovelCtrl'),
               montaRota('/vendas/:slug', 'Site/imovel.html', 'ImovelCtrl'),
               montaRota('/locacao/:slug','Site/imovel.html', 'ImovelCtrl'),
+
               
+              montaRota('/admin/pin',  'Pin/lista.html'),
+              montaRota('/admin/pin/editar/:slug', 'Pin/editar.html', 'PinCtrl'),
+              montaRota('/admin/pin/cadastro', 'Pin/cadastro.html'),              
               montaRota('/admin', 'dashboard/dashboard.html'),
+                montaRota('/admin/relatorios',  'Relatorios/inicio.html', 'RelatorioCtrl'),
+              montaRota('/admin/relatorios/imoveis',  'Relatorios/inicio-imovel.html', 'RelatorioCtrl'),
+
+              montaRota('/admin/relatorios/gerar/:slug',  'Relatorios/inicio.html', 'RelatorioCtrl'),
               
+              montaRota('/admin/relatorios/inquilino/:slug',  'Relatorios/inquilino.html', 'RelatorioCtrl'),
+              montaRota('/admin/relatorios/proprietario/:slug',  'Relatorios/proprietario.html', 'RelatorioCtrl'),
+              montaRota('/admin/relatorios/imovel/:slug',  'Relatorios/imovel.html', 'RelatorioCtrl'),      
               montaRota('/admin/imoveis', 'Imoveis/lista.html'),
               montaRota('/admin/imoveis/editar/:slug', 'Imoveis/editar.html', 'ImovelCtrl'),
               montaRota('/admin/imoveis/cadastro', 'Imoveis/cadastro.html', 'ImovelCtrl'),
@@ -137,7 +148,7 @@
               
               montaRota('/admin/usuarios', 'Usuario/lista.html'),
               montaRota('/admin/usuarios/editar/:slug', 'Usuario/editar.html'),
-              montaRota('/admin/perfil', 'Usuario/perfil.html', 'UsuarioCtrl'),
+              montaRota('/admin/:perfil', 'Usuario/perfil.html', 'UsuarioCtrl'),
               montaRota('/admin/usuarios/cadastro', 'Usuario/cadastro.html'),
               
               montaRota('/admin/administrar/imoveis', 'Administrar/imoveis-lista.html', 'AdministrarCtrl'),
@@ -146,18 +157,6 @@
               montaRota('/admin/administrar/movimento/compra/:slug', 'Administrar/compra.html', 'AdministrarCtrl'),
               montaRota('/admin/administrar/movimento/aluguel/:slug', 'Administrar/imoveis.html', 'AdministrarCtrl'),
               
-              montaRota('/admin/relatorios',  'Relatorios/inicio.html', 'RelatorioCtrl'),
-              montaRota('/admin/relatorios/imoveis',  'Relatorios/inicio-imovel.html', 'RelatorioCtrl'),
-
-              montaRota('/admin/relatorios/gerar/:slug',  'Relatorios/inicio.html', 'RelatorioCtrl'),
-              
-              montaRota('/admin/relatorios/inquilino/:slug',  'Relatorios/inquilino.html', 'RelatorioCtrl'),
-              montaRota('/admin/relatorios/proprietario/:slug',  'Relatorios/proprietario.html', 'RelatorioCtrl'),
-              montaRota('/admin/relatorios/imovel/:slug',  'Relatorios/imovel.html', 'RelatorioCtrl'),
-              
-              montaRota('/admin/pin',  'Pin/lista.html'),
-              montaRota('/admin/pin/editar/:slug', 'Pin/editar.html', 'PinCtrl'),
-              montaRota('/admin/pin/cadastro', 'Pin/cadastro.html'),
 
               montaRota('/admin/configuracao',  'Configuracoes/index.html'),
       		]

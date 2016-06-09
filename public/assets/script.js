@@ -35,7 +35,7 @@ var alert = function(){
 
 $.fn.material_input = function(){
 
-	$("input, select, textarea").each(function(value, key){
+	$("input[type=text], select, textarea").each(function(value, key){
 		if($(this).val() != ""){
 			var div 	= $(this).parent('div')
 			,	label	= div.find('label')
@@ -202,12 +202,10 @@ function toggleActiveAlugelCompra(){
 		case true:
 			$('.btn-aluguel').removeClass('active');
 			$(this).addClass('active');
-			//montaListaVenda();
 		break;
 		default:
 			$('.btn-compra').removeClass('active')
 			$(this).addClass('active');
-			//montaListaLocacao();
 		break;
 	}
 }
@@ -351,26 +349,7 @@ function addMaterialInput(){
 
 
 function rippleEffect () {
-  	event.preventDefault();
-	if ($(this).hasClass('btn-pago') && $(this).attr("id") != "btn-venda") {
-	 	$(this).removeClass('btn-pago').addClass('btn-pendente');
- 		$(this).html("Pendente");
-		$(this).data('situacao','pago');
- 	} else if ($(this).hasClass('btn-pendente') && $(this).attr("id") != "btn-venda") {
- 		$(this).removeClass('btn-pendente').addClass('btn-pago');
- 		$(this).html("Pago");
-		$(this).data('situacao','pendente');
- 	}  
- 
- 	if ($(this).hasClass('btn-pago') && $(this).attr("id") == "btn-venda") {
- 		$(this).removeClass('btn-pago').addClass('btn-pendente');
- 		$(this).html("Pendente");
-		$(this).data('situacao','pago');
- 	} else if($(this).hasClass('btn-pendente') && $(this).attr("id") == "btn-venda") {
- 		$(this).removeClass('btn-pendente').addClass('btn-pago');
- 		$(this).html("Pago");
-		$(this).data('situacao','pendente');
- 	} 
+  	event.preventDefault(); 
   	var $div = $('<div/>'),
       	btnOffset = $(this).offset(),
   		xPos = event.pageX - btnOffset.left,

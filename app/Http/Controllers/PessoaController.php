@@ -71,7 +71,7 @@ class PessoaController extends Controller
     	try{
     		$token = $request->input('token');
 
-    		if(AutenticacaoController::verificaToken($token)){
+    		if(AutenticacaoController::verificaToken($token)->admin){
 	    		$pessoa = Pessoa::find($id);
 
 	    		$pessoa->nm_pessoa 	= $request->input('nome');

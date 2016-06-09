@@ -78,7 +78,7 @@ class ImovelController extends Controller
             $imovel->dt_cadastrado    = $request->input('dt_cadastrado');
             $imovel->latitude         = $request->input('lat');
             $imovel->longitude        = $request->input('lng');
-            $imovel->situacao_imovel  = $request->input('situacao');
+            $imovel->situacao_imovel  = 1;
             $imovel->ativo = true;
             // dd($imovel);
             
@@ -147,13 +147,12 @@ class ImovelController extends Controller
             $imovel->valor            = $request->input('valor');
             $imovel->vitrine          = $request->input('vitrine');
             $imovel->financiamento    = $request->input('financiamento');
-            $imovel->finalidade       = $request->input('finalidade');
+            $imovel->finalidade       = new ImovelEnum($request->input('finalidade'));
             $imovel->dt_cadastrado    = $request->input('dt_cadastrado');
             $imovel->latitude         = $request->input('lat');
             $imovel->longitude        = $request->input('lng');
             $imovel->situacao_imovel  = $request->input('situacao');
             $imovel->ativo = true;
-
             // dd($imovel);
             // $validator = \Validator::make($request->all(), $this->validaCadastro());
             // if ($validator->fails()) {
