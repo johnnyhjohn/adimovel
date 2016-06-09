@@ -1,6 +1,6 @@
 <h1>PIN</h1>
 
-<div class="panel">
+<div class="panel" data-ng-controller="PinCtrl as pin">
 	<div class="container container-responsive" data-ng-controller="mapaCtrl as vm">	
 		
 		<div class="col-md-12 text-center">
@@ -13,12 +13,12 @@
 	            <div id="mapa"></div>
 	            <input id="pac-input" class="controls"> 			
             </div>
-
+			<p id="msg" class="text-center"></p>
 			<h2>Informações do Imóvel</h2>
 			<div class="col-md-12">
 				<div class="material-input select">
-					<label for="referencia" class="float-label">Título</label>
-					<input type="text" id="referencia" name="cep" class="form-control cep" value="">
+					<label for="titulo" class="float-label">Título</label>
+					<input type="text" id="titulopin" name="titulopin" class="form-control titulo" value="">
 					<span></span>
 				</div>	
             </div>
@@ -59,13 +59,17 @@
             </div>				
             <div class="col-md-12">
 				<div class="material-input select">
-					<label for="referencia" class="float-label">Observações</label>
-					<input type="text" id="referencia" name="cep" class="form-control cep" value="">
+					<label for="observacao" class="float-label">Observações</label>
+					<input type="text" id="observacao" name="observacao" class="form-control observacao" value="">
 					<span></span>
 				</div>	
             </div>
+
+            <input type="hidden" id="latitude" name="latitude" class="form-control latitude" value="">
+			<input type="hidden" id="longitude" name="longitude" class="form-control longitude" value="">
+            
             <div class="col-md-12 pull-right">
-            	<button class="btn btn-primary" ng-click="vm.setPin">Salvar</button>
+            	<button class="btn ripple pull-right btn-primary" data-ng-click="pin.setPin()">Salvar</button>
             </div>
  			
 		</div>
@@ -97,8 +101,7 @@ function showPosition(position)
 	                    for (var i = 0; i < results[0].address_components.length; i++) {
 	                        
 	                        for (var b = 0; b < results[0].address_components[i].types.length; b++) {
-	                        	console.log(results[0].address_components[i]);
-	                            if (results[0].address_components[i].types[b] == "administrative_area_level_1") {
+	                        	if (results[0].address_components[i].types[b] == "administrative_area_level_1") {
 	                                state = results[0].address_components[i];
 	                            }
 	                            if (results[0].address_components[i].types[b] == "locality") {
@@ -155,19 +158,20 @@ function showPosition(position)
  
 function showError(error)
 {
+	$("#msg").html('');
   	switch(error.code)
     {
 	    case error.PERMISSION_DENIED:
-	      alert('Usuário rejeitou a solicitação de Geolocalização.');
+	      $("#msg").html('Usuário rejeitou a solicitação de Geolocalização.');
 	      break;
 	    case error.POSITION_UNAVAILABLE:
-	      alert('Localização indisponível.');
+	      $("#msg").html('Localização indisponível.');
 	      break;
 	    case error.TIMEOUT:
-	      alert('O tempo da requisição expirou.');
+	      $("#msg").html('O tempo da requisição expirou.');
 	      break;
 	    case error.UNKNOWN_ERROR:
-	      alert('Algum erro desconhecido aconteceu.');
+	      $("#msg").html('Algum erro desconhecido aconteceu.');
 	      break;
     }
 }

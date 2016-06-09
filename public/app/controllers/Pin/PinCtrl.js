@@ -3,7 +3,7 @@
 
 	angular.module('adimovelApp').controller('PinCtrl', Pin);
 
-	Pin.injector = ['Request', "URL", "$routeParams"];
+	Pin.injector = ["Request", "URL", "$routeParams"];
 
 	function Pin(Request, URL, $routeParams) {
 		var vm = this;
@@ -12,10 +12,6 @@
 			{
 				value 	: 'titulo',
 				name 	: 'Título'	
-			},
-			{
-				value 	: 'ativo',
-				name 	: 'Status'
 			}
 		];
 
@@ -44,7 +40,7 @@
 				angular.forEach(res[0].objeto, function(value, key) {
 					(value.ativo == true) ? value.ativo = "Ativo" : value.ativo = "Inativo";
 				});
-				vm.pin = res[0].objeto;
+				vm.pins = res[0].objeto;
 			});
 		}
 
@@ -57,25 +53,26 @@
 			Request.set('busca/pin', data).then(function(res) {
 				angular.forEach(res[0].objeto, function(value, key) {
 					//(value.tp_funcionario == "COR") ? value.tp_funcionario = "Corretor" : value.tp_funcionario = "Administrador";
-					(value.ativo == true) ? value.ativo = "Ativo" : value.ativo = "Inativo";		
+					//(value.ativo == true) ? value.ativo = "Ativo" : value.ativo = "Inativo";		
 				});
-				vm.pin = res[0].objeto;
+				vm.tipoimoveis = res[0].objeto;
 			});
 
 		}
 
 		vm.setPin = function() {
 			var data = {
-				titulo     : 	$("#tipo-titulo").val(),
-				endereco   :  	$("#endereco").val(),
-				nr_endereco:  	$("#nr_endereco").val(),
-				bairro	   :  	$("#bairro").val(),
-				cpf		   :  	$("#cpf").val(),
-				id_cidade  : 	$("#id_cidade").val(),
-				observacoes:  	$("#observacoes").val(),
-				ativo:   		$("#ativo").val()
+				titulo 		:  	$("#titulopin").val(),
+				endereco 	:  	$("#endereco").val(),
+				nr_endereco :  	$("#nr_endereco").val(),
+				bairro		:  	$("#bairro").val(),
+				cep 		:  	$("#cep").val(),
+				cidade 		:  	$("#cidade").val(),
+				observacao 	:   $("#observacao").val(),
+				latitude 	:  	$("#latitude").val(),
+				longitude 	:   $("#longitude").val()
 			};
-			
+
 			Request.set('pin', data).then(function(res){
 				var alerta = new alert();
 				if (res[0].codigo == "SUCCESS") {
@@ -90,14 +87,15 @@
 
 		vm.update = function(){
 			var data = {
-				titulo     : 	$("#tipo-titulo").val(),
-				endereco   :  	$("#endereco").val(),
-				nr_endereco:  	$("#nr_endereco").val(),
-				bairro	   :  	$("#bairro").val(),
-				cpf		   :  	$("#cpf").val(),
-				id_cidade  : 	$("#id_cidade").val(),
-				observacoes:  	$("#observacoes").val(),
-				ativo:   		$("#ativo").val()
+				titulo 		:  	$("#titulopin").val(),
+				endereco 	:  	$("#endereco").val(),
+				nr_endereco :  	$("#nr_endereco").val(),
+				bairro		:  	$("#bairro").val(),
+				cep 		:  	$("#cep").val(),
+				cidade 		:  	$("#cidade").val(),
+				observacao 	:   $("#observacao").val(),
+				latitude 	:  	$("#latitude").val(),
+				longitude 	:   $("#longitude").val()
 			};
 
 			Request.put("pin/" + $routeParams.slug, data)
@@ -119,7 +117,7 @@
 
 			var id = event.srcElement.attributes[0].value;
 			var tr = $(event.srcElement).closest('tr');
-			console.log(id);
+			
 			Request.destroy('pin/' + id)
 				.then(function(res){
 					var alerta = new alert();
@@ -130,7 +128,7 @@
 						alerta.danger(res[0].mensagem);
 					}					
 					return res;
-			})
+			});
 		}
 
 	}

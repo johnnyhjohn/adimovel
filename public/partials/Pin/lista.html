@@ -1,0 +1,86 @@
+<h1>Lista de Pins</h1>
+<a class='btn-adiciona' href="admin/pin/cadastro"><button class="btn btn-success">Adicionar</button></a>
+<div class="panel" data-ng-controller="PinCtrl as vm">
+	<div class="container container-responsive">
+		<div class="col-md-12">
+		<form class="busca">
+			<div class="material-input select">
+				<div class="col-md-4">
+					<label for="busca" class="float-label"><i class="fa fa-search"></i> Busca</label>
+					<input data-ng-keypress="vm.busca()" id="busca" type="text" class="form-control">
+					<span></span>
+				</div>
+				<div class="col-md-4">
+					<select 
+						data-ng-change='vm.busca()' 
+						data-ng-model='vm.coluna'
+						data-ng-options='template.value as template.name for template in vm.colunas track by template.value' 
+						name="" 
+						id="coluna" 
+						class="form-control float-label">
+					</select>
+				</div>
+				<span></span>
+			</div>	
+		</form>	
+ 		</div>
+		<hr>
+		<table class="table">
+			<tr id="table-head">
+				<th id="codigo" class="filtro">Código</th>
+				<th id="titulo" class="filtro">Título</th>
+				<th id="endereco" class="filtro">Endereço</th>
+				<th id="nr_endereco" class="filtro">N° Endereco</th>
+				<th id="bairro" class="filtro">Bairro</th>
+				<th id="cep">CEP</th>
+				<th>Opções</th>
+			</tr>
+			<tr class="text-center" data-ng-if="vm.pins == null || vm.pins == '' ">
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>Nenhum
+				registro
+				encontrado</td>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr data-ng-repeat="pin in vm.pins">
+				<td>{{ pin.id }}</td>
+				<td>{{ pin.titulo }}</td>
+				<td>{{ pin.endereco }}</td>
+				<td>{{ pin.nr_endereco }}</td>
+				<td>{{ pin.bairro }}</td>
+				<td>{{ pin.nr_cep }}</td>
+				<td>
+					<a href="admin/imoveis/cadastro?pin={{ pin.id }}">
+						<button class="btn btn-warning"><i class="fa fa-share-square"></i></button>
+					</a>
+					<a href="admin/pin/editar/{{ pin.id }}"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>
+					<button class="btn btn-danger btn-deleta" data-toggle="modal" data-target="#deleteModal-{{ pin.id }}"><i class="fa fa-trash-o"></i></button>
+
+			    <!-- Modal -->
+			  	<div class="modal fade" id="deleteModal-{{ pin.id }}" data-seletor="{{ pin.id }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			    	<div class="modal-dialog" role="document">
+			      		<div class="modal-content">
+			        		<div class="modal-header">
+			          		<h4 class="modal-title" id="myModalLabel">Deseja realmente excluir {{ pin.titulo }} ?</h4>
+			        	</div>
+			        	<div class="modal-body">
+			        		<div class="col-md-12">
+			          			<form>
+			            			<button data-id="{{ pin.id }}" class="btn ripple btn-confirm-delete" data-ng-click='vm.deleta()'>Sim</button>
+			            			<button class="btn btn-default ripple btn-close" data-dismiss="modal">Não</button>
+			          			</form>
+			        		</div>
+			        	</div>
+			        	<div class="modal-footer">  
+			        	</div>
+			      	</div>
+			    </div>						
+				</td>			
+			</tr>
+		</table>
+	</div>
+</div>

@@ -134,28 +134,28 @@
             <div class="col-md-3">
 				<div class="material-input select">
 					<label for="endereco" class="float-label">Endereço</label>
-					<input type="text" id="endereco" name="endereco" class="form-control endereco">
+					<input type="text" id="endereco" name="endereco" class="form-control endereco" value="{{ vm.pin.endereco }}">
 					<span></span>
 				</div>	
             </div>
             <div class="col-md-3">
 				<div class="material-input select">
 					<label for="nm_endereco" class="float-label">N Endereço</label>
-					<input type="number" min='0' id="nm_endereco" name="nm_endereco" class="form-control endereco">
+					<input type="number" min='0' id="nm_endereco" name="nm_endereco" class="form-control endereco" value="{{ vm.pin.nr_endereco }}">
 					<span></span>
 				</div>	
             </div>
             <div class="col-md-3">
 				<div class="material-input select">
 					<label for="bairro" class="float-label">Bairro</label>
-					<input type="text" id="bairro" name="bairro" class="form-control bairro">
+					<input type="text" id="bairro" name="bairro" class="form-control bairro" value="{{ vm.pin.bairro }}">
 					<span></span>
 				</div>	
             </div>
             <div class="col-md-3">
 				<div class="material-input select">
 					<label for="cep" class="float-label">CEP</label>
-					<input type="text" id="cep" name="cep" class="form-control cep">
+					<input type="text" id="cep" name="cep" class="form-control cep" value="{{ vm.pin.nr_cep }}">
 					<span></span>
 				</div>	
             </div>
@@ -169,7 +169,7 @@
             <div class="col-md-3">
 				<div class="material-input select">
 					<label for="cidade" class="float-label">Cidade</label>
-					<input type="text" id="cidade" name="cidade" class="form-control cidade">
+					<input type="text" id="cidade" name="cidade" class="form-control cidade" value="{{ vm.pin.cidade.nm_cidade }}">
 					<span></span>
 				</div>	
             </div>

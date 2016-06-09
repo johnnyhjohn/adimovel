@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-//use App\Http\Enum\UsuarioEnum;
 
+use App\Http\ViewObject\PinVO;
 use App\JSONUtils;
 use App\Messages;
 use App\Pin;
@@ -53,14 +53,23 @@ class PinController extends Controller
 		try{
             $pin = new Pin();
 
-            $pin->titulo   = $request->input('titulo');
-            $pin->ativo = $request->input('ativo');
-
+            $pin->titulo        = $request->input('titulo');
+            $pin->endereco      = $request->input('endereco');
+            $pin->nr_endereco   = $request->input('nr_endereco');
+            $pin->bairro        = $request->input('bairro');
+            $pin->nr_cep        = $request->input('cep');
+            $pin->id_cidade     = $request->input('cidade');
+            $pin->observacao    = $request->input('observacao');
+            $pin->latitude      = $request->input('latitude');
+            $pin->longitude     = $request->input('longitude');
+            $pin->ativo         = true;
+            //dd($request->all());
+        /*    
             $validator = \Validator::make($request->all(), $this->validaCadastro());
 	        if ($validator->fails()) {
 				return JSONUtils::returnDanger('Problema de validação verifique os campos e tente novamente.', "Erro");   
 	        }
-
+        */
         	$pin->save();
 			return JSONUtils::returnSuccess($pin->titulo .' cadastrada com sucesso.', $pin);
 
@@ -72,7 +81,7 @@ class PinController extends Controller
     public function validaCadastro()
     {
 		return [
-			'titulo'			=> 'required',
+			'titulo'		=> 'required',
         ];
     }
 
@@ -81,8 +90,16 @@ class PinController extends Controller
         try{
             $pin = Pin::find($id);
 
-            $pin->titulo   = $request->input('titulo');
-            $pin->ativo = $request->input('ativo');
+            $pin->titulo        = $request->input('titulo');
+            $pin->endereco      = $request->input('endereco');
+            $pin->nr_endereco   = $request->input('nr_endereco');
+            $pin->bairro        = $request->input('bairro');
+            $pin->nr_cep        = $request->input('cep');
+            $pin->id_cidade     = $request->input('cidade');
+            $pin->observacao    = $request->input('observacao');
+            $pin->latitude      = $request->input('latitude');
+            $pin->longitude     = $request->input('longitude');
+            $pin->ativo         = true;
 
             $validator = \Validator::make($request->all(), $this->validaCadastro());
             if ($validator->fails()) {
@@ -99,8 +116,7 @@ class PinController extends Controller
     public function destroy($id){
         try{
             $pin = Pin::find($id);
-            $pin->ativo = false;
-            $pin->save();
+            $pin->delete();
 
             return JSONUtils::returnSuccess('Item deletado com sucesso.', $pin);
         }catch(Exception $e){

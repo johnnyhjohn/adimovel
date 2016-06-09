@@ -76,6 +76,14 @@ Route::group(['prefix' => 'data'], function()
 	    //Route::delete('{id}', 'RelatorioController@destroy');
 	});
 
+	Route::group(['prefix' => 'pin'], function()
+	{
+	    Route::post('', 'PinController@create');
+	    Route::get('{id?}', 'PinController@index');
+	    Route::put('{id}', 'PinController@update');
+	    Route::delete('{id}', 'PinController@destroy');
+	});
+
 	Route::group(['prefix' => 'busca'], function()
 	{
 		Route::group(['prefix' => 'pessoa'], function()

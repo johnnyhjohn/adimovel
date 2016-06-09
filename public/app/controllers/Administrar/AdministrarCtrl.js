@@ -277,6 +277,8 @@
 			var data = {
 				id_contrato 	: $("#id_contrato").val(),
 				proprietario : $("#id_proprietario").val(),
+				inquilino : $("#id_inquilino").val(),
+				usuario : vm.user.id,
 				valor 	 		: total,
  				movimentacoes	: movimentacao
 			}

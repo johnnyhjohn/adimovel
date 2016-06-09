@@ -155,9 +155,9 @@
               montaRota('/admin/relatorios/proprietario/:slug',  'Relatorios/proprietario.html', 'RelatorioCtrl'),
               montaRota('/admin/relatorios/imovel/:slug',  'Relatorios/imovel.html', 'RelatorioCtrl'),
               
-              montaRota('/admin/pin',  'Pin/pin.html'),
+              montaRota('/admin/pin',  'Pin/lista.html'),
               montaRota('/admin/pin/editar/:slug', 'Pin/editar.html', 'PinCtrl'),
-              montaRota('/admin/pin/cadastro', 'Pin/cadastro.html', 'PinCtrl'),
+              montaRota('/admin/pin/cadastro', 'Pin/cadastro.html'),
 
               montaRota('/admin/configuracao',  'Configuracoes/index.html'),
       		]

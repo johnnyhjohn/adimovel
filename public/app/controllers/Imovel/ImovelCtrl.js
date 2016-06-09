@@ -54,6 +54,14 @@
 			}
 		}
 
+		if($routeParams.pin){
+			Request.get("pin/" + $routeParams.pin)
+				.then(function(res){
+					vm.pin = res[0].objeto;
+			});
+			
+		}
+
 		function getCountImoveis(){
 			Request.get("imoveis").then(function(res){
 				vm.imoveis_cadastrados = res[0].objeto.length;
