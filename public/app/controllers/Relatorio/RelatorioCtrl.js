@@ -23,7 +23,7 @@
 		function active(){
 			var functions = [getRelatorioInquilino(), getRelatorioProprietario(), getRelatorioImovel()];
 		}
-
+		
 		function getRelatorioInquilino(){
 			var data = {
 				mes 		: $routeParams.mes,

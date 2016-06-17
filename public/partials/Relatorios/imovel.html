@@ -1,7 +1,8 @@
-<h1>Relatório Inquilino</h1>
+<h1>Relatório Imóvel</h1>
 
 <div class="panel">
-	<div class="container container-responsive">
+	<div class="container container-responsive"
+		data-ng-if="vm.relatoriosimovel[0] != null">
 		<div>
 			<h3>Ano: {{ vm.relatoriosimovel[0].ano }}</h3>
 			<h3>
@@ -37,5 +38,9 @@
 		</table>
 
 		<button class="btn btn-primary pull-right" onclick="window.print();">Imprimir</button>
+	</div>
+	<div class="container container-responsive"
+		data-ng-if="vm.relatoriosimovel[0] == null">
+		<h3>Nenhum registro encontrado</h3>
 	</div>
 </div>

@@ -1,7 +1,9 @@
 <h1>Relatório Proprietario</h1>
 
 <div class="panel">
-	<div class="container container-responsive">
+	<div class="container container-responsive"
+		data-ng-if="vm.relatoriosproprietario[0] != null">
+		
 		<h2>Mes: {{ $_GET['mes']; }}<span class="pull-right">Ano: </span></h2>
 		<h2>Proprietario: {{ vm.relatoriosproprietario[0].nomeproprietario }}<span class="pull-right">CPF: {{ vm.relatoriosproprietario[0].cpfproprietario }}</span></h2>
 		<h3 class="text-center">Imóveis Alugados</h3>
@@ -38,5 +40,10 @@
 			</tr>	
 		</table>
 		<button class="btn btn-primary pull-right" onclick="window.print();">Imprimir</button>
+	</div>
+
+	<div class="container container-responsive"
+		data-ng-if="vm.relatoriosproprietario[0] == null">
+		<h3>Nenhum registro encontrado</h3>
 	</div>
 </div>

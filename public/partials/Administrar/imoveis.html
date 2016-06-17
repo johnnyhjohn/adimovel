@@ -78,6 +78,11 @@
 		<hr>
 		
 		<input type="hidden" id="movimento" value="Custo">
+
+		<input type="hidden" name="id_imovel" id="id_imovel" value="{{ vm.movimento.imovel.id }}">
+		<input type="hidden" name="id_proprietario" id="id_proprietario" value="{{ vm.movimento.proprietario.id }}">
+		<input type="hidden" name="id_inquilino" id="id_inquilino" value="{{ vm.movimento.inquilino.id }}">
+
 		<input type="hidden" name="id_contrato" id="id_contrato" value="{{ vm.movimento.id }}">
 		<input type="hidden" name="valor" id="valor" value="{{ vm.movimento.valor }}">
 		<input type="hidden" name="valor-total" id="valor-total" value="{{ vm.movimento.valor }}">

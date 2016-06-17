@@ -40,7 +40,7 @@ class CreateImovel extends Migration
             $table->date('dt_cadastrado');
             $table->string('latitude')->nullabel();
             $table->string('longitude')->nullabel();
-            $table->char('situacao_imovel', 3);
+            $table->char('finalidade', 3);
             $table->boolean('ativo')->default(true);
             
                         

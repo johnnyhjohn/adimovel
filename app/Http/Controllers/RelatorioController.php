@@ -151,7 +151,7 @@ class RelatorioController extends Controller
         try{
                 $ano        = $request->input('ano');
                 
-                $recibo = Recibo::where('id_imovel', '=', $id)
+                $recibo = Movimentacao::where('id_imovel', '=', $id)
                                     ->where('ano', '=', $ano)
                                     ->orderBy('id', 'asc')
                                     ->get();
@@ -161,10 +161,10 @@ class RelatorioController extends Controller
                 $return = array();
             
                 foreach ($recibo as $key => $value) {
-                    $cVO = new ReciboVO(Recibo::find($value->id));
+                    $cVO = new MovimentacaoVO(Movimentacao::find($value->id));
                     $return[] = $cVO;
                 }
-                
+
                 return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $return);
             
         } catch(Exception $e){

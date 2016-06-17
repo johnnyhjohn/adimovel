@@ -21,7 +21,9 @@ class Pin extends Migration
             $table->string('nr_cep', 8)->nullable();
             $table->integer('id_cidade')->unsigned();
             $table->foreign('id_cidade')->references('id')->on('cidades');
-            $table->string('observacoes');
+            $table->string('observacao');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->boolean('ativo')->default(true);
             $table->timestamps();
         });
