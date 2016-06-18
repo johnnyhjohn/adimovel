@@ -24,5 +24,16 @@ class UsuarioSeeder extends Seeder
         'ativo'             => true
       ));
       
+      Usuario::create(array(
+        'nm_usuario'        => 'Corretor xpto',
+        'email'             => 'teste@teste.com',
+        'nr_cpf'            => '1231324311',
+        'nr_telefone'       => '1231444',
+        'tp_funcionario'    => 'COR',
+        'password'          => \Hash::make('teste'),
+        'admin'             => false,
+        'ativo'             => true
+      ));
+
     }
 }

@@ -12,11 +12,11 @@ class CidadesSeeder extends Seeder
      */
     public function run()
     {
-      for ($i=0; $i < 28; $i++) {
-        Cidade::create(array(
-          'nome'    => 'Cidade '.$i.' ok !',
-          'estado'   => 1,
-          'status'  => 'true'
+      for ($i=0; $i < 10; $i++) {
+        Cidades::create(array(
+          'nm_cidade'    => 'Cidade '.$i,
+          'id_estado'   => 1,
+          'ativo'  => 'true'
         ));
       }
     }

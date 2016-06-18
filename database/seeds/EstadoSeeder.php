@@ -13,13 +13,11 @@ class EstadosSeeder extends Seeder
     public function run()
     {
       //DB::table('estados')->delete();
-      for ($i=0; $i < 28; $i++) {
-        
-
-        Estado::create(array(
-          'nome'    => 'Estado '.$i.' ok !',
-          'sigla'   => $i,
-          'status'  => 'true'
+      for ($i=0; $i < 4; $i++) {
+        Estados::create(array(
+          'nm_estado'    => 'Estado '.$i,
+          'uf'   => 'a'.$i,
+          'ativo'  => 'true'
         ));
       }
     }
