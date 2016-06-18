@@ -32,6 +32,7 @@
 				<th id="telefone" class="filtro">Nome do Imovel</th>
 				<th id="celular" class="filtro">Corretor</th>
 				<th id="projeto" class="filtro">Tipo</th>
+				<th id="projeto" class="filtro">Reservado</th>
 				<th id="projeto" class="filtro">Finalidade</th>
 				<th>Opções</th>
 			</tr>
@@ -41,6 +42,7 @@
 				<td>{{ imovel.titulo_anuncio }}</td>
 				<td>{{ imovel.endereco }}</td>
 				<td>{{ imovel.tp_imovel.titulo }}</td>
+				<td>{{ imovel.reservado }}</td>
 				<td class="pago">{{ imovel.finalidade }}</td>
 				<td>
 					<a href="admin/imoveis/editar/{{ imovel.id }}"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>

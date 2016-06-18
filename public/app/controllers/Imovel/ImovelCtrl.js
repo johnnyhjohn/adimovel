@@ -64,6 +64,11 @@
 
 		function getCountImoveis(){
 			Request.get("imoveis").then(function(res){
+				angular.forEach(res[0].objeto, function(value, key) {
+					(value.reservado == true) ? value.reservado = "Reservado" : value.reservado = "Disponível";
+					//(value.tp_funcionario == "COR") ? value.tp_funcionario = "Corretor" : value.tp_funcionario = "Administrador";
+					//(value.ativo == true) ? value.ativo = "Ativo" : value.ativo = "Inativo";		
+				});
 				vm.imoveis_cadastrados = res[0].objeto.length;
 			});
 			Request.get("imoveis/count-vendas").then(function(res){
@@ -74,6 +79,11 @@
 
 		function getImoveis(){
 			Request.get("imoveis").then(function(res){
+				angular.forEach(res[0].objeto, function(value, key) {
+					(value.reservado == true) ? value.reservado = "Reservado" : value.reservado = "Disponível";
+					//(value.tp_funcionario == "COR") ? value.tp_funcionario = "Corretor" : value.tp_funcionario = "Administrador";
+					//(value.ativo == true) ? value.ativo = "Ativo" : value.ativo = "Inativo";		
+				});
 				vm.imoveis = res[0].objeto;
 			});
 		}
@@ -85,6 +95,7 @@
 
 			Request.set('busca/imovel', data).then(function(res) {
 				angular.forEach(res[0].objeto, function(value, key) {
+					(value.reservado == true) ? value.reservado = "Reservado" : value.reservado = "Disponivel";
 					//(value.tp_funcionario == "COR") ? value.tp_funcionario = "Corretor" : value.tp_funcionario = "Administrador";
 					//(value.ativo == true) ? value.ativo = "Ativo" : value.ativo = "Inativo";		
 				});

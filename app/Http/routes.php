@@ -32,7 +32,7 @@ Route::group(['prefix' => 'data'], function()
 
 	Route::group(['prefix' => 'imoveis'], function()
 	{
-		// Route::put('situacao/{id}', 'ImovelController@atualizaSituacao');
+		Route::post('reserva/{id}', 'ImovelController@atualizaReserva');
 	    Route::get('count-vendas', 'ImovelController@getCountVendas');
 	    Route::post('', 'ImovelController@create');
 	    Route::get('{id?}', 'ImovelController@index');

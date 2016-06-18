@@ -13,11 +13,11 @@
 			<div class="material-input select">
 				<label for="corretor" class="float-label">Corretor</label>
 				<select id="corretor" class="form-control">
+					<option value="">Selecione um corretor</option>
 					<option 
 						data-ng-repeat="corretor in user.corretores"  
 						data-ng-selected="corretor.id == vm.imovel.id_corretor.id"
 						value="{{ corretor.id }}"
-						selected 
 						>{{ corretor.nm_usuario }}</option>
 
 				</select>
@@ -28,6 +28,7 @@
 			<div class="material-input select">
 				<label for="proprietario" class="float-label">Proprietario</label>
 				<select id="proprietario" class="form-control">
+					<option value="">Selecione um proprietario</option>
 					<option 
 						data-ng-repeat="corretor in user.pessoas"  
 						value="{{ corretor.id }}"
@@ -47,19 +48,43 @@
 			<div class="material-input select">
 				<label for="finalidade" class="float-label">Finalidade</label>
 				<select id="finalidade" class="form-control">
-					<option value="LOC">Locação</option>
-					<option value="VEN">Venda</option>
-					<option value="AMB">Ambos</option>
+					<option 
+						data-ng-selected="vm.imovel.finalidade == LOC"
+						value="LOC">Locação</option>
+					<option 
+						data-ng-selected="vm.imovel.finalidade == VEN"
+						value="VEN">Venda</option>
+					<option 
+						data-ng-selected="vm.imovel.finalidade == AMB"
+						value="AMB">Ambos</option>
 				</select>
 				<span></span>
 			</div>	
 		</div>		
 		<div class="col-md-3">
 			<div class="material-input select">
+				<label for="reservado" class="float-label">Reservado</label>
+				<select id="reservado" class="form-control">
+					<option
+						data-ng-selected="vm.imovel.reservado == false"
+						value="false">Não</option>
+					<option 
+						data-ng-selected="vm.imovel.reservado == true"
+						value="true">Sim</option>
+				</select>
+				<span></span>
+			</div>	
+		</div>
+		<div class="col-md-3">
+			<div class="material-input select">
 				<label for="vitrine" class="float-label">Mostrar no Site?</label>
 				<select id="vitrine" class="form-control">
-					<option value="true">Sim</option>
-					<option value="false">Não</option>
+					<option 
+						data-ng-selected="vm.imovel.vitrine == true"
+						value="true">Sim</option>
+					<option 
+						data-ng-selected="vm.imovel.vitrine == false"
+						value="false">Não</option>
 				</select>
 				<span></span>
 			</div>	

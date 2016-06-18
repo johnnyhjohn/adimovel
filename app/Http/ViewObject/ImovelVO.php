@@ -42,6 +42,8 @@ class ImovelVO
     public $latitude;
     public $longitude;
     public $situacao_imovel;
+    public $finalidade;
+    public $reservado;
     public $ativo;
 
   public function __construct(Imovel $obj = null)
@@ -77,6 +79,8 @@ class ImovelVO
     $this->latitude         = $obj->latitude;
     $this->longitude        = $obj->longitude;
     $this->situacao_imovel  = $obj->situacao_imovel;
+    $this->reservado        = $obj->reservado;
+    $this->finalidade        = $obj->finalidade;
     $this->ativo            = $obj->ativo;
   }
 
@@ -107,6 +111,8 @@ class ImovelVO
     $obj->latitude             = $this->latitude;
     $obj->longitude            = $this->longitude;
     $obj->situacao_imovel      = $this->situacao_imovel;
+    $obj->reservado            = $this->reservado;
+    $obj->finalidade            = $this->finalidade;
     $obj->ativo                = $this->ativo;
 
     return $obj;

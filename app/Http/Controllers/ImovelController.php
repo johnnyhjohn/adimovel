@@ -75,6 +75,7 @@ class ImovelController extends Controller
             $imovel->vitrine          = $request->input('vitrine');
             $imovel->financiamento    = $request->input('financiamento');
             $imovel->finalidade       = $request->input('finalidade');
+            $imovel->reservado       = $request->input('reservado');
             $imovel->dt_cadastrado    = $request->input('dt_cadastrado');
             $imovel->latitude         = $request->input('lat');
             $imovel->longitude        = $request->input('lng');
@@ -124,6 +125,19 @@ class ImovelController extends Controller
         }
     }
 
+    public function atualizaReserva(Request $request, $id)
+    {
+        try{
+            $imovel = Imovel::find($id);
+            $imovel->reservado = true;
+
+            $imovel->save();
+            return JSONUtils::returnSuccess($imovel->titulo_anuncio .' alterado com sucesso.', $imovel);
+        }catch(Exception $e){
+            return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
+        }
+    }
+
     public function update(Request $request, $id)
     {
         try{
@@ -148,6 +162,7 @@ class ImovelController extends Controller
             $imovel->vitrine          = $request->input('vitrine');
             $imovel->financiamento    = $request->input('financiamento');
             $imovel->finalidade       = new ImoveisEnum($request->input('finalidade'));
+            $imovel->reservado    = $request->input('reservado');
             $imovel->dt_cadastrado    = $request->input('dt_cadastrado');
             $imovel->latitude         = $request->input('lat');
             $imovel->longitude        = $request->input('lng');

@@ -6,8 +6,10 @@
 			<div class="material-input select">
 				<label for="imovel" class="float-label">Imóvel</label>
 				<select id="imovel" class="form-control">
+					<option value="">Selecione um imóvel</option>
 					<option 
 						data-ng-repeat="imovel in vm.imoveis"
+						data-ng-if="imovel.reservado == 'Disponível'"
 						value="{{ imovel.id }}"
 						>{{ imovel.codigo_interno }} - {{ imovel.titulo_anuncio }} - {{ imovel.endereco }}</option>
 				</select>
@@ -19,6 +21,7 @@
 				<div class="material-input select" >
 					<label for="proprietario" class="float-label">Proprietário</label>
 					<select id="proprietario" class="form-control" data-ng-model="proprietario">
+						<option value="">Selecione um proprietario</option>
 						<option 
 							data-ng-repeat="proprietario in vm.pessoas"  
 							value="{{ proprietario.id }}"
@@ -31,6 +34,7 @@
 				<div class="material-input select">
 					<label for="inquilino" class="float-label">Inquilino</label>
 					<select id="inquilino" class="form-control">
+						<option value="">Selecione um inquilino</option>
 						<option 
 							data-ng-repeat="inquilino in vm.pessoas"
 							data-ng-if="inquilino.id != proprietario"  

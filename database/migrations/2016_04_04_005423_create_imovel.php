@@ -37,6 +37,7 @@ class CreateImovel extends Migration
             $table->double('valor',20,2);
             $table->boolean('vitrine');
             $table->boolean('financiamento');
+            $table->boolean('reservado')->default(false);
             $table->date('dt_cadastrado');
             $table->string('latitude')->nullabel();
             $table->string('longitude')->nullabel();
