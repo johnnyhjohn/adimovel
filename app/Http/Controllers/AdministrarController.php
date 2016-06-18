@@ -100,9 +100,13 @@ class AdministrarController extends Controller
     {
         try{
             $contrato = new ContratoVO(Contrato::find($id));
+            //$movimentacaos = Movimentacao::where('id_contrato','=',$id)->orderBy('id','desc')->get();
+            //$contrato = Contrato::find($id);
+            //$mVO = new MovimentacaoVO(Movimentacao::find($movimentacaos[0]->id));
+            //dd($contrato);
             
             return JSONUtils::returnSuccess(Messages::MSG_QUERY_SUCCESS,
-             $contrato);
+            $contrato);
         }catch(Exception $e){
             return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
         }
@@ -111,16 +115,21 @@ class AdministrarController extends Controller
     public function getMovimentos($id)
     {
         try{
-            $movimentacaos = Movimentacao::where('id_contrato','=',$id)->orderBy('id','asc')->get();
+            $movimentacaos = Movimentacao::where('id_contrato','=',$id)->orderBy('id','desc')->get();
 
             $return = array();
 
-            foreach ($movimentacaos as $movimentacao) {
-                $mVO = new MovimentacaoVO(Movimentacao::find($movimentacao->id));
-                $return[] = $mVO;
+            // foreach ($movimentacaos as $movimentacao) {
+            //     $mVO = new MovimentacaoVO(Movimentacao::find($movimentacao->id));
+            //     $return[] = $mVO;
+            // }
+            $mVO = "";
+            if(!empty($movimentacaos[0])){
+                $mVO = new MovimentacaoVO(Movimentacao::find($movimentacaos[0]->id));
+                return JSONUtils::returnSuccess(Messages::MSG_QUERY_SUCCESS, $mVO->movimentacoes);
+            }else{
+                return JSONUtils::returnSuccess(Messages::MSG_QUERY_SUCCESS, $mVO);
             }
-            return JSONUtils::returnSuccess(Messages::MSG_QUERY_SUCCESS,
-                 $return);
         }catch(Exception $e){
             return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
         }

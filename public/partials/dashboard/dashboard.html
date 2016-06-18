@@ -1,5 +1,6 @@
 <div class="container-responsive">
-	<div class="col-md-4" data-ng-controller="ImovelCtrl as vm">
+	<div data-ng-controller="ImovelCtrl as vm">
+	<div class="col-md-4">
 		<div class="panel panel-icon">
 			<div class="icon icon1">
 				<i class="fa fa-building"></i>
@@ -16,9 +17,11 @@
 				<i class="fa fa-building"></i>
 			</div>
 			<div class="info">
+				{{ vm.vendas }}
 				Imóveis Vendidos
 			</div>
 		</div>
+	</div>
 	</div>
 	<div class="col-md-4">
 		<div class="panel panel-icon">

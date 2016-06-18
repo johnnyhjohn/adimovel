@@ -66,6 +66,10 @@
 			Request.get("imoveis").then(function(res){
 				vm.imoveis_cadastrados = res[0].objeto.length;
 			});
+			Request.get("imoveis/count-vendas").then(function(res){
+				vm.vendas = res[0].objeto.length;
+				console.log(vm.vendas)
+			});
 		}
 
 		function getImoveis(){

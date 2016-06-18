@@ -147,11 +147,11 @@ class ImovelController extends Controller
             $imovel->valor            = $request->input('valor');
             $imovel->vitrine          = $request->input('vitrine');
             $imovel->financiamento    = $request->input('financiamento');
-            $imovel->finalidade       = new ImovelEnum($request->input('finalidade'));
+            $imovel->finalidade       = new ImoveisEnum($request->input('finalidade'));
             $imovel->dt_cadastrado    = $request->input('dt_cadastrado');
             $imovel->latitude         = $request->input('lat');
             $imovel->longitude        = $request->input('lng');
-            $imovel->situacao_imovel  = $request->input('situacao');
+            $imovel->situacao_imovel  = 1;
             $imovel->ativo = true;
             // dd($imovel);
             // $validator = \Validator::make($request->all(), $this->validaCadastro());
@@ -196,5 +196,17 @@ class ImovelController extends Controller
 	    } catch(Exception $e){
     		return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
     	}	
+    }
+
+    public function getCountVendas()
+    {
+        try{
+
+            $count = Imovel::where('finalidade','=','VEN')
+                            ->get();
+            return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $count);  
+        }catch(Exception $e){
+          return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);  
+        }
     }
 }

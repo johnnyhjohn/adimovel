@@ -33,6 +33,7 @@ Route::group(['prefix' => 'data'], function()
 	Route::group(['prefix' => 'imoveis'], function()
 	{
 		// Route::put('situacao/{id}', 'ImovelController@atualizaSituacao');
+	    Route::get('count-vendas', 'ImovelController@getCountVendas');
 	    Route::post('', 'ImovelController@create');
 	    Route::get('{id?}', 'ImovelController@index');
 	    Route::put('{id}', 'ImovelController@update');

@@ -48,7 +48,6 @@
 				<td class="pago">{{ vm.movimento.situacao_pagamento }}</td>
 			</tr>
 		</table>
-		{{ vm.movimento.movimentacoes }}
 		<div id="parcelas" >
 			<li data-parcela="{{nome}}-{{ vm.situacao_aluguel[mes] }}-{{mes}}" data-ng-repeat="(nome, mes) in vm.meses track by $index" class="parcelas">Parcela {{ nome }} - <span class="btn btn-aluguel btn-{{ vm.situacao_aluguel[mes].toLowerCase() }} ripple" data-ng-click="vm.alteraAluguel()" data-situacao="{{ vm.situacao_aluguel[mes].toLowerCase() }}">{{ vm.situacao_aluguel[mes] }}</span></li>
 			<hr>
