@@ -12,6 +12,7 @@ use App\Http\Enum\ImoveisEnum;
 use App\JSONUtils;
 use App\Messages;
 use App\Imovel;
+use App\Contrato;
 
 class ImovelController extends Controller
 {
@@ -217,7 +218,20 @@ class ImovelController extends Controller
     {
         try{
 
-            $count = Imovel::where('finalidade','=','VEN')
+            $count = Contrato::where('finalidade','=','VEN')
+                            ->where('situacao_pagamento', '=', 'true')
+                            ->get();
+            return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $count);  
+        }catch(Exception $e){
+          return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);  
+        }
+    }
+    public function getCountAluguel()
+    {
+        try{
+
+            $count = Contrato::where('finalidade','=','LOC')
+                            ->where('situacao_pagamento', '=', 'true')
                             ->get();
             return JSONUtils::returnSuccess('Consulta realizada com sucesso.', $count);  
         }catch(Exception $e){
