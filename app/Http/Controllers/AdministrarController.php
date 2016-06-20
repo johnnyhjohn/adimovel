@@ -100,10 +100,6 @@ class AdministrarController extends Controller
     {
         try{
             $contrato = new ContratoVO(Contrato::find($id));
-            //$movimentacaos = Movimentacao::where('id_contrato','=',$id)->orderBy('id','desc')->get();
-            //$contrato = Contrato::find($id);
-            //$mVO = new MovimentacaoVO(Movimentacao::find($movimentacaos[0]->id));
-            //dd($contrato);
             
             return JSONUtils::returnSuccess(Messages::MSG_QUERY_SUCCESS,
             $contrato);
@@ -119,10 +115,6 @@ class AdministrarController extends Controller
 
             $return = array();
 
-            // foreach ($movimentacaos as $movimentacao) {
-            //     $mVO = new MovimentacaoVO(Movimentacao::find($movimentacao->id));
-            //     $return[] = $mVO;
-            // }
             $mVO = "";
             if(!empty($movimentacaos[0])){
                 $mVO = new MovimentacaoVO(Movimentacao::find($movimentacaos[0]->id));
@@ -267,12 +259,12 @@ class AdministrarController extends Controller
     {
         try{
             $contrato = new Movimentacao();
-            //$contrato->id_proprietario   = $request->input('proprietario');            
+            $contrato->id_imovel        = $request->input('id_imovel');            
             $contrato->id_contrato      = $request->input('id_contrato');
             $contrato->valor            = $request->input('valor');
-            $contrato->dt_movimentacao  = '2016-01-01';
-            $contrato->mes              = 2;
-            $contrato->ano              = 2016;
+            $contrato->dt_movimentacao  = $request->input('data');
+            $contrato->mes              = $request->input('mes');
+            $contrato->ano              = $request->input('ano');
             $contrato->descricao        = '';
             $contrato->movimentacoes    = json_encode($request->input('movimentacoes'));
 
@@ -283,25 +275,20 @@ class AdministrarController extends Controller
 
             $contrato->save();
 
-            // $recibo = new Recibo();
-            // $recibo->id_proprietario   = $request->input('proprietario');
-            // $recibo->id_inquilino      = $request->input('id_inquilino');
-            // $recibo->id_usuario        = $request->input('id_usuario');
-            // $recibo->id_movimentacao   = $contrato->id;
-            // $recibo->valor             = $request->input('valor');
-            // $recibo->mes               = 1;
-            // $recibo->ano               = 2016;
-            // $recibo->dt_emissao        = '2016-01-01';
-            // $recibo->descricao         = '';
-            // $recibo->ativo             = true;
+            $recibo = new Recibo();
+            $recibo->id_proprietario    = $request->input('id_proprietario');
+            $recibo->id_inquilino       = $request->input('id_inquilino');
+            $recibo->id_usuario         = $request->input('id_usuario');
+            $recibo->id_imovel          = $request->input('id_imovel');  
+            $recibo->id_movimentacao    = $contrato->id;
+            $recibo->valor              = $request->input('valor');
+            $recibo->dt_emissao         = $request->input('data');
+            $recibo->mes                = $request->input('mes');
+            $recibo->ano                = $request->input('ano');
+            $recibo->descricao          = '';
+            $recibo->ativo              = true;
 
-            // //$validator = \Validator::make($request->all(), $this->validaCadastro());
-            // //if ($validator->fails()) {
-            // //  return JSONUtils::returnDanger('Problema de validação verifique os campos e tente novamente.', "Erro");   
-            // //}
-
-            // $recibo->save();
-
+            $recibo->save();
 
             return JSONUtils::returnSuccess('Movimento cadastrado com sucesso.', $contrato);
 

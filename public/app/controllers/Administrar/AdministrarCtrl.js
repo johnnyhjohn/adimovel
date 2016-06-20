@@ -73,17 +73,6 @@
 				}
 				return res;
 			});
-
-			Request.set("imoveis/reserva/"+$("#imovel").val() ).then(function(res){
-				var alerta = new alert();
-				if(res[0].codigo == "SUCCESS"){
-					alerta.success(res[0].mensagem);
-				}else if(res[0].codigo == "DANGER"){
-					alerta = new alert();
-					alerta.danger(res[0].mensagem);
-				}
-				return res;
-			});
 		}
 
 
@@ -167,7 +156,7 @@
 			if($routeParams.slug !== undefined){
 				Request.get("administrar/" + $routeParams.slug)
 					.then(function(res){
-					var contrato = res[0].objeto;
+						var contrato = res[0].objeto;
 						var dt_inicio = new Date(contrato.dt_inicio);
 						var dt_final  = new Date(contrato.dt_vencimento);
 						var mes = (dt_inicio.getMonth() + 1);
@@ -187,51 +176,44 @@
 					 	Request.get("administrar/movimento/" + $routeParams.slug)
 							.then(function(res){
 								
-								var movimento = res[0].objeto;
-								// (value.situacao_pagamento == true) ? value.situacao_pagamento = "Pago" : value.situacao_pagamento = "Pendente";
-								if(movimento){
-									vm.movimentacoes = res[0].objeto;	
-									vm.movimento.movimentacoes = vm.movimentacoes;
-									console.log(vm.movimentacoes);
-									vm.movimento.movimentacoes = JSON.parse(vm.movimento.movimentacoes).parcelas;
-								}
-								for (i = 0; i <= meses + 1; i++) {
+							var movimento = res[0].objeto;
+							// (value.situacao_pagamento == true) ? value.situacao_pagamento = "Pago" : value.situacao_pagamento = "Pendente";
+							if(movimento){
+								vm.movimentacoes = res[0].objeto;	
+								vm.movimento.movimentacoes = vm.movimentacoes;
+								vm.movimento.movimentacoes = JSON.parse(vm.movimento.movimentacoes).parcelas;
+							}
+							for (i = 0; i <= meses + 1; i++) {
 
-									count = i;
-									if(mes + i > 11){
-										// count = 12 - (i);	
-										vm.meses[nome_meses[(mes - 12 + i)] +'-'+(dt_inicio.getFullYear() + 1)] = mes + i;
-										// vm.meses[nome_meses[(dt_final.getMonth() - 12 + i)]];
-									} else if(dt_final.getMonth()  + i > 24){
-										// count = 24 - i;	
-										vm.meses[nome_meses[(mes - 24 + i)]] = mes + i;
-										console.log((dt_final.getMonth() - 24 + i), nome_meses[(dt_final.getMonth() - 24 + i)]);
-									} else if(dt_final.getMonth()  + i  > 36){
-										count = (mes + i) - 36;	
-										vm.meses[nome_meses[(mes - 36 + i)]] = mes + i;
-										console.log((dt_final.getMonth() - 36 + i));
-									} else if(dt_final.getMonth()  + i  > 48){
-										count = (mes + i) - 48;	
-										vm.meses[nome_meses[(dt_final.getMonth() - 48 + i)]] = mes + i;
-										console.log((dt_final.getMonth() - 48 + i));
-									}else{
-										vm.meses[nome_meses[mes + i] + "-" + dt_inicio.getFullYear()] = mes + i;
-									}				
-									console.log(count);
-									if(vm.movimento.movimentacoes){
-										if(vm.movimento.movimentacoes[i]){
-											console.log(count, contrato.movimentacoes);
-											vm.situacao_aluguel[(mes + i)] = contrato.movimentacoes[count].situacao;
-											if(contrato.movimentacoes[count].situacao == ""){
-												vm.situacao_aluguel[mes + i] = "Pendente";		
-											}
-										};
-									} else{
-										vm.situacao_aluguel[mes + i] = "Pendente";
-									}					
-								}
-								console.log(vm.meses, vm.movimento);
-								
+								count = i;
+								if(mes + i > 11 && mes + i < 24){
+									// count = 12 - (i);	
+									vm.meses[nome_meses[(mes - 12 + i)] +'-'+(dt_inicio.getFullYear() + 1)] = mes + i;
+									// vm.meses[nome_meses[(dt_final.getMonth() - 12 + i)]];
+								} else if(mes  + i > 23 && mes + i < 36){
+									// count = 24 - i;	
+									vm.meses[nome_meses[(mes - 24 + i)] +'-'+(dt_inicio.getFullYear() + 2)] = mes + i;
+								} else if(dt_final.getMonth()  + i  > 35 && mes + i < 48){
+									// count = (mes + i) - 36;	
+									vm.meses[nome_meses[(mes - 36 + i)] +'-'+(dt_inicio.getFullYear() + 3)] = mes + i;
+								} else if(dt_final.getMonth()  + i  > 48){
+									// count = (mes + i) - 48;	
+									vm.meses[nome_meses[(mes - 48 + i)] +'-'+(dt_inicio.getFullYear() + 4)] = mes + i;
+								}else{
+									vm.meses[nome_meses[mes + i] + "-" + dt_inicio.getFullYear()] = mes + i;
+								}				
+								if(vm.movimento.movimentacoes){
+									if(vm.movimento.movimentacoes[i]){
+										console.log(count, contrato.movimentacoes);
+										vm.situacao_aluguel[(mes + i)] = contrato.movimentacoes[count].situacao;
+										if(contrato.movimentacoes[count].situacao == ""){
+											vm.situacao_aluguel[mes + i] = "Pendente";		
+										}
+									};
+								} else{
+									vm.situacao_aluguel[mes + i] = "Pendente";
+								}					
+							}
 						});
 				});
 			}
@@ -275,10 +257,16 @@
 				movimentacao.observacao     = $("#descricao").val();
 			}
 
-			console.log(movimentacao);
 			var data = {
+				id_imovel 		: $("#id_imovel").val(),
+				id_proprietario : $("#id_proprietario").val(),
+				id_inquilino 	: $("#id_inquilino").val(),
+				id_usuario 		: vm.user.id,
 				id_contrato 	: $("#id_contrato").val(),
 				valor 	 		: $("#total").text(),
+				data 			: new Date(),
+				mes 			: (new Date().getMonth() + 1),
+				ano 			: (new Date().getFullYear()),
 				movimentacoes	: movimentacao
 			}
 
@@ -362,7 +350,14 @@
 			}
 			
 			var data = {
+				id_imovel 		: $("#id_imovel").val(),
 				id_contrato 	: $("#id_contrato").val(),
+				id_proprietario : $("#id_proprietario").val(),
+				id_inquilino 	: $("#id_inquilino").val(),
+				id_usuario 		: vm.user.id,
+				data 			: new Date(),
+				mes 			: (new Date().getMonth() + 1),
+				ano 			: (new Date().getFullYear()),
 				valor 	 		: total,
 				movimentacoes	: movimentacao
 			}
