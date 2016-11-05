@@ -12,6 +12,7 @@ use App\Http\Enum\PessoaEnum;
 use App\Http\Controllers\AutenticacaoController;
 
 use App\JSONUtils;
+use App\FuncoesAuxiliares;
 use App\Messages;
 use App\Pessoa;
 
@@ -24,6 +25,9 @@ class PessoaController extends Controller
 
     		//if(AutenticacaoController::verificaToken($token)){
 	            $pessoa = new Pessoa();
+
+	            $ultimo_cod = Pessoa::max('cod_pessoa');
+	            $pessoa->cod_pessoa = FuncoesAuxiliares::formataDigitos($ultimo_cod+1, 6);
 
 	            $pessoa->nm_pessoa 	= $request->input('nome');
 	            $pessoa->nr_cpf 	= $request->input('cpf');
@@ -104,7 +108,8 @@ class PessoaController extends Controller
     }
 
     public function index($id = null)
-    {  
+    { 
+ 		
     	try{
 	    	if ($id == null) {
 		        $pessoas = Pessoa::orderBy('nm_pessoa', 'asc')->get();
@@ -123,6 +128,7 @@ class PessoaController extends Controller
 		} catch(Exception $e){
 			return JSONUtils::returnDanger('Problema de acesso à base de dados.', $e);
 		}    
+
     }
 
     public function show($id)
