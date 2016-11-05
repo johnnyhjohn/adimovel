@@ -27,7 +27,8 @@
 		<hr>
 		<table class="table">
 			<tr id="table-head">
-				<th id="nome" class="filtro">Código</th>
+				<th id="id" class="filtro">ID</th>
+				<th id="cod_pessoa" class="filtro">Código</th>
 				<th id="nome" class="filtro">Nome</th>
 				<th id="projeto" class="filtro">Email</th>
 				<th id="celular" class="filtro">Telefone</th>
@@ -35,6 +36,7 @@
 				<th>Opções</th>
 			</tr>
 			<tr class="text-center" data-ng-if="vm.pessoas == null || vm.pessoas == '' ">
+				<td></td>
 				<td></td>
 				<td></td>
 				<td></td>
@@ -47,6 +49,7 @@
 			</tr>
 			<tr data-ng-repeat="pessoa in vm.pessoas">
 				<td>{{ pessoa.id }}</td>
+				<td>{{ pessoa.cod_pessoa }}</td>
 				<td>{{ pessoa.nm_pessoa }}</td>
 				<td>{{ pessoa.email }}</td>
 				<td>{{ pessoa.nr_telefone }}</td>

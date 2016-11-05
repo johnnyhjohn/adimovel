@@ -42,7 +42,10 @@
 				<td>{{ imovel.titulo_anuncio }}</td>
 				<td>{{ imovel.endereco }}</td>
 				<td>{{ imovel.tp_imovel.titulo }}</td>
-				<td>{{ imovel.reservado }}</td>
+				<td>
+					<button data-ng-if="imovel.reservado == true" ng-click="vm.setDisponivel(imovel.id)" class="btn btn-danger">Reservado</button>
+					<button data-ng-if="imovel.reservado == false" ng-click="vm.setReserva(imovel.id)" class="btn btn-default">Disponível</button>
+				</td>
 				<td class="pago">{{ imovel.finalidade }}</td>
 				<td>
 					<a href="admin/imoveis/editar/{{ imovel.id }}"><button class="btn btn-primary"><i class="fa fa-pencil"></i></button></a>

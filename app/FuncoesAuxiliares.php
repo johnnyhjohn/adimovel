@@ -9,7 +9,7 @@ class FuncoesAuxiliares
    * Função retorno para formatar códigos e complementar com 0.
    * Exemplo:  0001
    * @param $cod Código para formatação.
-   * @param $max Quantidade máximade digitos.
+   * @param $max Quantidade máxima de digitos.
    */
   public static function formataDigitos($cod,$max){
     
