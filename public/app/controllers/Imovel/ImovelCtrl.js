@@ -40,16 +40,26 @@
 		setTimeout(function(){
 			$("#coluna").find('option:first').remove();
 		}, 500);
-		setInterval(getCountImoveis, 10000);
+		// setInterval(getCountImoveis, 10000);
 		function active() {
 			var functions = [getImovel(), getImoveis(), getCountImoveis()];
 		}
 
+		/**
+		*
+		*
+		*/
 		function getImovel(){
 			if($routeParams.slug !== undefined){
 				Request.get("imoveis/" + $routeParams.slug)
 					.then(function(res){
-						vm.imovel = res[0].objeto;
+						
+						if(res[0].objeto.hasOwnProperty('foto')){
+							vm.imovel = res[0].objeto.imovel;	
+							vm.imovel.foto = res[0].objeto.foto;
+						} else{
+							vm.imovel = res[0].objeto;
+						}
 				});
 			}
 		}
@@ -104,6 +114,10 @@
 
 		}
 
+		vm.imageUpload = function() {
+			console.log('tste');
+		}
+
 		vm.setImovel = function() {
 			var data = {}
 			,	date = new Date();
@@ -115,6 +129,9 @@
 				data['token'] = vm.user.token.token;
 				data['dt_cadastrado'] = (date.getFullYear() +"/"+ (date.getMonth() + 1) + "/"+ date.getDate());
 			});
+			data['imagem_thumb'] = $("#img_prev").attr('src');
+
+			// console.log(data);
 			Request.set('imoveis', data).then(function(res){
 				var alerta = new alert();
 				if (res[0].codigo == "SUCCESS") {
@@ -122,6 +139,7 @@
 					$("#cadastro-imovel").find('input, textarea').each(function(key, value){
 						$(value).val('');
 					});
+					$("#img_prev").attr('src', 'image/no-image-box.png');
 				} else if (res[0].codigo == "DANGER") {
 					alerta = new alert();
 					alerta.danger(res[0].mensagem);
@@ -141,7 +159,8 @@
 				data['token'] = vm.user.token.token;
 				data['dt_cadastrado'] = (date.getFullYear() +"/"+ (date.getMonth() + 1) + "/"+ date.getDate());
 			});
-			console.log(data);
+			data['imagem_thumb'] = $("#img_prev").attr('src');
+
 			Request.put("imoveis/" + $routeParams.slug, data)
 				.then(function(res){
 					console.log(res, data);

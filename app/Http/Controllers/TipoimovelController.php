@@ -118,7 +118,8 @@ class TipoImovelController extends Controller
                 $busca = TpImovel::orderBy('titulo', 'asc')->get();
 
             }else{
-	    	  $busca = TpImovel::where($input['coluna'],'like', $input['valor'].'%')
+                $input['valor'] = strtolower($input['valor']);
+    	        $busca = TpImovel::where($input['coluna'],'ilike', $input['valor'].'%')
 	    					->orderBy('titulo', 'asc')
 	    					->get();
             }

@@ -21,14 +21,23 @@ header{
 		.avatar-admin{
 		    border-radius: 100%;
 		    width: 40px;
-		    top: -5px;
+		    height: 40px;
+		    top: 5px;
 		    left: 10px;
 		    position: relative;
 		    margin-right: 20px;
+		    overflow: hidden;
+		    img{
+		    	width: 100%;
+		    	height: auto;
+		    }
 		}
-		p{
+		.nome{
 			padding: 10px;
 			color: white;
+		    position: relative;
+		    top: 5px;
+		    float: left;
 		}
 		a{
 			color: white;
@@ -75,7 +84,9 @@ header{
 		    }
 		    .avatar{
 		    	float: left;
-		    	width: 100px;
+	    	    max-width: 100px;
+			    max-height: 100px;
+			    width: auto;
 		    }
 		    .info {
 		    	h3{

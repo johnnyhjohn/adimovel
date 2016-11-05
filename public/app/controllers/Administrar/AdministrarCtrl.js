@@ -172,6 +172,8 @@
 						
 						vm.meses = {};
 						vm.situacao_aluguel = {};
+
+						console.log(contrato);
 					 	
 					 	Request.get("administrar/movimento/" + $routeParams.slug)
 							.then(function(res){
@@ -199,12 +201,16 @@
 								} else if(dt_final.getMonth()  + i  > 48){
 									// count = (mes + i) - 48;	
 									vm.meses[nome_meses[(mes - 48 + i)] +'-'+(dt_inicio.getFullYear() + 4)] = mes + i;
-								}else{
-									vm.meses[nome_meses[mes + i] + "-" + dt_inicio.getFullYear()] = mes + i;
+								}else if( dt_final.getMonth()  + i  > 64 ){
+									vm.meses[nome_meses[(mes - 64 + i)] + "-" + dt_inicio.getFullYear()] = mes + i;
 								}				
+								else{
+									vm.meses[nome_meses[(mes + i)] + "-" + dt_inicio.getFullYear()] = mes + i;
+								}
 								if(vm.movimento.movimentacoes){
 									if(vm.movimento.movimentacoes[i]){
-										console.log(count, contrato.movimentacoes);
+										//console.log(count, contrato.movimentacoes);
+										// console.log(JSON.parse(vm.movimentacoes));
 										vm.situacao_aluguel[(mes + i)] = contrato.movimentacoes[count].situacao;
 										if(contrato.movimentacoes[count].situacao == ""){
 											vm.situacao_aluguel[mes + i] = "Pendente";		
