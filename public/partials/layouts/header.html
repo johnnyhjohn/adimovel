@@ -1,13 +1,17 @@
         <header>
             <div class="admin">
-                <p class="pull-right">
-                    Olá <a href="admin/perfil"> {{ currentUser.nm_usuario }} </a>
-                    <img src="image/no-image.png" alt="Avatar" class="avatar-admin">   
-                </p>
+                <div class="pull-right">
+                    <div>
+                        <div class="nome">Olá <a href="admin/perfil"> {{ currentUser.nm_usuario }} </a></div>
+                        <div class="avatar-admin">
+                            <img data-ng-src="{{ currentUser.foto }}" alt="Avatar">   
+                        </div>
+                    </div>
+                </div>
                 <div class="user-info">
                     <div class="info-content">
                         <div class="avatar">
-                            <img src="image/no-image.png" alt="Avatar" class="avatar">    
+                            <img data-ng-src="{{ currentUser.foto }}" alt="Avatar" class="avatar">    
                         </div>
                         <div class="info">
                             <h3>{{ currentUser.nm_usuario }}</h3>

@@ -60,7 +60,6 @@
 			if($routeParams.slug !== undefined){
 				Request.get("usuario/" + $routeParams.slug, vm.user.token)
 					.then(function(res){
-						console.log(res);
 						vm.usuario = res[0].objeto;
 				});
 			}
@@ -136,7 +135,8 @@
 				cpf: 		$("#cpf").val(),
 				senha: 		$("#senha").val(),
 				tipo: 		$("#tipo").val(),
-				telefone: 	$("#telefone").val()
+				telefone: 	$("#telefone").val(),
+				imagem_thumb :$("#img_prev").attr('src')
 			};
 
 			Request.set('usuario', data).then(function(res){
@@ -159,15 +159,20 @@
 				cpf: 		$("#cpf").val(),
 				senha: 		$("#senha").val(),
 				tipo: 		$("#tipo").val(),
-				telefone: 	$("#telefone").val()
+				telefone: 	$("#telefone").val(),
+				imagem_thumb :$("#img_prev").attr('src')
 			};
 
 			Request.put("usuario/" + $routeParams.slug, data)
 				.then(function(res){
-					console.log('update');
 					var alerta = new alert();
 					if(res[0].codigo == "SUCCESS"){
 						alerta.success(res[0].mensagem);
+						console.log($rootScope.currentUser);
+						$rootScope.currentUser.foto 		= res[0].objeto.foto;
+						$rootScope.currentUser.nm_usuario 	= res[0].objeto.nm_usuario;
+						$rootScope.currentUser.email 		= res[0].objeto.email;
+						console.log($rootScope.currentUser);
 					}else if(res[0].codigo == "DANGER"){
 						alerta = new alert();
 						alerta.danger(res[0].mensagem);
@@ -205,6 +210,10 @@
             // Redireciona para a tela de login do sistema
             event.preventDefault();
             //window.location.reload();
+		}
+
+		vm.uploadImagem = function(){
+
 		}
 
 	}

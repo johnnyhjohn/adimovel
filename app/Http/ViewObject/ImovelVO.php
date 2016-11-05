@@ -14,6 +14,7 @@ use App\Usuario;
 use App\Http\ViewObject\TpImovelVO;
 use App\TpImovel;
 
+
 use App\Imovel;
 
 class ImovelVO
@@ -80,7 +81,7 @@ class ImovelVO
     $this->longitude        = $obj->longitude;
     $this->situacao_imovel  = $obj->situacao_imovel;
     $this->reservado        = $obj->reservado;
-    $this->finalidade        = $obj->finalidade;
+    $this->finalidade       = $obj->finalidade;
     $this->ativo            = $obj->ativo;
   }
 
@@ -112,7 +113,7 @@ class ImovelVO
     $obj->longitude            = $this->longitude;
     $obj->situacao_imovel      = $this->situacao_imovel;
     $obj->reservado            = $this->reservado;
-    $obj->finalidade            = $this->finalidade;
+    $obj->finalidade           = $this->finalidade;
     $obj->ativo                = $this->ativo;
 
     return $obj;

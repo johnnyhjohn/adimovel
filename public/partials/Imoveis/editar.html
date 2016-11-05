@@ -2,6 +2,22 @@
 <div id="editar-imovel" class="panel">
 	<div class="container container-responsive">
 	<form method="post">
+		<div class="col-md-12">
+			<div class="col-sm-6">
+    			<img data-ng-if="vm.imovel.foto" id="img_prev" data-ng-src="{{vm.imovel.foto}}" alt="your image" />
+    			<img data-ng-if="!vm.imovel.foto" id="img_prev" src="image/no-image-box.png" alt="your image" />
+			</div>
+			<div class="col-md-4">
+				<div class="material-input select">
+					<label for="imagem_thumb" class="float-label label-active">Imagem do Imóvel</label>
+					<input id="imagem_thumb" type="file" class="form-control" fileread="vm.imageUpload" >
+					<span class="input-focus"></span>
+				</div>	
+			</div>
+		</div>
+		<div class="col-sm-12">
+			<hr>
+		</div>
 		<div class="col-md-3">
 			<div class="material-input select">
 				<label for="codigo_interno" class="float-label">COD Interno</label>

@@ -17,6 +17,7 @@ class CreateUsuario extends Migration
             $table->string('nm_usuario');
             $table->string('nr_cpf')->unique();
             $table->string('email')->unique();
+            $table->string('foto');
             $table->string('nr_telefone')->nullable();
             $table->char('tp_funcionario', 3);
             $table->string('password');
