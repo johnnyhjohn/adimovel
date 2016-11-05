@@ -39,7 +39,7 @@ class PessoaController extends Controller
 	            $pessoa->endereco = $request->input('endereco');
 	            $pessoa->bairro   = $request->input('bairro');
 
-	           	$pessoa->id_cidade = 1;
+	           	$pessoa->id_cidade = 2;
 	            $pessoa->ativo = true;
 
 	            $validator = \Validator::make($request->all(), $this->validaCadastro());
