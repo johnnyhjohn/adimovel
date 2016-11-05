@@ -1,11 +1,11 @@
 # PsySH
 
 [![Package version](https://img.shields.io/packagist/v/psy/psysh.svg?style=flat-square)](https://packagist.org/packages/psy/psysh)
-[![Build status](https://img.shields.io/travis/bobthecow/psysh/master.svg?style=flat-square)](http://travis-ci.org/bobthecow/psysh)
-[![StyleCI](https://styleci.io/repos/4549925/shield)](https://styleci.io/repos/4549925)
+[![Monthly downloads](http://img.shields.io/packagist/dm/psy/psysh.svg?style=flat-square)](https://packagist.org/packages/psy/psysh)
 [![Made out of awesome](https://img.shields.io/badge/made_out_of_awesome-✓-brightgreen.svg?style=flat-square)](http://psysh.org)
 
-[![Join the chat at https://gitter.im/bobthecow/psysh](https://img.shields.io/badge/gitter-join%20chat%20%E2%86%92-brightgreen.svg?style=flat-square)](https://gitter.im/bobthecow/psysh)
+[![Build status](https://img.shields.io/travis/bobthecow/psysh/master.svg?style=flat-square)](http://travis-ci.org/bobthecow/psysh)
+[![StyleCI](https://styleci.io/repos/4549925/shield)](https://styleci.io/repos/4549925)
 
 
 ## About
@@ -167,7 +167,7 @@ The PsySH `doc` command is great for documenting source code, but you'll need a 
 ## As Seen On…
 
  * Cake: [`cake console`](http://book.cakephp.org/3.0/en/console-and-shells/repl.html)
- * Drupal: [`drush php`](http://drushcommands.com/drush-7x/core/core-cli/), [drush-psysh](https://github.com/grota/drush-psysh)
+ * Drupal: [`drush php`](http://drushcommands.com/drush-8x/core/core-cli/), [drush-psysh](https://github.com/grota/drush-psysh)
  * eZ Publish: [`ezsh`](https://github.com/lolautruche/ezsh)
  * Laravel: [`artisan tinker`](https://github.com/laravel/framework/blob/5.0/src/Illuminate/Foundation/Console/TinkerCommand.php)
  * Lumen: [`artisan tinker`](https://github.com/vluzrmos/lumen-tinker)

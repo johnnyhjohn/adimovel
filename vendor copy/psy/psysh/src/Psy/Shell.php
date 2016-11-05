@@ -41,7 +41,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class Shell extends Application
 {
-    const VERSION = 'v0.7.0';
+    const VERSION = 'v0.7.2';
 
     const PROMPT      = '>>> ';
     const BUFF_PROMPT = '... ';
@@ -78,6 +78,8 @@ class Shell extends Application
         $this->readline = $this->config->getReadline();
 
         parent::__construct('Psy Shell', self::VERSION);
+
+        $this->config->setShell($this);
     }
 
     /**
@@ -602,7 +604,7 @@ class Shell extends Application
         }
 
         // Incremental flush
-        if (!empty($out) && !$isCleaning) {
+        if ($out !== '' && !$isCleaning) {
             $this->output->write($out, false, ShellOutput::OUTPUT_RAW);
             $this->outputWantsNewline = (substr($out, -1) !== "\n");
         }

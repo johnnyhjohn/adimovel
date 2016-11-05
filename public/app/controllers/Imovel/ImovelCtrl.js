@@ -90,7 +90,7 @@
 		function getImoveis(){
 			Request.get("imoveis").then(function(res){
 				angular.forEach(res[0].objeto, function(value, key) {
-					(value.reservado == true) ? value.reservado = "Reservado" : value.reservado = "Disponível";
+					//(value.reservado == true) ? value.reservado = "Reservado" : value.reservado = "Disponível";
 					//(value.tp_funcionario == "COR") ? value.tp_funcionario = "Corretor" : value.tp_funcionario = "Administrador";
 					//(value.ativo == true) ? value.ativo = "Ativo" : value.ativo = "Inativo";		
 				});
@@ -174,6 +174,49 @@
 					return res;
 			});
 
+		}
+
+		vm.setReserva = function(id){
+			
+			var data = {
+				idimovel : id,
+			}
+
+			Request.put("imoveis/reservado/" + id, data)
+				.then(function(res){
+					console.log(res, data);
+					var alerta = new alert();
+					if(res[0].codigo == "SUCCESS"){
+						alerta.success(res[0].mensagem);
+					}else if(res[0].codigo == "DANGER"){
+						alerta = new alert();
+						alerta.danger(res[0].mensagem);
+					}
+					return res;
+			});
+			getImoveis();
+
+		}
+
+		vm.setDisponivel = function(id){
+			
+			var data = {
+				idimovel : id,
+			}
+
+			Request.put("imoveis/disponivel/" + id, data)
+				.then(function(res){
+					console.log(res, data);
+					var alerta = new alert();
+					if(res[0].codigo == "SUCCESS"){
+						alerta.success(res[0].mensagem);
+					}else if(res[0].codigo == "DANGER"){
+						alerta = new alert();
+						alerta.danger(res[0].mensagem);
+					}
+					return res;
+			});
+			getImoveis();
 		}
 
 		vm.deleta = function(){
