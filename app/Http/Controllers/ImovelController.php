@@ -14,11 +14,8 @@ use App\JSONUtils;
 use App\FuncoesAuxiliares;
 use App\Messages;
 use App\Imovel;
-<<<<<<< HEAD
 use App\Pessoa;
-=======
 use App\FotoImovel;
->>>>>>> refs/remotes/origin/master
 use App\Contrato;
 
 class ImovelController extends Controller
@@ -64,15 +61,20 @@ class ImovelController extends Controller
             return JSONUtils::returnDanger('Problema de acesso à base de dados.',$e);
         }
     }
-
-<<<<<<< HEAD
-    /*
-    *   Função para CADASTRAR um imóvel
+            
+    /**
+    *
+    *   @author Johnny
+    *   @description 
+    *   Método para inserção no banco o imóvel cadastrado e upload de foto
+    *
     */
+
     public function create(Request $request)
 	{
 		try{
-            $imovel = new Imovel();
+            $imovel     = new Imovel();
+            $imovel_img = new FotoImovel();
 
             $id_proprietario        = $request->input('proprietario');
             
@@ -116,21 +118,6 @@ class ImovelController extends Controller
                 */
                 $cod_interno = $cod_proprietario.'-001';
             }
-=======
-    /**
-    *
-    *   @author Johnny
-    *   @description 
-    *   Método para inserção no banco o imóvel cadastrado e upload de foto
-    *
-    */
-
-    public function create(Request $request)
-	{
-		try{
-            $imovel     = new Imovel();
-            $imovel_img = new FotoImovel();
->>>>>>> refs/remotes/origin/master
 
             $imovel->codigo_interno   = $cod_interno;
    
