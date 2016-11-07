@@ -6,6 +6,9 @@ class FuncoesAuxiliares
 {
 
   /**
+   *
+   *   @author Rodney
+   *
    * Função retorno para formatar códigos e complementar com 0.
    * Exemplo:  0001
    * @param $cod Código para formatação.

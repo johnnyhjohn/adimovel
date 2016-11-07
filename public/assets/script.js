@@ -15,7 +15,7 @@ var alert = function(){
 	this.danger = function(msg){
 		$(document).scrollTop(0);
 		$(".alert").remove();
-		$("header").after("<div class='alert error'><p>"+ msg +"</p></div>");
+		$("header").after("<div class='alert error'><p>"+ msg +"<a class='btn btn-detalhes-error' data-toggle='modal' data-target='#modalRetorno'>Detalhes..</a></p></div>");
 		vm.deleta();
 	}
 	this.deleta = function(){

@@ -144,6 +144,9 @@
 				if (res[0].codigo == "SUCCESS") {
 					alerta.success(res[0].mensagem);
 				} else if (res[0].codigo == "DANGER") {
+					
+					$(".msg-retorno").html(res[0].objeto);
+					
 					alerta = new alert();
 					alerta.danger(res[0].mensagem);
 				}

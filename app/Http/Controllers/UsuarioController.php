@@ -131,9 +131,21 @@ class UsuarioController extends Controller
     {
 		return [
 			'nome'			=> 'required',
-            //'cpf' 	  		  => 'required|numeric',
-            'email'	  		=> 'required|email',
-            //'senha'		  	=> 'required'
+            'cpf' 	  		=> 'required|numeric|unique:usuarios,nr_cpf',
+            'email'	  		=> 'required|unique:usuarios,email|email',
+            'senha'		  	=> 'required'
+            
+        ];
+    }
+
+    public function validaUpdate()
+    {
+        return [
+            'nome'          => 'required',
+            'cpf'           => 'required|numeric',
+            'email'         => 'required|email',
+            'telefone'      => 'required'
+            //'senha'           => 'required'
             
         ];
     }
@@ -184,7 +196,7 @@ class UsuarioController extends Controller
 	            	$usuario->admin = false;
 	            }
 
-	            $validator = \Validator::make($request->all(), $this->validaCadastro());
+	            $validator = \Validator::make($request->all(), $this->validaUpdate());
 	            if ($validator->fails()) {
 	                return JSONUtils::returnDanger('Problema de validação verifique os campos e tente novamente.', $validator->errors()->all());   
 	            }
