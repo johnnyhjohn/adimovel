@@ -177,6 +177,9 @@
 						$rootScope.currentUser.email 		= res[0].objeto.email;
 						console.log($rootScope.currentUser);
 					}else if(res[0].codigo == "DANGER"){
+						
+						$(".msg-retorno").html(res[0].objeto);
+
 						alerta = new alert();
 						alerta.danger(res[0].mensagem);
 					}
