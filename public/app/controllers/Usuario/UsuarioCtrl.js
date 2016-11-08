@@ -146,15 +146,27 @@
 
 			Request.set('usuario', data).then(function(res){
 				var alerta = new alert();
+				if(res[0]){
+					if (res[0].codigo == "SUCCESS") {
+						alerta.success(res[0].mensagem);
+					} else if (res[0].codigo == "DANGER") {
+						
+						// Chama classe de validação passando o objeto com os erros
+						new validacao( res[0].objeto );
 
-				if (res[0].codigo == "SUCCESS") {
-					alerta.success(res[0].mensagem);
-				} else if (res[0].codigo == "DANGER") {
-					
-					$(".msg-retorno").html(res[0].objeto);
-					
-					alerta = new alert();
-					alerta.danger(res[0].mensagem);
+						var erros = "";
+						angular.forEach(res[0].objeto, function(value, key){
+							erros += value + "<br>";
+						});
+						$(".msg-retorno").html(erros);
+
+						alerta = new alert();
+						alerta.danger(res[0].mensagem);
+					}
+					return res;
+				} else{
+					$(".msg-retorno").html('Problemas internos, contato o Administrador.');
+					return res;
 				}
 			});	
 		}
@@ -174,20 +186,24 @@
 			Request.put("usuario/" + $routeParams.slug, data)
 				.then(function(res){
 					var alerta = new alert();
+					if( res[0] ){
+						if(res[0].codigo == "SUCCESS"){
+							alerta.success(res[0].mensagem);
+							$rootScope.currentUser.foto 		= res[0].objeto.foto;
+							$rootScope.currentUser.nm_usuario 	= res[0].objeto.nm_usuario;
+							$rootScope.currentUser.email 		= res[0].objeto.email;
+						}else if(res[0].codigo == "DANGER"){
+							
+							$(".msg-retorno").html(res[0].objeto);
 
-					if(res[0].codigo == "SUCCESS"){
-						alerta.success(res[0].mensagem);
-						console.log($rootScope.currentUser);
-						$rootScope.currentUser.foto 		= res[0].objeto.foto;
-						$rootScope.currentUser.nm_usuario 	= res[0].objeto.nm_usuario;
-						$rootScope.currentUser.email 		= res[0].objeto.email;
-						console.log($rootScope.currentUser);
-					}else if(res[0].codigo == "DANGER"){
-						
-						$(".msg-retorno").html(res[0].objeto);
+							alerta = new alert();
+							alerta.danger(res[0].mensagem);
+						}
 
-						alerta = new alert();
-						alerta.danger(res[0].mensagem);
+						return res;
+					} else{
+						$(".msg-retorno").html('Problemas internos, contato o Administrador.');
+						return res;
 					}
 			});
 
