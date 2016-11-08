@@ -84,10 +84,15 @@
 
 			Request.get("usuario", vm.user.token).then(function(res){
 				
-				if(res[0].codigo == "DANGER"){
-					var alerta = new alert();
-					alerta.danger(res[0].mensagem);
-					//vm.logout();
+				if( res[0] ){
+					if(res[0].codigo == "DANGER"){
+						var alerta = new alert();
+						alerta.danger(res[0].mensagem);
+						//vm.logout();
+						return false;
+					}
+				} else{
+					$(".msg-retorno").html('Problemas internos, contato o Administrador.');
 					return false;
 				}
 				angular.forEach(res[0].objeto, function(value, key) {
@@ -141,6 +146,7 @@
 
 			Request.set('usuario', data).then(function(res){
 				var alerta = new alert();
+
 				if (res[0].codigo == "SUCCESS") {
 					alerta.success(res[0].mensagem);
 				} else if (res[0].codigo == "DANGER") {
@@ -150,7 +156,6 @@
 					alerta = new alert();
 					alerta.danger(res[0].mensagem);
 				}
-				return res;
 			});	
 		}
 
@@ -169,6 +174,7 @@
 			Request.put("usuario/" + $routeParams.slug, data)
 				.then(function(res){
 					var alerta = new alert();
+
 					if(res[0].codigo == "SUCCESS"){
 						alerta.success(res[0].mensagem);
 						console.log($rootScope.currentUser);
@@ -183,7 +189,6 @@
 						alerta = new alert();
 						alerta.danger(res[0].mensagem);
 					}
-					return res;
 			});
 
 		}
@@ -196,13 +201,18 @@
 			Request.destroy('usuario/' + id)
 				.then(function(res){
 					var alerta = new alert();
-					if(res[0].codigo == "SUCCESS"){
-						alerta.successDeleta(tr, res[0].mensagem);
-					}else if(res[0].codigo == "DANGER"){
-						alerta = new alert();
-						alerta.danger(res[0].mensagem);
-					}					
-					return res;
+					if(res[0]){
+						if(res[0].codigo == "SUCCESS"){
+							alerta.successDeleta(tr, res[0].mensagem);
+						}else if(res[0].codigo == "DANGER"){
+							alerta = new alert();
+							alerta.danger(res[0].mensagem);
+						}					
+						return res;
+					} else{
+						$(".msg-retorno").html('Problemas internos, contato o Administrador.');
+						return res;
+					}
 			})
 		}
 		vm.logout = function(){

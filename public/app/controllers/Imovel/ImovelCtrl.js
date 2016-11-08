@@ -134,17 +134,24 @@
 			// console.log(data);
 			Request.set('imoveis', data).then(function(res){
 				var alerta = new alert();
-				if (res[0].codigo == "SUCCESS") {
-					alerta.success(res[0].mensagem);
-					$("#cadastro-imovel").find('input, textarea').each(function(key, value){
-						$(value).val('');
-					});
-					$("#img_prev").attr('src', 'image/no-image-box.png');
-				} else if (res[0].codigo == "DANGER") {
+				if(res[0]){
+					if (res[0].codigo == "SUCCESS") {
+						alerta.success(res[0].mensagem);
+						$("#cadastro-imovel").find('input, textarea').each(function(key, value){
+							$(value).val('');
+						});
+						$("#img_prev").attr('src', 'image/no-image-box.png');
+					} else if (res[0].codigo == "DANGER") {
+						alerta = new alert();
+						alerta.danger(res[0].mensagem);
+						// Chama classe de validação passando o objeto com os erros
+						new validacao( res[0].objeto );
+					}
+					return res;
+				} else{
 					alerta = new alert();
-					alerta.danger(res[0].mensagem);
+					alerta.danger('Problemas internos, favor contatar um administrador.');
 				}
-				return res;
 			});	
 		}
 
