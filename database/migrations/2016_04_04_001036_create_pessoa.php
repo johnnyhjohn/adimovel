@@ -16,6 +16,7 @@ class CreatePessoa extends Migration
             $table->increments('id');
             //$table->char('tp_pessoa', 3);
             $table->string('nm_pessoa');
+            $table->string('cod_pessoa', 8);
             $table->date('dt_nascimento');
             $table->string('nr_cpf', 15)->unique();
             $table->string('nr_rg', 15)->unique()->nullable();
