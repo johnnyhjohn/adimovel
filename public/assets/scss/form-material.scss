@@ -9,6 +9,28 @@
 		.material-input{
 			max-height: 200px;
 			min-height: 80px;
+			&.required{
+				span{
+					width: 100%;
+					background: red;
+				}
+				&:after{
+					content: "\f071";
+				    position: absolute;
+				    right: 20px;
+				    top: 50px;
+				    color: #ff8585;
+				    display: inline-block;
+				    font: normal normal normal 14px/1 FontAwesome;
+				    font-size: inherit;
+				    text-rendering: auto;
+				    -webkit-font-smoothing: antialiased;
+				    -moz-osx-font-smoothing: grayscale;
+				}
+				label{
+					color: rgba(255, 0, 0, 0.49);
+				}
+			}
 			span{
 				width: 100%;
 			    height: 2px;

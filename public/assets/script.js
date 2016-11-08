@@ -15,7 +15,7 @@ var alert = function(){
 	this.danger = function(msg){
 		$(document).scrollTop(0);
 		$(".alert").remove();
-		$("header").after("<div class='alert error'><p>"+ msg +"</p></div>");
+		$("header").after("<div class='alert error'><p>"+ msg +"<a class='btn btn-detalhes-error' data-toggle='modal' data-target='#modalRetorno'>Detalhes..</a></p></div>");
 		vm.deleta();
 	}
 	this.deleta = function(){
@@ -24,12 +24,46 @@ var alert = function(){
 		}, 5000);
 	}
 	this.successDeleta = function(element, msg){
-		console.log(element);
+		
 		element.append('<p class="p-td">' + msg + '</p>');
 		$('.modal').modal('hide');
 		setTimeout(function(){
 			element.remove();
 		}, 5000);
+	}
+}
+
+/**
+*	@author Johnny
+*	
+*	@description
+*	Função que adiciona uma classe para mostrar os campos com erro.
+*
+*	@param {Object} obj - Objeto de array com os erros
+*
+*/
+var validacao = function( obj ) {
+
+	var validacao = validacao || {};
+	var vm = this;
+
+	// Retira de todos o required para adicionar dos novos
+	$('.material-input').removeClass('required');
+
+	var i = 0
+	,	obj_length = obj.length;
+
+	for(i; i < obj_length; i++){
+
+		if(obj[i].indexOf('O campo') !== -1){
+			var campo = obj[i].slice(8).replace(' é obrigatório.', '').replace(' ', '_');
+			$("#"+campo).parent('.material-input').addClass('required');
+		} else if(obj[i].indexOf('já está em uso') !== -1){
+			var campo = obj[i].replace(' já está em uso.', '').replace(' ', '_').toLowerCase();
+			$("#"+campo).parent('.material-input').addClass('required');
+			console.log(campo);
+		}
+
 	}
 }
 
